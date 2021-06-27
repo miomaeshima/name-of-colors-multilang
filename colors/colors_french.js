@@ -1,4 +1,4 @@
-[
+const FrenchColorNames = [
     { name: 'Abricot', r: 230, g: 126, b: 48 },
     { name: 'Acajou', r: 136, g: 66, b: 29 },
     { name: 'Aigue-marine', r: 121, g: 248, b: 248 },
@@ -207,3 +207,5 @@
     { name: 'Viride', r: 64, g: 130, b: 109 },
     { name: 'Zinzolin', r: 108, g: 2, b: 119 },
 ];
+
+module.exports = FrenchColorNames;

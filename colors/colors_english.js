@@ -1,4 +1,4 @@
-[
+const EnglishColorNames = [
     { name: 'Absolute Zero', r: 0, g: 28, b: 73 },
     { name: 'Acid green', r: 69, g: 75, b: 10 },
     { name: 'Aero', r: 49, g: 73, b: 91 },
@@ -973,3 +973,5 @@
     { name: 'Zaffre', r: 0, g: 8, b: 66 },
     { name: 'Zomp', r: 22, g: 65, b: 56 },
 ];
+
+module.exports = EnglishColorNames;
