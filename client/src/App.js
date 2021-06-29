@@ -1,10 +1,14 @@
+import GlobalStyles from '../GlobalStyles';
 import './App.css';
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header"></header>
-        </div>
+        <>
+            <div>
+                <header className="App-header"></header>
+            </div>
+            <GlobalStyles />
+        </>
     );
 }
 
