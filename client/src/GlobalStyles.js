@@ -67,9 +67,9 @@ table {
 }
 /* 背景色の場合 */
  
-body {
-    background-color: hsl(0deg 0% 95%);
-  }
+${'' /* body {
+    background-color: lightblue;
+  } */}
  
 #root {
 	/* create a stacking context, without a z-index.
