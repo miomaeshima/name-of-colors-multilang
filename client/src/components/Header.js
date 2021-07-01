@@ -7,7 +7,12 @@ import '@reach/menu-button/styles.css';
 const Header = () => {
     return (
         <Wrapper>
-            <Logo>Name of Colors</Logo>
+            <Logo>Logo</Logo>
+            <SubMenu>
+                <div>About</div>
+                <div>Main Color</div>
+                <div>Any Color</div>
+            </SubMenu>
             <Menu>
                 <MenuButton style={{ fontSize: '0.8rem' }}>
                     Languages<span aria-hidden>▾</span>
@@ -22,17 +27,28 @@ const Header = () => {
     );
 };
 
-export default Header;
-
 const Wrapper = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding-left: 32px;
     padding-right: 32px;
     height: 32px;
-    background-color: lightblue;
-    border-bottom: 1px solid black;
 `;
 
 const Logo = styled.div``;
+
+const SubMenu = styled.div`
+    display: flex;
+    gap: 30px;
+    background: pink;
+    min-width: 500px;
+    width: 60%;
+    margin-left: auto;
+    margin-left: auto;
+`;
+
+export default Header;
