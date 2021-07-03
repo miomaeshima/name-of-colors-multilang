@@ -22,11 +22,12 @@ const Wrapper = styled.div`
 
 const Introduction = styled.div`
     min-width: 500px;
-    width: 60%;
+    width: 70%;
     height: 300px;
-    background: pink;    
+    /* background: pink;     */
     margin-left: auto;
     margin-right: auto;
+    padding-left: 32px;
 `;
 
 export default Main;
