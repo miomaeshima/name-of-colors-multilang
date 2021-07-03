@@ -11,16 +11,18 @@ import AnyColor from './components/AnyColor';
 function App() {
     return (
         <BrowserRouter>
-                    <Header />
             <Switch>
                 <Route exact path="/">
+                    <Header />
                     <Main />
                     <Footer />
                 </Route>
                 <Route path="/main_color">
+                    <Header />
                     <MainColor />
                 </Route>
                 <Route path="/any_color">
+                    <Header />
                     <AnyColor />
                 </Route>
                 <Route>Not Found</Route>

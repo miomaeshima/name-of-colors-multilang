@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import Header from './Header';
 
 const MainColor = () => {
-    return <Wrapper>MainColor</Wrapper>;
+    return <Wrapper><Header/></Wrapper>;
 };
 
 const Wrapper = styled.div`
