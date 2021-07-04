@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { Link } from 'react-router-dom';
 
 import { Menu, MenuList, MenuButton, MenuItem } from '@reach/menu-button';
 import '@reach/menu-button/styles.css';
@@ -10,9 +11,9 @@ const Header = () => {
             <Logo>Logo</Logo>
             <SubMenuWrapper>
                 <SubMenu>
-                    <div>About</div>
-                    <div>Main Color</div>
-                    <div>Any Color</div>
+                    <Link to="/">Home</Link>
+                    <Link to="/main_color">Main Color</Link>
+                    <Link to="/any_color">Any Color</Link>
                 </SubMenu>
             </SubMenuWrapper>
             <MenuWrapper>
