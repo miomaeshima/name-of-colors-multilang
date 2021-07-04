@@ -17,7 +17,6 @@ const Header = () => {
                 </SubMenu>
             </SubMenuWrapper>
             <MenuWrapper>
-                {' '}
                 <Menu>
                     <MenuButton style={{ fontSize: '0.8rem' }}>
                         Languages<span aria-hidden>▾</span>
@@ -42,21 +41,22 @@ const Logo = styled.div`
 `;
 
 const SubMenuWrapper = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
+    height: 200px;
 `;
 
 const SubMenu = styled.div`
+    position: sticky;
+    top:16px;
     display: flex;
     gap: 30px;
-    /* background: pink; */
+    /* border: 1px solid;  */
     min-width: 500px;
     width: 70%;
     margin-left: auto;
     margin-right: auto;
     padding-left: 32px;
+    padding-bottom: 16px;
 `;
 
 const MenuWrapper = styled.div`

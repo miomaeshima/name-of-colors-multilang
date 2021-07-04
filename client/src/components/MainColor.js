@@ -3,7 +3,12 @@ import styled from 'styled-components/macro';
 import Header from './Header';
 
 const MainColor = () => {
-    return <Wrapper><Header/></Wrapper>;
+    return (
+        <Wrapper>
+            <Header />
+            <Div />
+        </Wrapper>
+    );
 };
 
 const Wrapper = styled.div`
@@ -11,5 +16,7 @@ const Wrapper = styled.div`
     height: 500px;
     background: pink;
 `;
+
+const Div = styled.div``;
 
 export default MainColor;
