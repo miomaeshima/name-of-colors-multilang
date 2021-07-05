@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import { Menu, MenuList, MenuButton, MenuItem } from '@reach/menu-button';
 import '@reach/menu-button/styles.css';
@@ -11,9 +11,25 @@ const Header = () => {
             <Logo>Logo</Logo>
             <SubMenuWrapper>
                 <SubMenu>
-                    <Link to="/">Home</Link>
-                    <Link to="/main_color">Main Color</Link>
-                    <Link to="/any_color">Any Color</Link>
+                    <StyledNavLink
+                        activeStyle={{ fontWeight: 'bold' }}
+                        exact
+                        to="/"
+                    >
+                        Home
+                    </StyledNavLink>
+                    <StyledNavLink
+                        activeStyle={{ fontWeight: 'bold' }}
+                        to="/main_color"
+                    >
+                        Main Color
+                    </StyledNavLink>
+                    <StyledNavLink
+                        activeStyle={{ fontWeight: 'bold' }}
+                        to="/any_color"
+                    >
+                        Any Color
+                    </StyledNavLink>
                 </SubMenu>
             </SubMenuWrapper>
             <MenuWrapper>
@@ -44,6 +60,8 @@ const SubMenuWrapper = styled.div`
     width: 100%;
     height: 200px;
 `;
+
+const StyledNavLink = styled(NavLink)``;
 
 const SubMenu = styled.div`
     position: sticky;

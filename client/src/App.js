@@ -5,7 +5,7 @@ import GlobalStyles from './GlobalStyles';
 import Header from './components/Header';
 import Home from './components/Home';
 
-import MainColor from './components/MainColor';
+import CheckMainColor from './components/CheckMainColor';
 import CheckAnyColor from './components/CheckAnyColor';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
                     <Home />
                 </Route>
                 <Route path="/main_color">
-                    <MainColor />
+                    <CheckMainColor />
                 </Route>
                 <Route path="/any_color">
                     <CheckAnyColor />

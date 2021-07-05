@@ -140,7 +140,7 @@ const CheckAnyColor = () => {
                             <div id="previewContainerCheckAnyColor">
                                 <div id="instructionCheckAnyColor">
                                     クリックしたところの色の名前が分かります。
-                                    <div id="colorSample"></div>
+                                    <ColorSample id="colorSample"/>
                                 </div>
                                 <div id="canvasContainer">
                                     <canvas id="canvas"></canvas>
@@ -161,4 +161,9 @@ const CheckAnyColor = () => {
     );
 };
 
+const ColorSample = styled.div`
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+`;
 export default CheckAnyColor;

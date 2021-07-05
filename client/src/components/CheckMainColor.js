@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import Header from './Header';
 import { getMainRgb, Refresh } from '../utility';
 
-const MainColor = () => {
+const CheckMainColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
     const [picSrc, setPicSrc] = useState(null);
     const [picName, setPicName] = useState('');
@@ -133,4 +133,4 @@ const Wrapper = styled.div`
 
 const Div = styled.div``;
 
-export default MainColor;
+export default CheckMainColor;
