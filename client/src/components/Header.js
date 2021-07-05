@@ -47,7 +47,7 @@ const SubMenuWrapper = styled.div`
 
 const SubMenu = styled.div`
     position: sticky;
-    top:16px;
+    top: 16px;
     display: flex;
     gap: 30px;
     /* border: 1px solid;  */

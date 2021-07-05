@@ -10,7 +10,7 @@ let styles = {
 const Home = () => {
     return (
         <>
-            <Header style={{background: pink}} />
+            <Header style={{ background: pink }} />
             <Main />
             <Footer />
         </>
