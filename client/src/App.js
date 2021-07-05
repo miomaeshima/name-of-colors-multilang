@@ -6,7 +6,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 
 import MainColor from './components/MainColor';
-import AnyColor from './components/AnyColor';
+import CheckAnyColor from './components/CheckAnyColor';
 
 function App() {
     return (
@@ -19,7 +19,7 @@ function App() {
                     <MainColor />
                 </Route>
                 <Route path="/any_color">
-                    <AnyColor />
+                    <CheckAnyColor />
                 </Route>
                 <Route>Not Found</Route>
             </Switch>
