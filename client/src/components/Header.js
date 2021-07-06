@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Link, NavLink } from 'react-router-dom';
+import LanguageMenu from './language/LanguageMenu'
 
-import { Menu, MenuList, MenuButton, MenuItem } from '@reach/menu-button';
-import '@reach/menu-button/styles.css';
 
 const Header = () => {
     return (
@@ -12,40 +11,27 @@ const Header = () => {
             <SubMenuWrapper>
                 <SubMenu>
                     <StyledNavLink
-                        activeStyle={{ fontWeight: 'bold' }}
+                        activeStyle={{ borderBottom: '1px solid black' }}
                         exact
                         to="/"
                     >
                         Home
                     </StyledNavLink>
                     <StyledNavLink
-                        activeStyle={{ fontWeight: 'bold' }}
+                        activeStyle={{ borderBottom: '1px solid black' }}
                         to="/main_color"
                     >
                         Main Color
                     </StyledNavLink>
                     <StyledNavLink
-                        activeStyle={{ fontWeight: 'bold' }}
+                        activeStyle={{ borderBottom: '1px solid black' }}
                         to="/any_color"
                     >
                         Any Color
                     </StyledNavLink>
                 </SubMenu>
             </SubMenuWrapper>
-            <MenuWrapper>
-                <Menu>
-                    <MenuButton style={{ fontSize: '0.8rem' }}>
-                        Languages<span aria-hidden>▾</span>
-                    </MenuButton>
-                    <MenuList>
-                        <MenuItem style={{ fontSize: '0.9rem' }}>
-                            日本語
-                        </MenuItem>
-                        <MenuItem>English</MenuItem>
-                        <MenuItem>Francais</MenuItem>
-                    </MenuList>
-                </Menu>
-            </MenuWrapper>
+          <MenuWrapper><LanguageMenu/></MenuWrapper>
         </>
     );
 };
@@ -61,7 +47,9 @@ const SubMenuWrapper = styled.div`
     height: 200px;
 `;
 
-const StyledNavLink = styled(NavLink)``;
+const StyledNavLink = styled(NavLink)`
+    text-decoration: none;
+`;
 
 const SubMenu = styled.div`
     position: sticky;
