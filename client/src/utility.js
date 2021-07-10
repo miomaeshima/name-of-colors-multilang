@@ -1,11 +1,12 @@
 import ColorThief from 'colorthief';
 import styled from 'styled-components/macro';
 import { RefreshCw } from 'react-feather';
+
 const colorThief = new ColorThief();
 
-const getName = async (rgbValue) => {
-    
-    let res = await fetch(`http://localhost:5000/color/en/${rgbValue}`);
+const getName = async (rgbValue, lang) => {
+    console.log(lang)
+    let res = await fetch(`http://localhost:5000/color/${lang}/${rgbValue}`);
     const color = await res.json();
     console.log(color);
     return color;
@@ -19,16 +20,16 @@ const getMainRgb = async (e) => {
         let result = colorThief.getColor(pic);
         let rgb = { r: result[0], g: result[1], b: result[2] };
         let rgbToBeSent = JSON.stringify(rgb);
-        console.log(rgbToBeSent)
+        console.log(rgbToBeSent);
         let color = await getName(rgbToBeSent);
         return color;
     }
 };
 
-const getRgb = async (data) => {
+const getRgb = async (data, lang) => {
     let rgb = { r: data[0], g: data[1], b: data[2] };
     let rgbToBeSent = JSON.stringify(rgb);
-    let color = await getName(rgbToBeSent);
+    let color = await getName(rgbToBeSent, lang);
     return color;
 };
 

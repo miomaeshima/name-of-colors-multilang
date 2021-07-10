@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import Header from './Header';
 import { getRgb, Refresh } from '../utility.js';
+import { useSelector } from 'react-redux';
 
 const CheckAnyColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
     const [picSrc, setPicSrc] = useState(null);
     const [colorData, setColorData] = useState({});
     const [backgroundColor, setBackgroundColor] = useState('transparent');
+    const lang = useSelector((state) => state.language[0]);
+    console.log(lang)
 
     const placeCheckAnyColorPage = () => {
         window.location.href = '#checkCheckAnyColor';
@@ -64,14 +67,15 @@ const CheckAnyColor = () => {
             };
 
             let colorSample = document.getElementById('colorSample');
-
+           
             const getColor = async (data) => {
-                let response = await getRgb(data);
+                
+                let response = await getRgb(data, lang);
                 setColorData(response);
                 setBackgroundColor(
                     `rgb(${response.r}, ${response.g}, ${response.b})`
                 );
-                console.log('getColor');
+
                 placeCheckAnyColorPage();
             };
 
@@ -89,6 +93,7 @@ const CheckAnyColor = () => {
                 let y = event.offsetY;
                 let imageData = context.getImageData(x, y, 1, 1);
                 let data = imageData.data;
+                
                 getColor(data);
             });
         }
