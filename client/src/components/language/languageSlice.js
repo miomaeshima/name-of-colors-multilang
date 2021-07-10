@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = 'ja';
+const initialState = ['ja'];
 
 const languageSlice = createSlice({
     name: 'language',
@@ -8,7 +8,7 @@ const languageSlice = createSlice({
     //writing a function in the following object triggers createSlice to automatically generate an action creator function with the same name.
     reducers: {
         languageChanged(state, action) {
-            state = action.payload;
+            state[0] = action.payload;
         },
     },
 });

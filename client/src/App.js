@@ -2,9 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import GlobalStyles from './GlobalStyles';
-import Header from './components/Header';
 import Home from './components/Home';
-
 import CheckMainColor from './components/CheckMainColor';
 import CheckAnyColor from './components/CheckAnyColor';
 
