@@ -32,12 +32,8 @@ const findClosest = (colors) => {
 
 app.get('/color/:lang/:rgb', (req, res) => {
     let lang = req.params.lang;
-    console.log(lang);   
-
     let value = req.params.rgb;
-    console.log(value)
     value = JSON.parse(value);
-    console.log(value)
 
     let colorArray= japaneseColorNames;
 

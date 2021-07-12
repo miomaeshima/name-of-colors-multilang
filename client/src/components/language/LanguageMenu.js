@@ -1,15 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { languageChanged } from './languageSlice';
-import { useSelector } from 'react-redux';
 
 const LanguageMenu = () => {
     const dispatch = useDispatch();
     const selectLang = (e) => {
         let choice = e.target.value;
-        console.log(choice);
         dispatch(languageChanged(choice));
     };
-
 
     return (
         <select onChange={selectLang}>

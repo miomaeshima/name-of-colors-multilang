@@ -16,8 +16,6 @@ const CheckMainColor = () => {
         setPreviewPic(e.target.files[0]);
     };
 
-    console.log(previewPic);
-
     if (previewPic !== null) {
         let reader = new FileReader();
         reader.readAsDataURL(previewPic);

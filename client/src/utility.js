@@ -5,10 +5,9 @@ import { RefreshCw } from 'react-feather';
 const colorThief = new ColorThief();
 
 const getName = async (rgbValue, lang) => {
-    console.log(lang)
     let res = await fetch(`http://localhost:5000/color/${lang}/${rgbValue}`);
     const color = await res.json();
-    console.log(color);
+
     return color;
 };
 //function to get the dominant rgb value of an image and then get the name of closest color
@@ -20,7 +19,6 @@ const getMainRgb = async (e) => {
         let result = colorThief.getColor(pic);
         let rgb = { r: result[0], g: result[1], b: result[2] };
         let rgbToBeSent = JSON.stringify(rgb);
-        console.log(rgbToBeSent);
         let color = await getName(rgbToBeSent);
         return color;
     }

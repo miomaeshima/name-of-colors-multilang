@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import styled from 'styled-components/macro';
 import Header from './Header';
 import { getRgb, Refresh } from '../utility.js';
@@ -9,8 +9,8 @@ const CheckAnyColor = () => {
     const [picSrc, setPicSrc] = useState(null);
     const [colorData, setColorData] = useState({});
     const [backgroundColor, setBackgroundColor] = useState('transparent');
+
     const lang = useSelector((state) => state.language[0]);
-    console.log(lang)
 
     const placeCheckAnyColorPage = () => {
         window.location.href = '#checkCheckAnyColor';
@@ -67,9 +67,8 @@ const CheckAnyColor = () => {
             };
 
             let colorSample = document.getElementById('colorSample');
-           
+
             const getColor = async (data) => {
-                
                 let response = await getRgb(data, lang);
                 setColorData(response);
                 setBackgroundColor(
@@ -88,16 +87,22 @@ const CheckAnyColor = () => {
                 colorSample.style.background = `rgb(${data[0]}, ${data[1]}, ${data[2]}`;
             });
 
-            canvas.addEventListener('click', (event) => {
+            const sendCanvasDataToGetColor = (event) => {
                 let x = event.offsetX;
                 let y = event.offsetY;
                 let imageData = context.getImageData(x, y, 1, 1);
                 let data = imageData.data;
-                
                 getColor(data);
-            });
+            };
+            canvas.addEventListener('click', sendCanvasDataToGetColor);
+
+            //Need the codes below to clean up the above eventListner to avoid that eventListner with the previous language remaining after the language is changed. Otherwise there will be plural number of eventLisnters would run.
+
+            return () => {
+                canvas.removeEventListener('click', sendCanvasDataToGetColor);
+            };
         }
-    }, [picSrc]);
+    }, [picSrc, lang]);
 
     const refresh = () => {
         setPreviewPic(null);
