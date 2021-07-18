@@ -1,19 +1,39 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import ButtonContainer from './ButtonContainer';
+import { useSelector } from 'react-redux';
+
+const titleJa = '色の名前';
+const titleEn = 'Names of Colors';
+const titleFr = 'Noms de Couleurs';
 
 const Main = () => {
+    const lang = useSelector((state) => state.language[0]);
+
+    let title;
+    if (lang === 'en') {
+        title = titleEn;
+    } else if (lang === 'fr') {
+        title = titleFr;
+    } else {
+        title = titleJa;
+    }
+
+    let text;
+    if (lang === 'en') {
+        text = 'Have you ever wondered the name of a color? Coloiro helps you. ';
+    } else if (lang === 'fr') {
+        text = '';
+    } else {
+        text = '';
+    }
+
     return (
         <Wrapper>
             <Introduction>
                 <Div>
-                    <h1>Name</h1>
-                    <p className="balance-text">
-                        the end of this article, there’s also a showcase of some
-                        excellent web designs that have great website
-                        introductory text for our further exploration of the
-                        topic.
-                    </p>
+                    <h1>{title}</h1>
+                    <p className="balance-text">{text}</p>
                     <ButtonContainer />
                 </Div>
             </Introduction>
@@ -34,7 +54,6 @@ const Introduction = styled.div`
     margin-left: auto;
     margin-right: auto;
     padding-left: 32px;
-
 `;
 
 const Div = styled.div`
