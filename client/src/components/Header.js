@@ -7,9 +7,7 @@ import LanguageMenu from './language/LanguageMenu';
 const Header = () => {
     return (
         <>
-            <Logo
-               to="/#"
-            >
+            <Logo smooth to="/#">
                 Logo
             </Logo>
             <SubMenuWrapper>
@@ -59,6 +57,9 @@ const Logo = styled(HashLink)`
 const SubMenuWrapper = styled.div`
     background: lightgreen;
     width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -69,18 +70,14 @@ const StyledNavHashLink = styled(NavHashLink)`
     text-decoration: none;
 `;
 
-const SubMenu = styled.div`
-    position: sticky;
-    top: 16px;
+const SubMenu = styled.div`    
     display: flex;
     gap: 30px;
-    /* border: 1px solid;  */
     min-width: 500px;
     width: 70%;
     margin-left: auto;
     margin-right: auto;
     padding-left: 32px;
-    padding-bottom: 16px;
 `;
 
 const MenuWrapper = styled.div`
