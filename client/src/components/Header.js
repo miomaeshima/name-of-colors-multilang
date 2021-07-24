@@ -10,39 +10,37 @@ const Header = () => {
             <Logo smooth to="/#">
                 Logo
             </Logo>
-            <SubMenuWrapper>
-                <SubMenu>
-                    <StyledNavLink
-                        activeStyle={{ borderBottom: '1px solid black' }}
-                        exact
-                        to="/"
-                    >
-                        Home
-                    </StyledNavLink>
-                    <StyledNavHashLink
-                        smooth
-                        activeStyle={{ borderBottom: '1px solid black' }}
-                        to="/#about"
-                    >
-                        About
-                    </StyledNavHashLink>
-                    <StyledNavLink
-                        activeStyle={{ borderBottom: '1px solid black' }}
-                        to="/main_color"
-                    >
-                        Main Color
-                    </StyledNavLink>
-                    <StyledNavLink
-                        activeStyle={{ borderBottom: '1px solid black' }}
-                        to="/any_color"
-                    >
-                        Any Color
-                    </StyledNavLink>
-                </SubMenu>
-            </SubMenuWrapper>
-            <MenuWrapper>
+            <NavLinkWrapper>
+                <StyledNavLink
+                    activeStyle={{ borderBottom: '1px solid black' }}
+                    exact
+                    to="/"
+                >
+                    Home
+                </StyledNavLink>
+                <StyledNavHashLink
+                    smooth
+                    activeStyle={{ borderBottom: '1px solid black' }}
+                    to="/#about"
+                >
+                    About
+                </StyledNavHashLink>
+                <StyledNavLink
+                    activeStyle={{ borderBottom: '1px solid black' }}
+                    to="/main_color"
+                >
+                    Main Color
+                </StyledNavLink>
+                <StyledNavLink
+                    activeStyle={{ borderBottom: '1px solid black' }}
+                    to="/any_color"
+                >
+                    Any Color
+                </StyledNavLink>
+            </NavLinkWrapper>
+            <ListWrapper>
                 <LanguageMenu />
-            </MenuWrapper>
+            </ListWrapper>
         </>
     );
 };
@@ -54,12 +52,20 @@ const Logo = styled(HashLink)`
     text-decoration: none;
 `;
 
-const SubMenuWrapper = styled.div`
-    background: lightgreen;
-    width: 100%;
+const Wrapper = styled.div`
     height: 32px;
     display: flex;
     align-items: center;
+`;
+
+const NavLinkWrapper = styled(Wrapper)`
+    display: flex;
+    gap: 30px;
+    min-width: 500px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 32px;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -70,20 +76,10 @@ const StyledNavHashLink = styled(NavHashLink)`
     text-decoration: none;
 `;
 
-const SubMenu = styled.div`    
-    display: flex;
-    gap: 30px;
-    min-width: 500px;
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 32px;
-`;
-
-const MenuWrapper = styled.div`
+const ListWrapper = styled(Wrapper)`
     position: fixed;
     top: 0;
-    right: 0;
+    right: 32px;
 `;
 
 export default Header;
