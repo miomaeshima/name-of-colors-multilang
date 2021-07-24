@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { HashLink, NavHashLink } from 'react-router-hash-link';
 import LanguageMenu from './language/LanguageMenu';
 
@@ -8,11 +8,11 @@ const Header = () => {
     return (
         <>
             <Logo smooth to="/#">
-                Logo
+                <img alt="go back to home" width="24px" src="logo.svg"></img>
             </Logo>
             <NavLinkWrapper>
                 <StyledNavLink
-                    activeStyle={{ borderBottom: '1px solid black' }}
+                    activeStyle={{ borderBottom: '1px solid' }}
                     exact
                     to="/"
                 >
@@ -20,19 +20,19 @@ const Header = () => {
                 </StyledNavLink>
                 <StyledNavHashLink
                     smooth
-                    activeStyle={{ borderBottom: '1px solid black' }}
+                    activeStyle={{ borderBottom: '1px solid' }}
                     to="/#about"
                 >
                     About
                 </StyledNavHashLink>
                 <StyledNavLink
-                    activeStyle={{ borderBottom: '1px solid black' }}
+                    activeStyle={{ borderBottom: '1px solid' }}
                     to="/main_color"
                 >
                     Main Color
                 </StyledNavLink>
                 <StyledNavLink
-                    activeStyle={{ borderBottom: '1px solid black' }}
+                    activeStyle={{ borderBottom: '1px solid' }}
                     to="/any_color"
                 >
                     Any Color
@@ -48,8 +48,13 @@ const Header = () => {
 const Logo = styled(HashLink)`
     position: fixed;
     top: 0;
-    left: 0;
+    left: 32px;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    gap: 16px;
+    color: inherit;
 `;
 
 const Wrapper = styled.div`
@@ -70,16 +75,18 @@ const NavLinkWrapper = styled(Wrapper)`
 
 const StyledNavLink = styled(NavLink)`
     text-decoration: none;
+    color: inherit;
 `;
 
 const StyledNavHashLink = styled(NavHashLink)`
     text-decoration: none;
+    color: inherit;
 `;
 
 const ListWrapper = styled(Wrapper)`
     position: fixed;
     top: 0;
-    right: 32px;
+    right: 15%;
 `;
 
 export default Header;

@@ -1,20 +1,25 @@
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import { pink } from 'color-name';
+import styled from 'styled-components/macro';
 
-let styles = {
-    border: '1px solid pink',
-    background: pink,
-};
 const Home = () => {
     return (
         <>
-            <Header style={{ background: pink }} />
-            <Main />
+            <Wrapper>
+                <Header />
+                <Main />
+            </Wrapper>
             <Footer />
         </>
     );
 };
+
+const Wrapper = styled.div`
+    height: 100vh;
+    background-image: url('backgroundImg.jpg');
+    background-size: cover;
+    color: white;
+`;
 
 export default Home;

@@ -6,7 +6,7 @@ const Footer = () => {
 };
 
 const Wrapper = styled.div`
-height: 250px;
-background: pink;
-`; 
+    height: 250px;
+    background: pink;
+`;
 export default Footer;

@@ -40,8 +40,11 @@ Inside of a useEffect hook
 Need the codes below to clean up the eventListner to avoid that eventListner with the previous language remaining after the language is changed. Otherwise there will be plural number of eventLisnters would run.
 (Try comment out the return statement and see how the browser quickly renders multiple eventlisteners.)
 
+###
 
-
-### 
 background image credit
- lee-jeffs-uasbgaRTInA-unsplash
+lee-jeffs-uasbgaRTInA-unsplash
+
+### diamond icon attribution
+
+ <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
