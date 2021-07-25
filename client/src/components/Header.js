@@ -58,6 +58,8 @@ const Logo = styled(HashLink)`
 `;
 
 const Wrapper = styled.div`
+    position: relative;
+    
     height: 32px;
     display: flex;
     align-items: center;

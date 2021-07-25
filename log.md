@@ -48,3 +48,10 @@ lee-jeffs-uasbgaRTInA-unsplash
 ### diamond icon attribution
 
  <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
+
+### background　は　pictureを使う。
+Because image-set for media type is currently not supported widely, I used picture tag (html) instead of image-set (css). 
+Elements that need to be in front of the background image have position:relative to ensure the right stacking order.
+   
+https://ics.media/entry/201001/
