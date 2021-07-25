@@ -12,14 +12,14 @@ const CheckAnyColor = () => {
 
     const lang = useSelector((state) => state.language[0]);
 
-    const placeCheckAnyColorPage = () => {
-        window.location.href = '#checkCheckAnyColor';
-    };
+    // const placeCheckAnyColorPage = () => {
+    //     window.location.href = '#checkCheckAnyColor';
+    // };
 
     const preview = (e) => {
         e.preventDefault();
         setPreviewPic(e.target.files[0]);
-        placeCheckAnyColorPage();
+        // placeCheckAnyColorPage();
     };
 
     if (previewPic !== null) {
@@ -75,7 +75,7 @@ const CheckAnyColor = () => {
                     `rgb(${response.r}, ${response.g}, ${response.b})`
                 );
 
-                placeCheckAnyColorPage();
+                // placeCheckAnyColorPage();
             };
 
             canvas.addEventListener('mousemove', (event) => {
@@ -121,18 +121,38 @@ const CheckAnyColor = () => {
         fontColor = { color: 'black' };
     }
 
+    let text;
+    let buttonText;
+    let textToClick;
+
+    if (lang === 'en') {
+        text =
+            'You can look up the name of the color of any part of the image you select.';
+        buttonText = 'Select an image.';
+        textToClick =
+            'Click any part of the image to find out the name of the color. You can also look up the name in Japanese or French by chaging the select menu above.';
+    } else if (lang === 'fr') {
+        text =
+            "Vous pouvez rechercher le nom de la couleur de n'importe quelle partie de l'image que vous sélectionnez.";
+        buttonText = 'Sélectionnez une image.';
+        textToClick = "Cliquez sur n'importe quelle partie de l'image pour connaître le nom de la couleur. Vous pouvez également rechercher le nom en japonais ou en français en modifiant le menu de sélection ci-dessus.";
+    } else {
+        text =
+            '下のボタンから画像を選び、好きな場所をクリックして色の名前を調べられます。';
+        buttonText = '画像を選ぶ。';
+        textToClick =
+            '画像の好きなところをクリックして、色の名前を調べられます。上のメニューを変えると英語、フランス語でも名前が調べられます。';
+    }
+
     return (
-        <>
+        <Wrapper>
             <Header />
-            <div id="checkCheckAnyColor">
-                {previewPic === null ? (
-                    <form name="selectFileForm">
-                        <label
-                            className="label"
-                            htmlFor="selectFileCheckAnyColor"
-                            tabIndex="0"
-                        >
-                            ここをクリックして、画像を選んでください。
+            {previewPic === null ? (
+                <Div>
+                    <P>{text}</P>
+                    <Form name="selectFileForm">
+                        <label htmlFor="selectFileCheckAnyColor" tabIndex="0">
+                            {buttonText}
                         </label>
                         <input
                             type="file"
@@ -140,36 +160,81 @@ const CheckAnyColor = () => {
                             accept="image/*"
                             onChange={preview}
                         ></input>
-                    </form>
-                ) : (
-                    <div
-                        id="previewBoxCheckAnyColor"
-                        style={{ background: backgroundColor }}
-                    >
-                        <div className="previewOuterContainer">
-                            <div id="previewContainerCheckAnyColor">
-                                <div id="instructionCheckAnyColor">
-                                    クリックしたところの色の名前が分かります。
-                                    <ColorSample id="colorSample" />
-                                </div>
-                                <div id="canvasContainer">
-                                    <canvas id="canvas"></canvas>
-                                </div>
+                    </Form>
+                </Div>
+            ) : (
+                <div
+                    id="previewBoxCheckAnyColor"
+                    style={{ background: backgroundColor }}
+                >
+                    <div className="previewOuterContainer">
+                        <div id="previewContainerCheckAnyColor">
+                            <div id="instructionCheckAnyColor">
+                                {textToClick}
+                                <ColorSample id="colorSample" />
+                            </div>
+                            <div id="canvasContainer">
+                                <canvas id="canvas"></canvas>
                             </div>
                         </div>
-
-                        <div id="selectNameBoxCheckAnyColor" style={fontColor}>
-                            {colorData.name}
-                        </div>
                     </div>
-                )}
-                <div id="linkContainer3">
-                    <Refresh fontColor={fontColor} onClick={() => refresh()} />
+
+                    <div id="selectNameBoxCheckAnyColor" style={fontColor}>
+                        {colorData.name}
+                    </div>
                 </div>
-            </div>
-        </>
+            )}
+            {/* <div id="linkContainer3">
+                <Refresh fontColor={fontColor} onClick={() => refresh()} />
+            </div> */}
+        </Wrapper>
     );
 };
+
+const Wrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    background: beige;
+`;
+
+const Div = styled.div`
+    height: calc(100% - 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    justify-content: center;
+`;
+
+const P = styled.p`
+    max-width: 50ch;
+`;
+
+const Form = styled.form`
+    /* With a specific height to Form, translating label does not affect the P above */
+    height: 100px;
+
+    label {
+        padding: 8px;
+        width: 500px;
+        border-bottom: solid 4px rgb(0, 181, 222);
+        border-radius: 4px;
+        color: white;
+        background: rgb(2, 196, 240);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        word-spacing: 0.2rem;
+    }
+    label:active {
+        -webkit-transform: translateY(4px);
+        transform: translateY(2px); /*下に動く*/
+        border-bottom: solid 2px rgb(0, 181, 222);
+    }
+    input {
+        display: none;
+    }
+`;
 
 const ColorSample = styled.div`
     width: 48px;

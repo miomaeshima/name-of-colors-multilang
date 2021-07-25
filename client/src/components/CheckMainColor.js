@@ -48,6 +48,7 @@ const CheckMainColor = () => {
         setPreviewPic(null);
         setBackgroundColor('transparent');
         setColorData({});
+        setPicSrc(null);
     };
 
     let fontColor;
@@ -139,9 +140,9 @@ const CheckMainColor = () => {
                     </div>
                 </div>
             )}
-            <div id="linkContainer2">
+            {/* <div id="linkContainer2">
                 <Refresh fontColor={fontColor} onClick={() => refresh()} />
-            </div>
+            </div> */}
         </Wrapper>
     );
 };
@@ -153,7 +154,7 @@ const Wrapper = styled.div`
 `;
 
 const Div = styled.div`
-    height: 80vh;
+    height: calc(100% - 32px);
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -166,6 +167,8 @@ const P = styled.p`
 `;
 
 const Form = styled.form`
+    /* With a specific height to Form, translating label does not affect the P above */
+    height: 100px;
     label {
         padding: 8px;
         width: 500px;
@@ -180,8 +183,8 @@ const Form = styled.form`
     }
     label:active {
         -webkit-transform: translateY(4px);
-        transform: translateY(4px); /*下に動く*/
-        border-bottom: none; /*線を消す*/
+        transform: translateY(2px); /*下に動く*/
+        border-bottom: solid 2px rgb(0, 181, 222);
     }
 
     input {

@@ -9,11 +9,11 @@ const Home = () => {
             <Wrapper>
                 <Picture>
                     <source
-                        srcset="background-img.avif"
+                        srcSet="background-img.avif"
                         type="image/avif"
                     ></source>
                     <source
-                        srcset="background-img.webp"
+                        srcSet="background-img.webp"
                         type="image/webp"
                     ></source>
                     <img src="background-img.jpg" alt="" />
@@ -33,7 +33,7 @@ const Wrapper = styled.div`
 
 const Picture = styled.picture`
     img {
-        position: absolute;  
+        position: absolute;
         width: 100%;
         height: 100vh;
         object-fit: cover;

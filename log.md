@@ -55,3 +55,5 @@ Because image-set for media type is currently not supported widely, I used pictu
 Elements that need to be in front of the background image have position:relative to ensure the right stacking order.
    
 https://ics.media/entry/201001/
+
+### Bug "error" coming from index.js on server side
