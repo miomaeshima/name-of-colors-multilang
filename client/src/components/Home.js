@@ -28,27 +28,12 @@ const Home = () => {
 
 const Wrapper = styled.div`
     height: 100vh;
-    /* background-image: url('background-img.avif'); */
-
-    /* background-image: -webkit-image-set(
-        url('background-img.avif') 1x,
-        url('background-img.webp') 1x,
-        url('background-img.jpg') 1x
-    );
-    background-image: image-set(
-        url('background-img.avif') type('image/avif'),
-        url('background-img.webp') type('image/webp'),
-        url('background-img.jpg') type('image/jpg')
-    ); */
-    /* background-size: cover; */
     color: white;
 `;
 
 const Picture = styled.picture`
     img {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: absolute;  
         width: 100%;
         height: 100vh;
         object-fit: cover;

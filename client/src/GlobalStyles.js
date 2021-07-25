@@ -24,8 +24,6 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
-	font: inherit;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -58,18 +56,17 @@ table {
 *:before,
 *:after{
 	box-sizing: border-box;
-    font-size: 18px;
+    font-size: 16px;
 	line-height: 1.45;
-	font-family: 'Raleway', sans-serif;
+	font-family:
+    -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+    helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+
 	/* 以下2行は文字のギザギザをなめらかにするantialiasingのため */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: auto;
 }
-/* 背景色の場合 */
  
-${'' /* body {
-    background-color: lightblue;
-  } */}
  
 #root {
 	/* create a stacking context, without a z-index.
@@ -83,4 +80,3 @@ html, body, #root{
 }
 `;
 export default GlobalStyles;
- 

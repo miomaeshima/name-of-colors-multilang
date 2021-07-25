@@ -73,10 +73,16 @@ const NavLinkWrapper = styled(Wrapper)`
     margin-left: auto;
     margin-right: auto;
     padding-left: 32px;
+
 `;
 
 const StyledNavLink = styled(NavLink)`
     text-decoration: none;
+/* 
+  font-family:
+    -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+    helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif; */
+
     color: inherit;
 `;
 

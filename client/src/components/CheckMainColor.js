@@ -8,14 +8,18 @@ const CheckMainColor = () => {
     const [picSrc, setPicSrc] = useState(null);
     const [picName, setPicName] = useState('');
     const [colorData, setColorData] = useState({});
+
+    //State "wide" means pic's width > height
     const [wide, setWide] = useState(true);
     const [backgroundColor, setBackgroundColor] = useState('transparent');
 
+    //Put data of selected image to PreviewPic
     const preview = (e) => {
         e.preventDefault();
         setPreviewPic(e.target.files[0]);
     };
 
+    //If previewPic has data, display the image
     if (previewPic !== null) {
         let reader = new FileReader();
         reader.readAsDataURL(previewPic);
@@ -32,6 +36,7 @@ const CheckMainColor = () => {
         };
     }
 
+    // Get main color data and populate ColorData and BackcgroundColor
     const getMainColor = async (e) => {
         let data = await getMainRgb(e);
         setColorData(data);
@@ -74,18 +79,21 @@ const CheckMainColor = () => {
     return (
         <Wrapper>
             <Header />
-            <Div />
-            <div id="selectYourFile">
+            <div>
                 {previewPic === null ? (
-                    <form name="selectFileForm">
-                        <label>Select an Image File</label>
-                        <input
-                            type="file"
-                            id="selectFile"
-                            accept="image/*"
-                            onChange={preview}
-                        ></input>
-                    </form>
+                    <div>
+                        <Form name="selectFileForm">
+                            <label htmlFor="selectFile" tabIndex="0">
+                                Select an Image File
+                            </label>
+                            <input
+                                type="file"
+                                id="selectFile"
+                                accept="image/*"
+                                onChange={preview}
+                            ></input>
+                        </Form>
+                    </div>
                 ) : (
                     <div
                         id="previewBox"
@@ -94,7 +102,7 @@ const CheckMainColor = () => {
                         <div id="previewOuterContainer">
                             <div className="previewContainer">
                                 {clickable ? (
-                                    <div id="instruction">
+                                    <div>
                                         写真をクリックすると、この写真で一番使われている色の名前が分かります。
                                     </div>
                                 ) : (
@@ -126,9 +134,34 @@ const CheckMainColor = () => {
 
 const Wrapper = styled.div`
     width: 100%;
-    height: 500px;
+    height: 100%;
+    background: beige;
 `;
 
-const Div = styled.div``;
+const Form = styled.form`
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    label {
+        padding: 8px;
+        width: 500px;
+        border: solid 1px;
+        border-radius: 4px;
+        background: lightblue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        letter-spacing: 0.4rem;
+    }
+    .label:active {
+        
+    }
+    
+    input {
+        display: none;
+    }
+`;
 
 export default CheckMainColor;
