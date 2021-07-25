@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import Header from './Header';
 import { getMainRgb, Refresh } from '../utility';
+import { useSelector } from 'react-redux';
 
 const CheckMainColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
@@ -76,57 +77,70 @@ const CheckMainColor = () => {
 
     let imgStyles = { ...dimension, ...clickableCursor };
 
+    const lang = useSelector((state) => state.language[0]);
+    let text;
+    let buttonText;
+
+    if (lang === 'en') {
+        text =
+            'You can look up the name of the most used color in the image you select.';
+        buttonText = 'Select an image.';
+    } else if (lang === 'fr') {
+        text =
+            "Vous pouvez rechercher le nom de la couleur la plus utilisée dans l'image que vous sélectionnez.";
+        buttonText = 'Sélectionnez une image.';
+    } else {
+        text = '選んだ画像に一番使われている色の名前を調べます。';
+        buttonText = '画像を選ぶ。';
+    }
+
     return (
         <Wrapper>
             <Header />
-            <div>
-                {previewPic === null ? (
-                    <div>
-                        <Form name="selectFileForm">
-                            <label htmlFor="selectFile" tabIndex="0">
-                                Select an Image File
-                            </label>
-                            <input
-                                type="file"
-                                id="selectFile"
-                                accept="image/*"
-                                onChange={preview}
-                            ></input>
-                        </Form>
-                    </div>
-                ) : (
-                    <div
-                        id="previewBox"
-                        style={{ background: backgroundColor }}
-                    >
-                        <div id="previewOuterContainer">
-                            <div className="previewContainer">
-                                {clickable ? (
-                                    <div>
-                                        写真をクリックすると、この写真で一番使われている色の名前が分かります。
-                                    </div>
-                                ) : (
-                                    <div></div>
-                                )}
-                                <img
-                                    id="chosenPic"
-                                    style={imgStyles}
-                                    alt={picName}
-                                    src={picSrc}
-                                    onClick={getMainColor}
-                                    tabIndex="0"
-                                />
-                            </div>
+            {previewPic === null ? (
+                <Div>
+                    <P>{text}</P>
+                    <Form name="selectFileForm">
+                        <label htmlFor="selectFile" tabIndex="0">
+                            {buttonText}
+                        </label>
+                        <input
+                            type="file"
+                            id="selectFile"
+                            accept="image/*"
+                            onChange={preview}
+                        ></input>
+                    </Form>
+                </Div>
+            ) : (
+                <div id="previewBox" style={{ background: backgroundColor }}>
+                    <div id="previewOuterContainer">
+                        <div className="previewContainer">
+                            {clickable ? (
+                                <div>
+                                    写真をクリックすると、この写真で一番使われている色の名前が分かります。
+                                </div>
+                            ) : (
+                                <div></div>
+                            )}
+                            <img
+                                id="chosenPic"
+                                style={imgStyles}
+                                alt={picName}
+                                src={picSrc}
+                                onClick={getMainColor}
+                                tabIndex="0"
+                            />
                         </div>
+                    </div>
 
-                        <div id="selectNameBox" style={fontColor}>
-                            {colorData.name}
-                        </div>
+                    <div id="selectNameBox" style={fontColor}>
+                        {colorData.name}
                     </div>
-                )}
-                <div id="linkContainer2">
-                    <Refresh fontColor={fontColor} onClick={() => refresh()} />
                 </div>
+            )}
+            <div id="linkContainer2">
+                <Refresh fontColor={fontColor} onClick={() => refresh()} />
             </div>
         </Wrapper>
     );
@@ -138,27 +152,38 @@ const Wrapper = styled.div`
     background: beige;
 `;
 
-const Form = styled.form`
+const Div = styled.div`
     height: 80vh;
     display: flex;
+    flex-direction: column;
+    gap: 32px;
     align-items: center;
     justify-content: center;
+`;
 
+const P = styled.p`
+    max-width: 50ch;
+`;
+
+const Form = styled.form`
     label {
         padding: 8px;
         width: 500px;
-        border: solid 1px;
+        border-bottom: solid 4px rgb(0, 181, 222);
         border-radius: 4px;
-        background: lightblue;
+        color: white;
+        background: rgb(2, 196, 240);
         display: flex;
         align-items: center;
         justify-content: center;
-        letter-spacing: 0.4rem;
+        word-spacing: 0.2rem;
     }
-    .label:active {
-        
+    label:active {
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px); /*下に動く*/
+        border-bottom: none; /*線を消す*/
     }
-    
+
     input {
         display: none;
     }
