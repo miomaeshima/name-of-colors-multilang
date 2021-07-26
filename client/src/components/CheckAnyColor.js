@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import Header from './Header';
-import { getRgb, Refresh } from '../utility.js';
+import { getRgb, Refresh, findFontColor } from '../utility.js';
 import { useSelector } from 'react-redux';
 
-const CheckAnyColor = () => {
+const CheckAnyColor = () => {g
     const [previewPic, setPreviewPic] = useState(null);
     const [picSrc, setPicSrc] = useState(null);
     const [colorData, setColorData] = useState({});
@@ -103,7 +103,7 @@ const CheckAnyColor = () => {
             };
         }
     }, [picSrc, lang]);
-
+    console.log(colorData);
     const refresh = () => {
         setPreviewPic(null);
         setBackgroundColor('transparent');
@@ -111,15 +111,7 @@ const CheckAnyColor = () => {
         setColorData({});
     };
 
-    let fontColor;
-    if (
-        (colorData.r * 299 + colorData.g * 587 + colorData.b * 114) / 1000 <
-        128
-    ) {
-        fontColor = { color: 'white' };
-    } else {
-        fontColor = { color: 'black' };
-    }
+    let fontColor = findFontColor(colorData);
 
     let text;
     let buttonText;
@@ -135,7 +127,8 @@ const CheckAnyColor = () => {
         text =
             "Vous pouvez rechercher le nom de la couleur de n'importe quelle partie de l'image que vous sélectionnez.";
         buttonText = 'Sélectionnez une image.';
-        textToClick = "Cliquez sur n'importe quelle partie de l'image pour connaître le nom de la couleur. Vous pouvez également rechercher le nom en japonais ou en français en modifiant le menu de sélection ci-dessus.";
+        textToClick =
+            "Cliquez sur n'importe quelle partie de l'image pour connaître le nom de la couleur. Vous pouvez également rechercher le nom en japonais ou en français en modifiant le menu de sélection ci-dessus.";
     } else {
         text =
             '下のボタンから画像を選び、好きな場所をクリックして色の名前を調べられます。';
@@ -217,9 +210,8 @@ const Form = styled.form`
     label {
         padding: 8px;
         width: 500px;
-        border-bottom: solid 4px rgb(0, 181, 222);
         border-radius: 4px;
-        color: white;
+        border-bottom: solid 4px rgb(0, 181, 222);
         background: rgb(2, 196, 240);
         display: flex;
         align-items: center;

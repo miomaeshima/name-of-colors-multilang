@@ -13,13 +13,13 @@ const getName = async (rgbValue, lang) => {
 //function to get the dominant rgb value of an image and then get the name of closest color
 //using the function above
 
-const getMainRgb = async (e) => {
+const getMainRgb = async (e, lang) => {
     let pic = e.target;
     if (pic.complete) {
         let result = colorThief.getColor(pic);
         let rgb = { r: result[0], g: result[1], b: result[2] };
         let rgbToBeSent = JSON.stringify(rgb);
-        let color = await getName(rgbToBeSent);
+        let color = await getName(rgbToBeSent, lang);
         return color;
     }
 };
@@ -53,4 +53,12 @@ const RefreshWrapper = styled.div`
     height: 2rem;
 `;
 
-export { getMainRgb, getRgb, Refresh };
+const findFontColor = (data) => {
+    if ((data.r * 299 + data.g * 587 + data.b * 114) / 1000 < 128) {
+        return { color: 'white' };
+    } else {
+        return { color: 'black' };
+    }
+};
+
+export { getMainRgb, getRgb, Refresh, findFontColor };
