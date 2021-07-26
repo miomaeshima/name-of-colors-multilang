@@ -134,10 +134,12 @@ const CheckMainColor = () => {
                                 <div id="selectNameBox" style={fontColor}>
                                     {colorData.name}
                                 </div>
-                                <Refresh
-                                    fontColor={fontColor}
-                                    onClick={() => refresh()}
-                                />
+                                <IconWrapper>
+                                    <Refresh
+                                        fontColor={fontColor}
+                                        onClick={() => refresh()}
+                                    />
+                                </IconWrapper>
                             </div>
                         )}
                     </Box>
@@ -202,19 +204,17 @@ const Box = styled.div`
         display: flex;
         justify-content: center;
         padding-top: 32px;
-
         position: relative;
-
         p {
             max-width: 50ch;
         }
-
-        Refresh {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-        }
     }
+`;
+
+const IconWrapper = styled.div`
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
 `;
 
 export default CheckMainColor;

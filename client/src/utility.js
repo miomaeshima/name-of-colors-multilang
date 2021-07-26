@@ -35,8 +35,8 @@ const Refresh = ({ fontColor, onClick }) => {
     return (
         <RefreshWrapper tabIndex="0">
             <RefreshCw
-                size={'1.5rem'}
-                strokeWidth={1}
+                size={'1.2rem'}
+                strokeWidth={2}
                 style={fontColor}
                 onClick={onClick}
             />

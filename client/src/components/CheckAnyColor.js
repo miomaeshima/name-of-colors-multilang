@@ -4,7 +4,7 @@ import Header from './Header';
 import { getRgb, Refresh, findFontColor } from '../utility.js';
 import { useSelector } from 'react-redux';
 
-const CheckAnyColor = () => {g
+const CheckAnyColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
     const [picSrc, setPicSrc] = useState(null);
     const [colorData, setColorData] = useState({});
@@ -12,14 +12,9 @@ const CheckAnyColor = () => {g
 
     const lang = useSelector((state) => state.language[0]);
 
-    // const placeCheckAnyColorPage = () => {
-    //     window.location.href = '#checkCheckAnyColor';
-    // };
-
     const preview = (e) => {
         e.preventDefault();
         setPreviewPic(e.target.files[0]);
-        // placeCheckAnyColorPage();
     };
 
     if (previewPic !== null) {
@@ -74,8 +69,6 @@ const CheckAnyColor = () => {g
                 setBackgroundColor(
                     `rgb(${response.r}, ${response.g}, ${response.b})`
                 );
-
-                // placeCheckAnyColorPage();
             };
 
             canvas.addEventListener('mousemove', (event) => {
@@ -104,6 +97,7 @@ const CheckAnyColor = () => {g
         }
     }, [picSrc, lang]);
     console.log(colorData);
+    
     const refresh = () => {
         setPreviewPic(null);
         setBackgroundColor('transparent');
