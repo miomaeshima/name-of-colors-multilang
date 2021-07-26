@@ -71,10 +71,12 @@ const CheckMainColor = () => {
         clickableCursor = { cursor: 'pointer' };
     }
 
-    let dimension = { marginLeft: '5vw', width: '40vw', height: 'auto' };
-    if (wide) {
-        dimension = { width: '60vw', height: 'auto' };
-    }
+    let dimension = {
+        width: '60vw',
+        height: '60vw',
+        objectFit: 'contain',
+        objectPosition: 'left top',
+    };
 
     let imgStyles = { ...dimension, ...clickableCursor };
 
@@ -99,7 +101,7 @@ const CheckMainColor = () => {
         <Wrapper>
             <Header />
             {previewPic === null ? (
-                <Div>
+                <FormWrapper>
                     <P>{text}</P>
                     <Form name="selectFileForm">
                         <label htmlFor="selectFile" tabIndex="0">
@@ -112,37 +114,40 @@ const CheckMainColor = () => {
                             onChange={preview}
                         ></input>
                     </Form>
-                </Div>
+                </FormWrapper>
             ) : (
-                <div id="previewBox" style={{ background: backgroundColor }}>
-                    <div id="previewOuterContainer">
-                        <div className="previewContainer">
-                            {clickable ? (
-                                <div>
-                                    写真をクリックすると、この写真で一番使われている色の名前が分かります。
+                <PreviewWrapper style={{ background: backgroundColor }}>
+                    <div className="previewContainer">
+                        <img
+                            id="chosenPic"
+                            style={imgStyles}
+                            alt={picName}
+                            src={picSrc}
+                            onClick={getMainColor}
+                            tabIndex="0"
+                        />
+                    </div>
+                    <div>
+                        {clickable ? (
+                            <div>
+                                写真をクリックすると、この写真で一番使われている色の名前が分かります。
+                            </div>
+                        ) : (
+                            <div>
+                                <div id="selectNameBox" style={fontColor}>
+                                    {colorData.name}
                                 </div>
-                            ) : (
-                                <div></div>
-                            )}
-                            <img
-                                id="chosenPic"
-                                style={imgStyles}
-                                alt={picName}
-                                src={picSrc}
-                                onClick={getMainColor}
-                                tabIndex="0"
-                            />
-                        </div>
+                                <div>
+                                    <Refresh
+                                        fontColor={fontColor}
+                                        onClick={() => refresh()}
+                                    />
+                                </div>
+                            </div>
+                        )}
                     </div>
-
-                    <div id="selectNameBox" style={fontColor}>
-                        {colorData.name}
-                    </div>
-                </div>
+                </PreviewWrapper>
             )}
-            {/* <div id="linkContainer2">
-                <Refresh fontColor={fontColor} onClick={() => refresh()} />
-            </div> */}
         </Wrapper>
     );
 };
@@ -153,7 +158,7 @@ const Wrapper = styled.div`
     background: beige;
 `;
 
-const Div = styled.div`
+const FormWrapper = styled.div`
     height: calc(100% - 32px);
     display: flex;
     flex-direction: column;
@@ -190,6 +195,10 @@ const Form = styled.form`
     input {
         display: none;
     }
+`;
+
+const PreviewWrapper = styled.div`
+    display: flex;
 `;
 
 export default CheckMainColor;
