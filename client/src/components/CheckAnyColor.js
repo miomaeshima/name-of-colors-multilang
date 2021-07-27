@@ -3,13 +3,13 @@ import styled from 'styled-components/macro';
 import Header from './Header';
 import { getRgb, Refresh, findFontColor } from '../utility.js';
 import { useSelector } from 'react-redux';
-import { FileText } from 'react-feather';
 
 const CheckAnyColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
     const [picSrc, setPicSrc] = useState(null);
     const [colorData, setColorData] = useState({});
     const [backgroundColor, setBackgroundColor] = useState('transparent');
+    const [colorArray, setColorArray] = useState([]);
 
     const lang = useSelector((state) => state.language[0]);
 
@@ -62,16 +62,18 @@ const CheckAnyColor = () => {
                 }
             };
 
-            let colorSample = document.getElementById('colorSample');
-
             const getColor = async (data) => {
                 let response = await getRgb(data, lang);
                 setColorData(response);
                 setBackgroundColor(
                     `rgb(${response.r}, ${response.g}, ${response.b})`
                 );
+                console.log(response);
+                //Cannot use push for React state array
+                setColorArray(colorArray.concat([response]));
             };
 
+            let colorSample = document.getElementById('colorSample');
             canvas.addEventListener('mousemove', (event) => {
                 let x = event.offsetX;
                 let y = event.offsetY;
@@ -96,14 +98,20 @@ const CheckAnyColor = () => {
                 canvas.removeEventListener('click', sendCanvasDataToGetColor);
             };
         }
-    }, [picSrc, lang]);
-    console.log(colorData);
+    }, [picSrc, lang, colorArray]);
+
+    //Limit to only five colors in colorArray (Cannot use unshift on React state)
+    if (colorArray.length > 5) {
+        let idxToRemove = 0;
+        setColorArray(colorArray.filter((item, idx) => idx !== idxToRemove));
+    }
 
     const refresh = () => {
         setPreviewPic(null);
         setBackgroundColor('transparent');
         setPicSrc(null);
         setColorData({});
+        setColorArray([]);
     };
 
     let fontColor = findFontColor(colorData);
@@ -131,7 +139,9 @@ const CheckAnyColor = () => {
         textToClick =
             '画像の好きなところをクリックして、色の名前を調べられます。上のメニューを変えると英語、フランス語でも名前が調べられます。';
     }
-
+    let aa = 25;
+    let bb = 200;
+    let cc = 0;
     return (
         <Wrapper>
             <Header />
@@ -139,12 +149,12 @@ const CheckAnyColor = () => {
                 <FormWrapper>
                     <P>{text}</P>
                     <Form name="selectFileForm">
-                        <label htmlFor="selectFileCheckAnyColor" tabIndex="0">
+                        <label htmlFor="selectFile" tabIndex="0">
                             {buttonText}
                         </label>
                         <input
                             type="file"
-                            id="selectFileCheckAnyColor"
+                            id="selectFile"
                             accept="image/*"
                             onChange={preview}
                         ></input>
@@ -165,10 +175,20 @@ const CheckAnyColor = () => {
                             <div style={fontColor}>{colorData.name}</div>
                         </Box>
                     </PreviewWrapper>
-                    <ColorSample id="colorSample" />
-                    <IconWrapper>
-                        <Refresh onClick={() => refresh()} />
-                    </IconWrapper>
+                    <BottomWrapper>
+                        {colorArray.map((color, index) => (
+                            <ClickedColor
+                                key={index}
+                                style={{
+                                    background: `rgb(${color.r}, ${color.g}, ${color.b})`,
+                                }}
+                            />
+                        ))}
+                        <ColorSample id="colorSample" />
+                        <IconWrapper>
+                            <Refresh onClick={() => refresh()} />
+                        </IconWrapper>
+                    </BottomWrapper>
                 </Container>
             )}
         </Wrapper>
@@ -241,7 +261,18 @@ const CanvasContainer = styled.div`
     height: 100%;
 `;
 
+const BottomWrapper = styled.div`
+    display: flex;
+    gap: 16px;
+    padding-left: 16px;
+`;
 const ColorSample = styled.div`
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+`;
+
+const ClickedColor = styled.div`
     width: 48px;
     height: 48px;
     border-radius: 50%;
