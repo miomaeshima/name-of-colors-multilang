@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import Header from './Header';
 import { getRgb, Refresh, findFontColor } from '../utility.js';
 import { useSelector } from 'react-redux';
+import { FileText } from 'react-feather';
 
 const CheckAnyColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
@@ -97,7 +98,7 @@ const CheckAnyColor = () => {
         }
     }, [picSrc, lang]);
     console.log(colorData);
-    
+
     const refresh = () => {
         setPreviewPic(null);
         setBackgroundColor('transparent');
@@ -135,7 +136,7 @@ const CheckAnyColor = () => {
         <Wrapper>
             <Header />
             {previewPic === null ? (
-                <Div>
+                <FormWrapper>
                     <P>{text}</P>
                     <Form name="selectFileForm">
                         <label htmlFor="selectFileCheckAnyColor" tabIndex="0">
@@ -148,32 +149,28 @@ const CheckAnyColor = () => {
                             onChange={preview}
                         ></input>
                     </Form>
-                </Div>
+                </FormWrapper>
             ) : (
-                <div
-                    id="previewBoxCheckAnyColor"
-                    style={{ background: backgroundColor }}
-                >
-                    <div className="previewOuterContainer">
-                        <div id="previewContainerCheckAnyColor">
-                            <div id="instructionCheckAnyColor">
-                                {textToClick}
-                                <ColorSample id="colorSample" />
-                            </div>
-                            <div id="canvasContainer">
+                <Container>
+                    <PreviewWrapper style={{ background: backgroundColor }}>
+                        <Box>
+                            <CanvasContainer id="canvasContainer">
                                 <canvas id="canvas"></canvas>
+                            </CanvasContainer>
+                        </Box>
+                        <Box className="nameBox">
+                            <div>
+                                <p>{textToClick}</p>
                             </div>
-                        </div>
-                    </div>
-
-                    <div id="selectNameBoxCheckAnyColor" style={fontColor}>
-                        {colorData.name}
-                    </div>
-                </div>
+                            <div style={fontColor}>{colorData.name}</div>
+                        </Box>
+                    </PreviewWrapper>
+                    <ColorSample id="colorSample" />
+                    <IconWrapper>
+                        <Refresh onClick={() => refresh()} />
+                    </IconWrapper>
+                </Container>
             )}
-            {/* <div id="linkContainer3">
-                <Refresh fontColor={fontColor} onClick={() => refresh()} />
-            </div> */}
         </Wrapper>
     );
 };
@@ -184,7 +181,7 @@ const Wrapper = styled.div`
     background: beige;
 `;
 
-const Div = styled.div`
+const FormWrapper = styled.div`
     height: calc(100% - 32px);
     display: flex;
     flex-direction: column;
@@ -222,9 +219,38 @@ const Form = styled.form`
     }
 `;
 
+const Container = styled.div`
+    width: 100%;
+    height: calc(100% - 32px - 48px);
+`;
+
+const PreviewWrapper = styled.div`
+    height: 100%;
+    display: flex;
+    background: pink;
+`;
+
+const Box = styled.div`
+    p {
+        max-width: 50ch;
+    }
+`;
+
+const CanvasContainer = styled.div`
+    width: 60vw;
+    height: 100%;
+`;
+
 const ColorSample = styled.div`
     width: 48px;
     height: 48px;
     border-radius: 50%;
 `;
+
+const IconWrapper = styled.div`
+    position: absolute;
+    bottom: 7px;
+    right: 10px;
+`;
+
 export default CheckAnyColor;

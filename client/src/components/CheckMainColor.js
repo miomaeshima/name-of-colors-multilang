@@ -213,8 +213,8 @@ const Box = styled.div`
 
 const IconWrapper = styled.div`
     position: absolute;
-    bottom: 16px;
-    right: 16px;
+    bottom: 7px;
+    right: 10px;
 `;
 
 export default CheckMainColor;
