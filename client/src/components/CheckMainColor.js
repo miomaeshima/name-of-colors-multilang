@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import Header from './Header';
+import SelectButton from './SelectButton';
 import { getMainRgb, Refresh, findFontColor } from '../utility';
 import { useSelector } from 'react-redux';
 import Tooltip from '@reach/tooltip';
@@ -101,20 +102,11 @@ const CheckMainColor = () => {
         <Wrapper>
             <Header />
             {previewPic === null ? (
-                <FormWrapper>
-                    <P>{text}</P>
-                    <Form name="selectFileForm">
-                        <label htmlFor="selectFile" tabIndex="0">
-                            {buttonText}
-                        </label>
-                        <input
-                            type="file"
-                            id="selectFile"
-                            accept="image/*"
-                            onChange={preview}
-                        ></input>
-                    </Form>
-                </FormWrapper>
+                <SelectButton
+                    text={text}
+                    buttonText={buttonText}
+                    preview={preview}
+                />
             ) : (
                 <PreviewWrapper style={{ background: backgroundColor }}>
                     <Box>
@@ -156,45 +148,6 @@ const Wrapper = styled.div`
     width: 100%;
     height: 100%;
     background: beige;
-`;
-
-const FormWrapper = styled.div`
-    height: calc(100% - 32px);
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    align-items: center;
-    justify-content: center;
-`;
-
-const P = styled.p`
-    max-width: 50ch;
-`;
-
-const Form = styled.form`
-    /* With a specific height to Form, translating label does not affect the P above */
-    height: 100px;
-    label {
-        padding: 8px;
-        width: 500px;
-        border-radius: 4px;
-        border-bottom: solid 4px rgb(0, 181, 222);
-        background: rgb(2, 196, 240);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        word-spacing: 0.2rem;
-        cursor: pointer;
-    }
-    label:active {
-        -webkit-transform: translateY(4px);
-        transform: translateY(2px); /*下に動く*/
-        border-bottom: solid 2px rgb(0, 181, 222);
-    }
-
-    input {
-        display: none;
-    }
 `;
 
 const PreviewWrapper = styled.div`
