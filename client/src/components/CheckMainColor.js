@@ -3,7 +3,8 @@ import styled from 'styled-components/macro';
 import Header from './Header';
 import { getMainRgb, Refresh, findFontColor } from '../utility';
 import { useSelector } from 'react-redux';
-import { clearConfigCache } from 'prettier';
+import Tooltip from '@reach/tooltip';
+import '@reach/tooltip/styles.css';
 
 const CheckMainColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
@@ -73,9 +74,7 @@ const CheckMainColor = () => {
 
     const lang = useSelector((state) => state.language[0]);
 
-    let text;
-    let buttonText;
-    let textToClick;
+    let text, buttonText, textToClick, tooltipText;
 
     if (lang === 'en') {
         text =
@@ -83,17 +82,20 @@ const CheckMainColor = () => {
         buttonText = 'Select an image.';
         textToClick =
             'Click on the image to find out the name of the most used color. You can also look up the name in Japanese or French by chaging the select menu above.';
+        tooltipText = 'Refresh the image';
     } else if (lang === 'fr') {
         text =
             "Vous pouvez rechercher le nom de la couleur la plus utilisée dans l'image que vous sélectionnez.";
         buttonText = 'Sélectionnez une image.';
         textToClick =
             "Cliquez sur l'image pour connaître le nom de la couleur la plus utilisée. Vous pouvez également rechercher le nom en japonais ou en français en modifiant le menu de sélection ci-dessus.";
+        tooltipText = "Rafraîchir l'image";
     } else {
         text = '選んだ画像に一番使われている色の名前を調べます。';
         buttonText = '画像を選ぶ。';
         textToClick =
             '画像をクリックすると色の名前が分かります。上のメニューを変えると英語、フランス語でも名前が調べられます。';
+        tooltipText = '画像をリフレッシュ';
     }
 
     return (
@@ -134,12 +136,14 @@ const CheckMainColor = () => {
                                 <div id="selectNameBox" style={fontColor}>
                                     {colorData.name}
                                 </div>
-                                <IconWrapper>
-                                    <Refresh
-                                        fontColor={fontColor}
-                                        onClick={() => refresh()}
-                                    />
-                                </IconWrapper>
+                                <Tooltip label={tooltipText}>
+                                    <IconWrapper>
+                                        <Refresh
+                                            fontColor={fontColor}
+                                            onClick={() => refresh()}
+                                        />
+                                    </IconWrapper>
+                                </Tooltip>
                             </div>
                         )}
                     </Box>

@@ -1635,12 +1635,34 @@
     tiny-warning "^1.0.3"
     tslib "^2.3.0"
 
+"@reach/tooltip@^0.15.3":
+  version "0.15.3"
+  resolved "https://registry.yarnpkg.com/@reach/tooltip/-/tooltip-0.15.3.tgz#f64bdb0d5e4eb6f213d0b6e2103bc7a2ff5a8325"
+  integrity sha512-dAIUinQ3KeYR1jO25UelzPyDTVp1uXQOWQhluzp5PP8C0wyszdO+qzEyJDpvZfMOa/5KOFb4QXz1jYgDUX9chg==
+  dependencies:
+    "@reach/auto-id" "0.15.3"
+    "@reach/portal" "0.15.3"
+    "@reach/rect" "0.15.3"
+    "@reach/utils" "0.15.3"
+    "@reach/visually-hidden" "0.15.2"
+    prop-types "^15.7.2"
+    tiny-warning "^1.0.3"
+    tslib "^2.3.0"
+
 "@reach/utils@0.15.3":
   version "0.15.3"
   resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.15.3.tgz#200f42adba9d1463b1c6a75ee2aaf9f0cba84f9d"
   integrity sha512-HFyjw8LZ4/RRk5bcMpDAeEc3aOeLR/vWRDsljlE3cHI5GfFlZcG3DDLSW8C2ba74RCFp/4X3Nz0nOrd4JdkZ1w==
   dependencies:
     tiny-warning "^1.0.3"
+    tslib "^2.3.0"
+
+"@reach/visually-hidden@0.15.2":
+  version "0.15.2"
+  resolved "https://registry.yarnpkg.com/@reach/visually-hidden/-/visually-hidden-0.15.2.tgz#07794cb53f4bd23a9452d53a0ad7778711ee323f"
+  integrity sha512-suDSCuKKuqiEB4UDgwWHbrPRxNwrusZ3ImXr85kfsQXGmKptMogaq22xoaHn32NC++lzZXxdWtAJriieszzFXw==
+  dependencies:
+    prop-types "^15.7.2"
     tslib "^2.3.0"
 
 "@reduxjs/toolkit@^1.6.0":

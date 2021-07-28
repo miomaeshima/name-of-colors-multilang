@@ -3,6 +3,8 @@ import styled from 'styled-components/macro';
 import Header from './Header';
 import { getRgb, Refresh, findFontColor } from '../utility.js';
 import { useSelector } from 'react-redux';
+import Tooltip from '@reach/tooltip';
+import '@reach/tooltip/styles.css';
 
 const CheckAnyColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
@@ -68,7 +70,7 @@ const CheckAnyColor = () => {
                 setBackgroundColor(
                     `rgb(${response.r}, ${response.g}, ${response.b})`
                 );
-                console.log(response);
+
                 //Cannot use push for React state array
                 setColorArray(colorArray.concat([response]));
             };
@@ -116,9 +118,7 @@ const CheckAnyColor = () => {
 
     let fontColor = findFontColor(colorData);
 
-    let text;
-    let buttonText;
-    let textToClick;
+    let text, buttonText, textToClick, tooltipText;
 
     if (lang === 'en') {
         text =
@@ -126,22 +126,23 @@ const CheckAnyColor = () => {
         buttonText = 'Select an image.';
         textToClick =
             'Click any part of the image to find out the name of the color. You can also look up the name in Japanese or French by chaging the select menu above.';
+        tooltipText = 'Refresh the image';
     } else if (lang === 'fr') {
         text =
             "Vous pouvez rechercher le nom de la couleur de n'importe quelle partie de l'image que vous sélectionnez.";
         buttonText = 'Sélectionnez une image.';
         textToClick =
             "Cliquez sur n'importe quelle partie de l'image pour connaître le nom de la couleur. Vous pouvez également rechercher le nom en japonais ou en français en modifiant le menu de sélection ci-dessus.";
+        tooltipText = "Rafraîchir l'image";
     } else {
         text =
             '下のボタンから画像を選び、好きな場所をクリックして色の名前を調べられます。';
         buttonText = '画像を選ぶ。';
         textToClick =
             '画像の好きなところをクリックして、色の名前を調べられます。上のメニューを変えると英語、フランス語でも名前が調べられます。';
+        tooltipText = '画像をリフレッシュ';
     }
-    let aa = 25;
-    let bb = 200;
-    let cc = 0;
+
     return (
         <Wrapper>
             <Header />
@@ -176,18 +177,22 @@ const CheckAnyColor = () => {
                         </Box>
                     </PreviewWrapper>
                     <BottomWrapper>
-                        {colorArray.map((color, index) => (
-                            <ClickedColor
-                                key={index}
-                                style={{
-                                    background: `rgb(${color.r}, ${color.g}, ${color.b})`,
-                                }}
-                            />
-                        ))}
                         <ColorSample id="colorSample" />
-                        <IconWrapper>
-                            <Refresh onClick={() => refresh()} />
-                        </IconWrapper>
+                        {colorArray.map((color, index) => (
+                            <Tooltip label={color.name}>
+                                <ClickedColor
+                                    key={index}
+                                    style={{
+                                        background: `rgb(${color.r}, ${color.g}, ${color.b})`,
+                                    }}
+                                />
+                            </Tooltip>
+                        ))}
+                        <Tooltip label={tooltipText}>
+                            <IconWrapper>
+                                <Refresh onClick={() => refresh()} />
+                            </IconWrapper>
+                        </Tooltip>
                     </BottomWrapper>
                 </Container>
             )}
@@ -270,6 +275,7 @@ const ColorSample = styled.div`
     width: 48px;
     height: 48px;
     border-radius: 50%;
+    margin-right: 32px;
 `;
 
 const ClickedColor = styled.div`
