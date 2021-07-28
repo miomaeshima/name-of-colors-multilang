@@ -184,6 +184,7 @@ const Form = styled.form`
         align-items: center;
         justify-content: center;
         word-spacing: 0.2rem;
+        cursor: pointer;
     }
     label:active {
         -webkit-transform: translateY(4px);

@@ -125,21 +125,21 @@ const CheckAnyColor = () => {
             'You can look up the name of the color of any part of the image you select.';
         buttonText = 'Select an image.';
         textToClick =
-            'Click any part of the image to find out the name of the color. You can also look up the name in Japanese or French by chaging the select menu above.';
+            'You can also look up the name in Japanese or French by chaging the select menu above. Click any part of the image to find out the name of the color.';
         tooltipText = 'Refresh the image';
     } else if (lang === 'fr') {
         text =
             "Vous pouvez rechercher le nom de la couleur de n'importe quelle partie de l'image que vous sélectionnez.";
         buttonText = 'Sélectionnez une image.';
         textToClick =
-            "Cliquez sur n'importe quelle partie de l'image pour connaître le nom de la couleur. Vous pouvez également rechercher le nom en japonais ou en français en modifiant le menu de sélection ci-dessus.";
+            "Vous pouvez également rechercher le nom en japonais ou en français en modifiant le menu de sélection ci-dessus. Cliquez sur n'importe quelle partie de l'image pour connaître le nom de la couleur.";
         tooltipText = "Rafraîchir l'image";
     } else {
         text =
             '下のボタンから画像を選び、好きな場所をクリックして色の名前を調べられます。';
         buttonText = '画像を選ぶ。';
         textToClick =
-            '画像の好きなところをクリックして、色の名前を調べられます。上のメニューを変えると英語、フランス語でも名前が調べられます。';
+            '上のメニューを変えると英語、フランス語でも名前が調べられます。画像の好きなところをクリックして、色の名前を調べられます。';
         tooltipText = '画像をリフレッシュ';
     }
 
@@ -170,9 +170,13 @@ const CheckAnyColor = () => {
                             </CanvasContainer>
                         </Box>
                         <Box className="nameBox">
-                            <div>
-                                <p>{textToClick}</p>
-                            </div>
+                            {colorArray.length === 0 ? (
+                                <div>
+                                    <p>{textToClick}</p>
+                                </div>
+                            ) : (
+                                <></>
+                            )}
                             <div style={fontColor}>{colorData.name}</div>
                         </Box>
                     </PreviewWrapper>
@@ -233,6 +237,7 @@ const Form = styled.form`
         align-items: center;
         justify-content: center;
         word-spacing: 0.2rem;
+        cursor: pointer;
     }
     label:active {
         -webkit-transform: translateY(4px);

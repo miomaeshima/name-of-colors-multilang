@@ -79,7 +79,6 @@ const Logo = styled(HashLink)`
 
 const Wrapper = styled.div`
     position: relative;
-
     height: 32px;
     display: flex;
     align-items: center;
@@ -97,11 +96,6 @@ const NavLinkWrapper = styled(Wrapper)`
 
 const StyledNavLink = styled(NavLink)`
     text-decoration: none;
-    /* 
-  font-family:
-    -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
-    helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif; */
-
     color: inherit;
 `;
 
