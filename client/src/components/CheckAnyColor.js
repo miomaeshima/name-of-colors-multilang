@@ -6,7 +6,7 @@ import { getRgb, Refresh, findFontColor } from '../utility.js';
 import { useSelector } from 'react-redux';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
-import { DIMENSIONS } from '../constants';
+import { DIMENSIONS} from '../constants';
 
 const CheckAnyColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
@@ -127,21 +127,21 @@ const CheckAnyColor = () => {
             'You can look up the name of the color of any part of the image you select.';
         buttonText = 'Select an image.';
         textToClick =
-            'You can also look up the name in Japanese or French by chaging the select menu above. Click any part of the image to find out the name of the color.';
+            'You can also look up color names in Japanese or French by chaging the select menu above. Click any many parts as you like in the image to find out the names of colors.';
         tooltipText = 'Refresh the image';
     } else if (lang === 'fr') {
         text =
             "Vous pouvez rechercher le nom de la couleur de n'importe quelle partie de l'image que vous sélectionnez.";
         buttonText = 'Sélectionnez une image.';
         textToClick =
-            "Vous pouvez également rechercher le nom en japonais ou en français en modifiant le menu de sélection ci-dessus. Cliquez sur n'importe quelle partie de l'image pour connaître le nom de la couleur.";
+            "Vous pouvez également rechercher les noms en japonais ou en français en modifiant le menu de sélection ci-dessus. Cliquez sur autant de parties que vous le souhaitez dans l'image pour découvrir les noms des couleurs.";
         tooltipText = "Rafraîchir l'image";
     } else {
         text =
             '下のボタンから画像を選び、好きな場所をクリックして色の名前を調べられます。';
         buttonText = '画像を選ぶ。';
         textToClick =
-            '上のメニューを変えると英語、フランス語でも名前が調べられます。画像の好きなところをクリックして、色の名前を調べられます。';
+            '上のメニューを変えると英語、フランス語でも名前が調べられます。画像の好きなところを何ヶ所でもクリックして、色の名前を調べられます。';
         tooltipText = '画像をリフレッシュ';
     }
 

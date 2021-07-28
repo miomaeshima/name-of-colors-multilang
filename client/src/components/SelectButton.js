@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { COLORS } from '../constants';
 
 const SelectButton = (props) => {
     return (
@@ -39,8 +40,8 @@ const Form = styled.form`
         padding: 8px;
         width: 500px;
         border-radius: 4px;
-        border-bottom: solid 4px rgb(0, 181, 222);
-        background: rgb(2, 196, 240);
+        border-bottom: solid 4px ${COLORS.DarkBlue};
+        background: ${COLORS.LightBlue};
         display: flex;
         align-items: center;
         justify-content: center;
