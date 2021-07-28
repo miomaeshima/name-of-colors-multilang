@@ -3,13 +3,33 @@ import styled from 'styled-components/macro';
 import { NavLink } from 'react-router-dom';
 import { HashLink, NavHashLink } from 'react-router-hash-link';
 import LanguageMenu from './language/LanguageMenu';
+import Tooltip from '@reach/tooltip';
+import '@reach/tooltip/styles.css';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+    const lang = useSelector((state) => state.language[0]);
+
+    let returnToHome;
+    if (lang === 'en') {
+        returnToHome = 'Return to Home';
+    } else if (lang === 'fr') {
+        returnToHome = "Retourner à la page d'accueil";
+    } else {
+        returnToHome = 'ホームに戻る';
+    }
+
     return (
         <>
-            <Logo smooth to="/#">
-                <img alt="go back to home" width="24px" src="logo.svg"></img>
-            </Logo>
+            <Tooltip label={returnToHome}>
+                <Logo smooth to="/#">
+                    <img
+                        alt="go back to home"
+                        width="24px"
+                        src="logo.svg"
+                    ></img>
+                </Logo>
+            </Tooltip>
             <NavLinkWrapper>
                 <StyledNavLink
                     activeStyle={{ borderBottom: '1px solid' }}
@@ -59,7 +79,7 @@ const Logo = styled(HashLink)`
 
 const Wrapper = styled.div`
     position: relative;
-    
+
     height: 32px;
     display: flex;
     align-items: center;
@@ -73,12 +93,11 @@ const NavLinkWrapper = styled(Wrapper)`
     margin-left: auto;
     margin-right: auto;
     padding-left: 32px;
-
 `;
 
 const StyledNavLink = styled(NavLink)`
     text-decoration: none;
-/* 
+    /* 
   font-family:
     -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
     helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif; */

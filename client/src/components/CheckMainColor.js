@@ -40,7 +40,6 @@ const CheckMainColor = () => {
 
     // Get main color data and populate ColorData and BackcgroundColor
     const getMainColor = async (e) => {
-        console.log(lang);
         let data = await getMainRgb(e, lang);
         setColorData(data);
         setBackgroundColor(`rgb(${data.r}, ${data.g}, ${data.b})`);
@@ -136,17 +135,17 @@ const CheckMainColor = () => {
                                 <div id="selectNameBox" style={fontColor}>
                                     {colorData.name}
                                 </div>
-                                <Tooltip label={tooltipText}>
-                                    <IconWrapper>
-                                        <Refresh
-                                            fontColor={fontColor}
-                                            onClick={() => refresh()}
-                                        />
-                                    </IconWrapper>
-                                </Tooltip>
                             </div>
                         )}
                     </Box>
+                    <Tooltip label={tooltipText}>
+                        <IconWrapper>
+                            <Refresh
+                                fontColor={fontColor}
+                                onClick={() => refresh()}
+                            />
+                        </IconWrapper>
+                    </Tooltip>
                 </PreviewWrapper>
             )}
         </Wrapper>
