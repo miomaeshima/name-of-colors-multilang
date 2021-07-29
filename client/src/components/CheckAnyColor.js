@@ -168,9 +168,10 @@ const CheckAnyColor = () => {
                                     <p>{textToClick}</p>
                                 </div>
                             ) : (
-                                <></>
+                                <SelectNameBox style={fontColor}>
+                                    {colorData.name}
+                                </SelectNameBox>
                             )}
-                            <div style={fontColor}>{colorData.name}</div>
                         </Box>
                     </PreviewWrapper>
                     <BottomWrapper>
@@ -218,9 +219,10 @@ const Box = styled.div`
     &.nameBox {
         flex: auto;
         display: flex;
-        padding-top: 96px;
+
         justify-content: center;
         p {
+            padding-top: 96px;
             max-width: 50ch;
         }
     }
@@ -229,6 +231,11 @@ const Box = styled.div`
 const CanvasContainer = styled.div`
     width: 60vw;
     height: 100%;
+`;
+
+const SelectNameBox = styled.div`
+    background: pink;
+    width: 100%;
 `;
 
 const BottomWrapper = styled.div`

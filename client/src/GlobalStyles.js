@@ -50,7 +50,7 @@ table {
 	border-spacing: 0;
 }
  
-/* さらに自分で必要なものを足す。*/
+/* 追加。*/
  
 *,
 *:before,
@@ -80,4 +80,5 @@ html, body, #root{
 	height: 100%;
 }
 `;
+
 export default GlobalStyles;

@@ -44,13 +44,12 @@ const Wrapper = styled.div`
     position: relative;
     width: 70%;
     height: 300px;
-    /* border: 2px solid white; */
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 32px;
     background: rgba(0, 0, 150, 0.1);
-
+    
     display: flex;
     flex-direction: column;
     align-items: flex-start;
