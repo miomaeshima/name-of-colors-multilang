@@ -4,9 +4,9 @@ import Header from './Header';
 import SelectButton from './SelectButton';
 import { getRgb, Refresh, findFontColor } from '../utility.js';
 import { useSelector } from 'react-redux';
+import { DIMENSIONS, COLORS } from '../constants';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
-import { DIMENSIONS, COLORS } from '../constants';
 
 const CheckAnyColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
@@ -172,7 +172,7 @@ const CheckAnyColor = () => {
                     <PreviewWrapper style={{ background: backgroundColor }}>
                         <Box>
                             <CanvasContainer id="canvasContainer">
-                                <canvas id="canvas"></canvas>
+                                <canvas id="canvas" tabIndex="0"></canvas>
                             </CanvasContainer>
                         </Box>
                         <Box className="nameBox" style={stylesNameBox}>
