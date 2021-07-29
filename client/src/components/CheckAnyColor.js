@@ -14,6 +14,7 @@ const CheckAnyColor = () => {
     const [colorData, setColorData] = useState({});
     const [backgroundColor, setBackgroundColor] = useState('transparent');
     const [colorArray, setColorArray] = useState([]);
+    const [adjustment, setAdjustment] = useState(0);
 
     const lang = useSelector((state) => state.language[0]);
 
@@ -56,13 +57,16 @@ const CheckAnyColor = () => {
                         img.height * (canvas.width / img.width)
                     );
                 } else {
+                    let picWidth = img.width * (canvas.height / img.height);
                     context.drawImage(
                         img,
                         0,
                         0,
-                        img.width * (canvas.height / img.height),
+                        picWidth,
+                        // img.width * (canvas.height / img.height),
                         canvas.height
                     );
+                    setAdjustment(canvas.width - picWidth);
                 }
             };
 
@@ -119,6 +123,7 @@ const CheckAnyColor = () => {
     };
 
     let fontColor = findFontColor(colorData);
+    let stylesNameBox = { 'margin-left': `${-1 * adjustment}px` };
 
     let text, buttonText, textToClick, tooltipText;
 
@@ -162,13 +167,13 @@ const CheckAnyColor = () => {
                                 <canvas id="canvas"></canvas>
                             </CanvasContainer>
                         </Box>
-                        <Box className="nameBox">
+                        <Box className="nameBox" style={stylesNameBox}>
                             {colorArray.length === 0 ? (
                                 <div>
                                     <p>{textToClick}</p>
                                 </div>
                             ) : (
-                                <SelectNameBox style={fontColor}>
+                                <SelectNameBox style={ fontColor }>
                                     {colorData.name}
                                 </SelectNameBox>
                             )}
@@ -219,7 +224,6 @@ const Box = styled.div`
     &.nameBox {
         flex: auto;
         display: flex;
-
         justify-content: center;
         p {
             padding-top: 96px;
@@ -234,8 +238,12 @@ const CanvasContainer = styled.div`
 `;
 
 const SelectNameBox = styled.div`
-    background: pink;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    padding: 48px;
 `;
 
 const BottomWrapper = styled.div`
