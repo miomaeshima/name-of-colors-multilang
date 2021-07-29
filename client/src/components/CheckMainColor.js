@@ -156,13 +156,13 @@ const PreviewWrapper = styled.div`
 `;
 
 const Box = styled.div`
+
     &.nameBox {
         flex: auto;
         display: flex;
         justify-content: center;
-        padding-top: 32px;
-        position: relative;
-        p {
+        padding-top: 96px;
+                p {
             max-width: 50ch;
         }
     }

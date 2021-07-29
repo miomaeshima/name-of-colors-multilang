@@ -6,7 +6,7 @@ import { getRgb, Refresh, findFontColor } from '../utility.js';
 import { useSelector } from 'react-redux';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
-import { DIMENSIONS} from '../constants';
+import { DIMENSIONS } from '../constants';
 
 const CheckAnyColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
@@ -215,8 +215,14 @@ const PreviewWrapper = styled.div`
 `;
 
 const Box = styled.div`
-    p {
-        max-width: 50ch;
+    &.nameBox {
+        flex: auto;
+        display: flex;
+        padding-top: 96px;
+        justify-content: center;
+        p {
+            max-width: 50ch;
+        }
     }
 `;
 
