@@ -4,6 +4,7 @@ import Header from './Header';
 import SelectButton from './SelectButton';
 import { getMainRgb, Refresh, findFontColor } from '../utility';
 import { useSelector } from 'react-redux';
+import { COLORS } from '../constants';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
 
@@ -74,7 +75,7 @@ const CheckMainColor = () => {
 
     const lang = useSelector((state) => state.language[0]);
 
-    let text, buttonText, textToClick, tooltipText;
+    let text, buttonText, textToClick, tooltipText, nameStyles;
 
     if (lang === 'en') {
         text =
@@ -83,6 +84,7 @@ const CheckMainColor = () => {
         textToClick =
             'Click on the image to find out the name of the most used color. You can also look up the name in Japanese or French by chaging the select menu above.';
         tooltipText = 'Refresh the image';
+        nameStyles = {};
     } else if (lang === 'fr') {
         text =
             "Vous pouvez rechercher le nom de la couleur la plus utilisée dans l'image que vous sélectionnez.";
@@ -90,12 +92,19 @@ const CheckMainColor = () => {
         textToClick =
             "Cliquez sur l'image pour connaître le nom de la couleur la plus utilisée. Vous pouvez également rechercher le nom en japonais ou en français en modifiant le menu de sélection ci-dessus.";
         tooltipText = "Rafraîchir l'image";
+        nameStyles = {};
     } else {
         text = '選んだ画像に一番使われている色の名前を調べます。';
         buttonText = '画像を選ぶ。';
         textToClick =
             '画像をクリックすると色の名前が分かります。上のメニューを変えると英語、フランス語でも名前が調べられます。';
         tooltipText = '画像をリフレッシュ';
+        nameStyles = {
+            lineHeight: 1.5,
+            writingMode: 'vertical-rl',
+            fontFamily:
+                "'游明朝', 'Yu Mincho', YuMincho, 'Hiragino Mincho Pro', serif",
+        };
     }
 
     return (
@@ -123,11 +132,11 @@ const CheckMainColor = () => {
                         {clickable ? (
                             <p>{textToClick}</p>
                         ) : (
-                            <div>
-                                <div id="selectNameBox" style={fontColor}>
-                                    {colorData.name}
-                                </div>
-                            </div>
+                            <SelectNameBox
+                                style={{ ...fontColor, ...nameStyles }}
+                            >
+                                {colorData.name}
+                            </SelectNameBox>
                         )}
                     </Box>
                     <Tooltip label={tooltipText}>
@@ -147,7 +156,7 @@ const CheckMainColor = () => {
 const Wrapper = styled.div`
     width: 100%;
     height: 100%;
-    background: beige;
+    background: ${COLORS.UsukumonezuGray};
 `;
 
 const PreviewWrapper = styled.div`
@@ -156,16 +165,24 @@ const PreviewWrapper = styled.div`
 `;
 
 const Box = styled.div`
-
     &.nameBox {
         flex: auto;
         display: flex;
         justify-content: center;
-        padding-top: 96px;
-                p {
+        p {
+            margin-top: 96px;
             max-width: 50ch;
         }
     }
+`;
+
+const SelectNameBox = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    padding: 48px;
 `;
 
 const IconWrapper = styled.div`

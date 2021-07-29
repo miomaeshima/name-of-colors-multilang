@@ -6,7 +6,7 @@ import { getRgb, Refresh, findFontColor } from '../utility.js';
 import { useSelector } from 'react-redux';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
-import { DIMENSIONS } from '../constants';
+import { DIMENSIONS, COLORS } from '../constants';
 
 const CheckAnyColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
@@ -200,7 +200,7 @@ const CheckAnyColor = () => {
 const Wrapper = styled.div`
     width: 100%;
     height: 100%;
-    background: beige;
+    background: ${COLORS.UsukumonezuGray};
 `;
 
 const Container = styled.div`

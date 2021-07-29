@@ -32,7 +32,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+	line-height: 1;	
 }
 ol, ul {
 	list-style: none;
@@ -56,6 +56,14 @@ table {
 *:before,
 *:after{
 	box-sizing: border-box;
+}
+ 
+ 
+#root {
+	/* create a stacking context, without a z-index.
+	This ensures that all portal content (modals and tooltips) will float above the app.
+	*/
+	isolation: isolate;
     font-size: 16px;
 	line-height: 1.45;
 	letter-spacing: 0.1rem;
@@ -66,14 +74,6 @@ table {
 	/* 以下2行は文字のギザギザをなめらかにするantialiasingのため */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: auto;
-}
- 
- 
-#root {
-	/* create a stacking context, without a z-index.
-	This ensures that all portal content (modals and tooltips) will float above the app.
-	*/
-	isolation: isolate;
 }
  
 html, body, #root{
