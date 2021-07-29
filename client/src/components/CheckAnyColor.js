@@ -125,7 +125,7 @@ const CheckAnyColor = () => {
     let fontColor = findFontColor(colorData);
     let stylesNameBox = { 'margin-left': `${-1 * adjustment}px` };
 
-    let text, buttonText, textToClick, tooltipText;
+    let text, buttonText, textToClick, tooltipText, nameStyles;
 
     if (lang === 'en') {
         text =
@@ -134,6 +134,7 @@ const CheckAnyColor = () => {
         textToClick =
             'You can also look up color names in Japanese or French by chaging the select menu above. Click any many parts as you like in the image to find out the names of colors.';
         tooltipText = 'Refresh the image';
+        nameStyles = {};
     } else if (lang === 'fr') {
         text =
             "Vous pouvez rechercher le nom de la couleur de n'importe quelle partie de l'image que vous sélectionnez.";
@@ -141,6 +142,7 @@ const CheckAnyColor = () => {
         textToClick =
             "Vous pouvez également rechercher les noms en japonais ou en français en modifiant le menu de sélection ci-dessus. Cliquez sur autant de parties que vous le souhaitez dans l'image pour découvrir les noms des couleurs.";
         tooltipText = "Rafraîchir l'image";
+        nameStyles = {};
     } else {
         text =
             '下のボタンから画像を選び、好きな場所をクリックして色の名前を調べられます。';
@@ -148,6 +150,12 @@ const CheckAnyColor = () => {
         textToClick =
             '上のメニューを変えると英語、フランス語でも名前が調べられます。画像の好きなところを何ヶ所でもクリックして、色の名前を調べられます。';
         tooltipText = '画像をリフレッシュ';
+        nameStyles = {
+            lineHeight: 1.5,
+            writingMode: 'vertical-rl',
+            fontFamily:
+                "'游明朝', 'Yu Mincho', YuMincho, 'Hiragino Mincho Pro', serif",
+        };
     }
 
     return (
@@ -173,7 +181,7 @@ const CheckAnyColor = () => {
                                     <p>{textToClick}</p>
                                 </div>
                             ) : (
-                                <SelectNameBox style={ fontColor }>
+                                <SelectNameBox style={{...fontColor, ...nameStyles}}>
                                     {colorData.name}
                                 </SelectNameBox>
                             )}
