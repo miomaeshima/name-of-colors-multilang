@@ -61,4 +61,14 @@ const findFontColor = (data) => {
     }
 };
 
-export { getMainRgb, getRgb, Refresh, findFontColor };
+const refreshPage = (setPreviewPic, setBackgroundColor,setPicSrc, setColorData, setColorArray) => {
+    setPreviewPic(null);
+    setBackgroundColor('transparent');
+    setPicSrc(null);
+    setColorData({});
+    if (setColorArray) {
+        setColorArray([]);
+    }
+};
+
+export { getMainRgb, getRgb, Refresh, findFontColor, refreshPage };

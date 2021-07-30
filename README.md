@@ -14,7 +14,9 @@
 5. 好きな言語で名前を調べられます。
    使っている色名リストは以下の通りです。  現時点であるのは、日本語（伝統色）、英語、フランス語です。
   
-  
+日本の伝統色
+https://irononamae.web.fc2.com/wa/
+
 英語 
 https://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F
 

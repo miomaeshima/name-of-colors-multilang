@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import Header from './Header';
 import SelectButton from './SelectButton';
-import { getRgb, Refresh, findFontColor } from '../utility.js';
+import { getRgb, Refresh, findFontColor, refreshPage } from '../utility.js';
 import { useSelector } from 'react-redux';
 import { DIMENSIONS, COLORS } from '../constants';
 import Tooltip from '@reach/tooltip';
@@ -48,7 +48,7 @@ const CheckAnyColor = () => {
             let img = new Image();
             img.src = picSrc;
             img.onload = function () {
-                if (img.width >= img.height) {
+                if (img.width > img.height) {
                     context.drawImage(
                         img,
                         0,
@@ -114,13 +114,13 @@ const CheckAnyColor = () => {
         setColorArray(colorArray.filter((item, idx) => idx !== idxToRemove));
     }
 
-    const refresh = () => {
-        setPreviewPic(null);
-        setBackgroundColor('transparent');
-        setPicSrc(null);
-        setColorData({});
-        setColorArray([]);
-    };
+    // const refresh = () => {
+    //     setPreviewPic(null);
+    //     setBackgroundColor('transparent');
+    //     setPicSrc(null);
+    //     setColorData({});
+    //     setColorArray([]);
+    // };
 
     let fontColor = findFontColor(colorData);
     let stylesNameBox = { 'margin-left': `${-1 * adjustment}px` };
@@ -160,7 +160,14 @@ const CheckAnyColor = () => {
 
     return (
         <Wrapper>
-            <Header />
+            <Header
+                anyActivated={previewPic}
+                setPreviewPic={setPreviewPic}
+                setBackgroundColor={setBackgroundColor}
+                setPicSrc={setPicSrc}
+                setColorData={setColorData}
+                setColorArray={setColorArray}
+            />
             {previewPic === null ? (
                 <SelectButton
                     text={text}
@@ -181,7 +188,9 @@ const CheckAnyColor = () => {
                                     <p>{textToClick}</p>
                                 </div>
                             ) : (
-                                <SelectNameBox style={{...fontColor, ...nameStyles}}>
+                                <SelectNameBox
+                                    style={{ ...fontColor, ...nameStyles }}
+                                >
                                     {colorData.name}
                                 </SelectNameBox>
                             )}
@@ -201,7 +210,17 @@ const CheckAnyColor = () => {
                         ))}
                         <Tooltip label={tooltipText}>
                             <IconWrapper>
-                                <Refresh onClick={() => refresh()} />
+                                <Refresh
+                                    onClick={() =>
+                                        refreshPage(
+                                            setPreviewPic,
+                                            setBackgroundColor,
+                                            setPicSrc,
+                                            setColorData,
+                                            setColorArray
+                                        )
+                                    }
+                                />
                             </IconWrapper>
                         </Tooltip>
                     </BottomWrapper>

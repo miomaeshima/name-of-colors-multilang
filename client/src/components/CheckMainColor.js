@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import Header from './Header';
 import SelectButton from './SelectButton';
-import { getMainRgb, Refresh, findFontColor } from '../utility';
+import { getMainRgb, Refresh, findFontColor, refreshPage } from '../utility';
 import { useSelector } from 'react-redux';
 import { COLORS } from '../constants';
 import Tooltip from '@reach/tooltip';
@@ -33,7 +33,7 @@ const CheckMainColor = () => {
             setPicName(previewPic.name);
             image.src = reader.result;
             image.onload = function () {
-                if (image.width < image.height) {
+                if (image.width <= image.height) {
                     setWide(false);
                 }
             };
@@ -45,13 +45,6 @@ const CheckMainColor = () => {
         let data = await getMainRgb(e, lang);
         setColorData(data);
         setBackgroundColor(`rgb(${data.r}, ${data.g}, ${data.b})`);
-    };
-
-    const refresh = () => {
-        setPreviewPic(null);
-        setBackgroundColor('transparent');
-        setColorData({});
-        setPicSrc(null);
     };
 
     let fontColor = findFontColor(colorData);
@@ -109,7 +102,13 @@ const CheckMainColor = () => {
 
     return (
         <Wrapper>
-            <Header />
+            <Header
+                mainActivated={previewPic}
+                setPreviewPic={setPreviewPic}
+                setBackgroundColor={setBackgroundColor}
+                setPicSrc={setPicSrc}
+                setColorData={setColorData}
+            />
             {previewPic === null ? (
                 <SelectButton
                     text={text}
@@ -143,7 +142,14 @@ const CheckMainColor = () => {
                         <IconWrapper>
                             <Refresh
                                 fontColor={fontColor}
-                                onClick={() => refresh()}
+                                onClick={() =>
+                                    refreshPage(
+                                        setPreviewPic,
+                                        setBackgroundColor,
+                                        setPicSrc,
+                                        setColorData
+                                    )
+                                }
                             />
                         </IconWrapper>
                     </Tooltip>

@@ -3,11 +3,12 @@ import styled from 'styled-components/macro';
 import { NavLink } from 'react-router-dom';
 import { HashLink, NavHashLink } from 'react-router-hash-link';
 import LanguageMenu from './language/LanguageMenu';
+import { refreshPage } from '../utility';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
 import { useSelector } from 'react-redux';
 
-const Header = () => {
+const Header = (props) => {
     const lang = useSelector((state) => state.language[0]);
 
     let returnToHome;
@@ -45,18 +46,50 @@ const Header = () => {
                 >
                     About
                 </StyledNavHashLink>
-                <StyledNavLink
-                    activeStyle={{ borderBottom: '1px solid' }}
-                    to="/main_color"
-                >
-                    Main Color
-                </StyledNavLink>
-                <StyledNavLink
-                    activeStyle={{ borderBottom: '1px solid' }}
-                    to="/any_color"
-                >
-                    Any Color
-                </StyledNavLink>
+                {!props.mainActivated ? (
+                    <StyledNavLink
+                        activeStyle={{ borderBottom: '1px solid' }}
+                        to="/main_color"
+                    >
+                        Main Color
+                    </StyledNavLink>
+                ) : (
+                    <FakeStyledNavLink
+                        onClick={() =>
+                            refreshPage(
+                                props.setPreviewPic,
+                                props.setBackgroundColor,
+                                props.setPicSrc,
+                                props.setColorData
+                            )
+                        }
+                    >
+                        Main Color
+                    </FakeStyledNavLink>
+                )}
+
+                {!props.anyActivated ? (
+                    <StyledNavLink
+                        activeStyle={{ borderBottom: '1px solid' }}
+                        to="/any_color"
+                    >
+                        Any Color
+                    </StyledNavLink>
+                ) : (
+                    <FakeStyledNavLink
+                        onClick={() =>
+                            refreshPage(
+                                props.setPreviewPic,
+                                props.setBackgroundColor,
+                                props.setPicSrc,
+                                props.setColorData,
+                                props.setColorArray
+                            )
+                        }
+                    >
+                        Any Color
+                    </FakeStyledNavLink>
+                )}
             </NavLinkWrapper>
             <ListWrapper>
                 <LanguageMenu />
@@ -96,6 +129,12 @@ const NavLinkWrapper = styled(Wrapper)`
 
 const StyledNavLink = styled(NavLink)`
     text-decoration: none;
+    color: inherit;
+`;
+
+const FakeStyledNavLink = styled.div`
+    text-decoration: none;
+    border-bottom: 1px solid;
     color: inherit;
 `;
 
