@@ -133,9 +133,9 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const FakeStyledNavLink = styled.div`
-    text-decoration: none;
     border-bottom: 1px solid;
     color: inherit;
+    cursor: pointer;
 `;
 
 const StyledNavHashLink = styled(NavHashLink)`
