@@ -8,3 +8,9 @@ export const COLORS = {
     LightBlue: 'rgb(2, 196, 240)',
     DarkBlue: 'rgb(0, 181, 222)',
 };
+
+export const nameStyles = {
+    lineHeight: 1.5,
+    fontFamily:
+        "'游明朝', 'Yu Mincho', YuMincho, 'Hiragino Mincho Pro', serif",
+};

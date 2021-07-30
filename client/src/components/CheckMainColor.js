@@ -4,7 +4,7 @@ import Header from './Header';
 import SelectButton from './SelectButton';
 import { getMainRgb, Refresh, findFontColor, refreshPage } from '../utility';
 import { useSelector } from 'react-redux';
-import { COLORS } from '../constants';
+import { COLORS, nameStyles } from '../constants';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
 
@@ -68,7 +68,7 @@ const CheckMainColor = () => {
 
     const lang = useSelector((state) => state.language[0]);
 
-    let text, buttonText, textToClick, tooltipText, nameStyles;
+    let text, buttonText, textToClick, tooltipText, styles;
 
     if (lang === 'en') {
         text =
@@ -77,7 +77,7 @@ const CheckMainColor = () => {
         textToClick =
             'Click on the image to find out the name of the most used color. You can also look up the name in Japanese or French by chaging the select menu above.';
         tooltipText = 'Refresh the image';
-        nameStyles = {};
+        styles = nameStyles;
     } else if (lang === 'fr') {
         text =
             "Vous pouvez rechercher le nom de la couleur la plus utilisée dans l'image que vous sélectionnez.";
@@ -85,19 +85,14 @@ const CheckMainColor = () => {
         textToClick =
             "Cliquez sur l'image pour connaître le nom de la couleur la plus utilisée. Vous pouvez également rechercher le nom en japonais ou en français en modifiant le menu de sélection ci-dessus.";
         tooltipText = "Rafraîchir l'image";
-        nameStyles = {};
+        styles = nameStyles;
     } else {
         text = '選んだ画像に一番使われている色の名前を調べます。';
         buttonText = '画像を選ぶ。';
         textToClick =
             '画像をクリックすると色の名前が分かります。上のメニューを変えると英語、フランス語でも名前が調べられます。';
         tooltipText = '画像をリフレッシュ';
-        nameStyles = {
-            lineHeight: 1.5,
-            writingMode: 'vertical-rl',
-            fontFamily:
-                "'游明朝', 'Yu Mincho', YuMincho, 'Hiragino Mincho Pro', serif",
-        };
+        styles = { ...nameStyles, ...{ writingMode: 'vertical-rl' } };
     }
 
     return (
@@ -131,9 +126,7 @@ const CheckMainColor = () => {
                         {clickable ? (
                             <p>{textToClick}</p>
                         ) : (
-                            <SelectNameBox
-                                style={{ ...fontColor, ...nameStyles }}
-                            >
+                            <SelectNameBox style={{...fontColor, ...styles}}>
                                 {colorData.name}
                             </SelectNameBox>
                         )}
