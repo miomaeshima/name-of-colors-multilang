@@ -49,7 +49,7 @@ const Wrapper = styled.div`
     margin-right: auto;
     padding-left: 32px;
     background: rgba(0, 0, 150, 0.1);
-    
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;

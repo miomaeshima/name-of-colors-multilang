@@ -43,12 +43,14 @@ const getColor = async (
     setColorArray,
     colorArray
 ) => {
-    let response = await getRgb(data, lang);
-    setColorData(response);
-    setBackgroundColor(`rgb(${response.r}, ${response.g}, ${response.b})`);
-    //Use concat instead of push as original array cannot be changed = need to create new array for React state array
-    if (setColorArray && colorArray) {
-        setColorArray(colorArray.concat([response]));
+    if (data) {
+        let response = await getRgb(data, lang);
+        setColorData(response);
+        setBackgroundColor(`rgb(${response.r}, ${response.g}, ${response.b})`);
+        //Use concat instead of push as original array cannot be changed = need to create new array for React state array
+        if (setColorArray && colorArray) {
+            setColorArray(colorArray.concat([response]));
+        }
     }
 };
 

@@ -3,24 +3,24 @@ import { languageChanged } from './languageSlice';
 import { useSelector } from 'react-redux';
 import { Listbox, ListboxOption } from '@reach/listbox';
 import '@reach/listbox/styles.css';
-import { getColor} from '../../utility';
+import { getColor } from '../../utility';
 
 const LanguageMenu = (props) => {
     const dispatch = useDispatch();
 
-    const lang = useSelector((state) => state.language[0]);   
+    const lang = useSelector((state) => state.language[0]);
 
     const changeLang = (value) => {
         dispatch(languageChanged(value));
-        
+
         getColor(
             props.originalColor,
             value,
             props.setColorData,
             props.setBackgroundColor,
             props.setColorArray,
-            props.colorArray,
-        );   
+            props.colorArray
+        );
     };
 
     return (

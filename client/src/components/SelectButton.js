@@ -2,7 +2,6 @@ import styled from 'styled-components/macro';
 import { COLORS } from '../constants';
 
 const SelectButton = (props) => {
-    
     return (
         <FormWrapper>
             <P>{props.text}</P>

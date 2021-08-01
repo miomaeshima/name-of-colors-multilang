@@ -11,8 +11,7 @@ export const COLORS = {
 
 export const nameStyles = {
     lineHeight: 1.5,
-    fontFamily:
-        "'游明朝', 'Yu Mincho', YuMincho, 'Hiragino Mincho Pro', serif",
+    fontFamily: "'游明朝', 'Yu Mincho', YuMincho, 'Hiragino Mincho Pro', serif",
 };
 
-export const limitOfColorArray = 5;
+export const limitOfColorArray = 10;
