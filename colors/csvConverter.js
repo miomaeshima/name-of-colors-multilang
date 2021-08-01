@@ -3,7 +3,7 @@ const fs = require('fs');
 
 //read csv file, convert it into an array of objects into an js file. To run this file, cd into colors folder then enter "node csvConverter.js" on terminal Do this for colors csv for all the languages
 
-let stream = fs.createReadStream('colors_french.csv');
+let stream = fs.createReadStream('french_colors.csv');
 let csvData = [];
 let csvStream = fastcsv
     .parse()
@@ -20,7 +20,7 @@ let csvStream = fastcsv
     //.on("end"...) means the function runs when all the lines have been processed. 
     .on('end', function () {
         fs.writeFile(
-            './colors_french.js',
+            './french_colors.js',
             JSON.stringify(csvData),
             function (err) {
                 if (err) throw err;

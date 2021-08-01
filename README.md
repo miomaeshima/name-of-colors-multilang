@@ -23,6 +23,8 @@ https://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F
 フランス語
 https://fr.wikipedia.org/wiki/Liste_de_noms_de_couleur  
 
+http://www.ludowalsh.com/HTM/Liste_de_couleurs.htm
+
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
 
 You can find out the name of any color in any image you pick in your device. 
