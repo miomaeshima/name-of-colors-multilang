@@ -16,6 +16,7 @@ const CheckMainColor = () => {
     const [backgroundColor, setBackgroundColor] = useState('transparent');
     //State "wide" means pic's width > height
     const [wide, setWide] = useState(true);
+    const [originalColor, setOriginalColor] = useState(null);
 
     //Put data of selected image to PreviewPic
     const preview = (e) => {
@@ -42,7 +43,7 @@ const CheckMainColor = () => {
 
     // Get main color data and populate ColorData and BackcgroundColor
     const getMainColor = async (e) => {
-        let data = await getMainRgb(e, lang);
+        let data = await getMainRgb(e, lang, setOriginalColor);
         setColorData(data);
         setBackgroundColor(`rgb(${data.r}, ${data.g}, ${data.b})`);
     };
@@ -103,6 +104,7 @@ const CheckMainColor = () => {
                 setBackgroundColor={setBackgroundColor}
                 setPicSrc={setPicSrc}
                 setColorData={setColorData}
+                originalColor={originalColor}
             />
             {previewPic === null ? (
                 <SelectButton
@@ -126,7 +128,7 @@ const CheckMainColor = () => {
                         {clickable ? (
                             <p>{textToClick}</p>
                         ) : (
-                            <SelectNameBox style={{...fontColor, ...styles}}>
+                            <SelectNameBox style={{ ...fontColor, ...styles }}>
                                 {colorData.name}
                             </SelectNameBox>
                         )}

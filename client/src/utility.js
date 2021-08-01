@@ -2,29 +2,11 @@ import ColorThief from 'colorthief';
 import styled from 'styled-components/macro';
 import { RefreshCw } from 'react-feather';
 
-//JS library color-thief that returns main color used in image;
-const colorThief = new ColorThief();
-
 //Function to get rgb and name of color based on original rgb
 const getName = async (rgbValue, lang) => {
     let res = await fetch(`http://localhost:5000/color/${lang}/${rgbValue}`);
     const color = await res.json();
     return color;
-};
-
-//Function to
-//1)Extract rgb of most used color in image using JS library "color-thief",
-//2)Pass "rgb" and "lang" to getName funtion and receive and return "color data" which includes rgb and name
-
-const getMainRgb = async (e, lang) => {
-    let pic = e.target;
-    if (pic.complete) {
-        let result = colorThief.getColor(pic);
-        let rgb = { r: result[0], g: result[1], b: result[2] };
-        let rgbToBeSent = JSON.stringify(rgb);
-        let color = await getName(rgbToBeSent, lang);
-        return color;
-    }
 };
 
 //1) Receive "original color data" and "lang",
@@ -37,6 +19,22 @@ const getRgb = async (data, lang) => {
     return color;
 };
 
+//JS library color-thief that returns main color used in image;
+const colorThief = new ColorThief();
+
+//Function to
+//1)Extract rgb of most used color in image using JS library "color-thief",
+//2)Then, pass "rgb" and "lang" to getRgb which returns "color data" which includes rgb and name
+const getMainRgb = async (e, lang, setOriginalColor) => {
+    let pic = e.target;
+    if (pic.complete) {
+        let data = colorThief.getColor(pic);
+        setOriginalColor(data);
+        return getRgb(data, lang);
+    }
+};
+
+//1) Run getRgb and get color data, trigger setColorData, setBackgroundColor, and setColorArray
 const getColor = async (
     data,
     lang,
@@ -49,7 +47,9 @@ const getColor = async (
     setColorData(response);
     setBackgroundColor(`rgb(${response.r}, ${response.g}, ${response.b})`);
     //Use concat instead of push as original array cannot be changed = need to create new array for React state array
-    setColorArray(colorArray.concat([response]));
+    if (setColorArray && colorArray) {
+        setColorArray(colorArray.concat([response]));
+    }
 };
 
 const Refresh = ({ fontColor, onClick }) => {
