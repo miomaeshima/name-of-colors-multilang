@@ -2,18 +2,29 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import Header from './Header';
 import SelectButton from './SelectButton';
-import { getRgb, Refresh, findFontColor, refreshPage } from '../utility.js';
+import { getColor, Refresh, findFontColor, refreshPage } from '../utility.js';
 import { useSelector } from 'react-redux';
-import { DIMENSIONS, COLORS, nameStyles } from '../constants';
+import {
+    DIMENSIONS,
+    COLORS,
+    nameStyles,
+    limitOfColorArray,
+} from '../constants';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
 
 const CheckAnyColor = () => {
     const [previewPic, setPreviewPic] = useState(null);
     const [picSrc, setPicSrc] = useState(null);
+    //color data returned from the backend
     const [colorData, setColorData] = useState({});
+    //background color based on colorData
     const [backgroundColor, setBackgroundColor] = useState('transparent');
+    //array of five latest color data returned from backend
     const [colorArray, setColorArray] = useState([]);
+    //original RGB in the image
+    const [originalColor, setOriginalColor] = useState(null);
+    //adjustment for layout (canvas width - image width)
     const [adjustment, setAdjustment] = useState(0);
 
     const lang = useSelector((state) => state.language[0]);
@@ -70,18 +81,8 @@ const CheckAnyColor = () => {
                 }
             };
 
-            const getColor = async (data) => {
-                let response = await getRgb(data, lang);
-                setColorData(response);
-                setBackgroundColor(
-                    `rgb(${response.r}, ${response.g}, ${response.b})`
-                );
-
-                //Cannot use push for React state array
-                setColorArray(colorArray.concat([response]));
-            };
-
             let colorSample = document.getElementById('colorSample');
+
             canvas.addEventListener('mousemove', (event) => {
                 let x = event.offsetX;
                 let y = event.offsetY;
@@ -96,7 +97,16 @@ const CheckAnyColor = () => {
                 let y = event.offsetY;
                 let imageData = context.getImageData(x, y, 1, 1);
                 let data = imageData.data;
-                getColor(data);
+                setOriginalColor(data);
+
+                getColor(
+                    data,
+                    lang,
+                    setColorData,
+                    setBackgroundColor,
+                    setColorArray,
+                    colorArray
+                );
             };
             canvas.addEventListener('click', sendCanvasDataToGetColor);
 
@@ -108,14 +118,14 @@ const CheckAnyColor = () => {
         }
     }, [picSrc, lang, colorArray]);
 
-    //Limit to only five colors in colorArray (Cannot use unshift on React state)
-    if (colorArray.length > 5) {
+    //Limit of num of colors in colorArray (Cannot use unshift on React state)
+    if (colorArray.length > limitOfColorArray) {
         let idxToRemove = 0;
         setColorArray(colorArray.filter((item, idx) => idx !== idxToRemove));
     }
 
     let fontColor = findFontColor(colorData);
-    let stylesNameBox = { 'margin-left': `${-1 * adjustment}px` };
+    let stylesNameBox = { marginLeft: `${-1 * adjustment}px` };
 
     let text, buttonText, textToClick, tooltipText, styles;
 
@@ -154,6 +164,8 @@ const CheckAnyColor = () => {
                 setPicSrc={setPicSrc}
                 setColorData={setColorData}
                 setColorArray={setColorArray}
+                colorArray={colorArray}
+                originalColor={originalColor}
             />
             {previewPic === null ? (
                 <SelectButton
@@ -186,9 +198,8 @@ const CheckAnyColor = () => {
                     <BottomWrapper>
                         <ColorSample id="colorSample" />
                         {colorArray.map((color, index) => (
-                            <Tooltip label={color.name}>
+                            <Tooltip label={color.name} key={index}>
                                 <ClickedColor
-                                    key={index}
                                     style={{
                                         background: `rgb(${color.r}, ${color.g}, ${color.b})`,
                                     }}
@@ -204,7 +215,9 @@ const CheckAnyColor = () => {
                                             setBackgroundColor,
                                             setPicSrc,
                                             setColorData,
-                                            setColorArray
+                                            setColorArray,
+                                            setAdjustment,
+                                            setOriginalColor
                                         )
                                     }
                                 />

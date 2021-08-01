@@ -83,7 +83,9 @@ const Header = (props) => {
                                 props.setBackgroundColor,
                                 props.setPicSrc,
                                 props.setColorData,
-                                props.setColorArray
+                                props.setColorArray,
+                                props.setAjustment,
+                                props.setOriginalColor
                             )
                         }
                     >
@@ -92,7 +94,13 @@ const Header = (props) => {
                 )}
             </NavLinkWrapper>
             <ListWrapper>
-                <LanguageMenu />
+                <LanguageMenu
+                    setColorArray={props.setColorArray}
+                    colorArray={props.colorArray}
+                    originalColor={props.originalColor}
+                    setColorData={props.setColorData}
+                    setBackgroundColor={props.setBackgroundColor}
+                />
             </ListWrapper>
         </>
     );
