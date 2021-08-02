@@ -11,8 +11,21 @@ const Footer = () => {
                     <p>
                         日本の伝統色の美しい名前に魅せられてサイトを作成しました。他の言語でも、RGB値のある色名リストがあればこのサイトに組み込みたく思います。ここぞと思うものがあれば、ぜひお知らせください。また現在、フランス語は日本の伝統色（713色）、英語（972色）に比べ、207色とぴったりの色が返すのに十分な色数とは言えません。よいリストを絶賛募集中です！
                     </p>
+
                     <p>
-                        また、この場を借りまして、作成にあたり、ホームページの背景写真、ロゴ、またデータの参照元でお世話になったサイトにお礼を申しあげます。
+                        <span>個人情報の扱い</span>
+                        <br />
+                        このサイトでは個人情報は収集していません。
+                        <br />
+                        画像を画面上に表示し、クリックしても、サーバー側に送られるのは調べたい色のRGB値だけで、画像自体はどこにも送られません。
+                    </p>
+
+                    <p>
+                        <span>謝辞</span>
+                        <br />
+                        <span>
+                            作成にあたり、以下のホームページの背景写真、ロゴ、またデータの参照元を使用しております。この場を借りてお礼を申し上げます。
+                        </span>
                     </p>
                 </Announcement>
                 <Credits>
@@ -95,16 +108,19 @@ const Footer = () => {
 };
 
 const Wrapper = styled.div`
-    height: 100%;
-    background: ${COLORS.Awafujiiro};
+    background: ${COLORS.Gray};
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Box = styled.div`
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 600px;
+    min-width: 300px;
+
+    background: ${COLORS.AboutWrapper};
     padding: 32px;
-    background: lightblue;
 `;
 
 const Title = styled.div`
@@ -121,16 +137,18 @@ const Announcement = styled.div`
 `;
 
 const Credits = styled.div`
-    width: fit-content;
-    margin: 0 auto 32px auto;
+    margin: 0 auto 0px auto;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    p > img {
+        transform: translateY(4px);
+    }
 `;
 const Contact = styled.div`
     margin-top: 16px;
     display: flex;
-    gap: 32px;
-    width: 70ch;
+    flex-wrap: wrap;
+    gap: 16px;
 `;
 export default Footer;

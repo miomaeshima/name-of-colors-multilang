@@ -129,7 +129,7 @@ const NavLinkWrapper = styled(Wrapper)`
     display: flex;
     gap: 30px;
     min-width: 500px;
-    width: 70%;
+    width: 62%;
     margin-left: auto;
     margin-right: auto;
     padding-left: 32px;

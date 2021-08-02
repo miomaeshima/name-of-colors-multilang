@@ -3,10 +3,11 @@ export const DIMENSIONS = {
 };
 
 export const COLORS = {
-    UsukumonezuGray: 'rgb(212, 220, 218)',
-    Awafujiiro: 'rgb(187, 200, 230)',
-    LightBlue: 'rgb(2, 196, 240)',
-    DarkBlue: 'rgb(0, 181, 222)',
+    Gray: 'rgb(212, 220, 218)',
+    HomeWrapper: ' rgb(52, 56, 58)',
+    AboutWrapper: 'rgb(183, 204, 213)',
+    ButtonLightBlue: 'rgb(2, 196, 240)',
+    ButtonDarkBlue: 'rgb(0, 181, 222)',
 };
 
 export const nameStyles = {

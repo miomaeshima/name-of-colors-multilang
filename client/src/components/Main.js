@@ -107,7 +107,7 @@ const Main = () => {
         text = (
             <>
                 <p>
-                    日本の伝統色には味わい深い名前がいっぱい。こちらのサイトでは、お手持ちの画像の中にどんな伝統色があるのか、画像を選び、クリックするだけで調べられます。*
+                    日本の伝統色には味わい深い名前がいっぱい。こちらのサイトでは、お手持ちの画像の中にどんな伝統色があるのか、画像を選び、クリックするだけで調べられます。
                 </p>
                 <p>
                     趣のある色の名前を持つのは日本語だけではありません。画面右上の「日本の伝統色」と出ているプルダウンメニューから、英語、フランス語のパレットにも切り替えられます。
@@ -119,10 +119,6 @@ const Main = () => {
                 </p>
                 <p>
                     「日本の伝統色」、「English」、「Français」の各パレットにある色の数や種類が違うのでパレットによって「一番近い色」も変わってきます。実際にパレット／言語を切り替えると、返ってくる色と名前が変わるのに気づかれるでしょう。
-                </p>
-                <p>
-                    ＊
-                    画像を画面上に表示し、クリックしても、サーバー側に送られるのは調べたい色のRGB値だけで、画像自体はどこにも送られません。
                 </p>
             </>
         );
@@ -138,12 +134,11 @@ const Main = () => {
 
 const Wrapper = styled.div`
     position: relative;
-    width: 73%;
-
+    width: clamp(500px, 68vw, 1030px);    
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
-    padding: 30px 42px 32px 42px;
+    padding: 30px 64px 32px 64px;
     background: rgba(0, 0, 150, 0.125);
 
     display: flex;
@@ -159,13 +154,11 @@ const Title = styled.div`
 
 const Intro = styled.div`
     padding-left: 5px;
-    columns: 2;
+    column-width: 300px;
     column-gap: 48px;
-
     color: white;
     p {
         margin-bottom: 16px;
-        /* break-inside: avoid; */
     }
 `;
 

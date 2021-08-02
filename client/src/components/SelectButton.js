@@ -40,8 +40,8 @@ const Form = styled.form`
         padding: 8px;
         width: 500px;
         border-radius: 4px;
-        border-bottom: solid 4px ${COLORS.DarkBlue};
-        background: ${COLORS.LightBlue};
+        border-bottom: solid 4px ${COLORS.ButtonDarkBlue};
+        background: ${COLORS.ButtonLightBlue};
         display: flex;
         align-items: center;
         justify-content: center;

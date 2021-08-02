@@ -69,14 +69,7 @@ const CheckAnyColor = () => {
                     );
                 } else {
                     let picWidth = img.width * (canvas.height / img.height);
-                    context.drawImage(
-                        img,
-                        0,
-                        0,
-                        picWidth,
-                        // img.width * (canvas.height / img.height),
-                        canvas.height
-                    );
+                    context.drawImage(img, 0, 0, picWidth, canvas.height);
                     setAdjustment(canvas.width - picWidth);
                 }
             };
@@ -98,6 +91,7 @@ const CheckAnyColor = () => {
                 let imageData = context.getImageData(x, y, 1, 1);
                 let data = imageData.data;
                 setOriginalColor(data);
+                console.log(data);
 
                 getColor(
                     data,
@@ -233,7 +227,7 @@ const CheckAnyColor = () => {
 const Wrapper = styled.div`
     width: 100%;
     height: 100%;
-    background: ${COLORS.UsukumonezuGray};
+    background: ${COLORS.Gray};
 `;
 
 const Container = styled.div`
