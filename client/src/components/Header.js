@@ -154,7 +154,7 @@ const StyledNavHashLink = styled(NavHashLink)`
 const ListWrapper = styled(Wrapper)`
     position: fixed;
     top: 0;
-    right: 15%;
+    right: 32px;
 `;
 
 export default Header;
