@@ -115,10 +115,11 @@ const Main = () => {
                 <p>
                     このサイトでは、色について二つの選び方を用意しています。一つはMain
                     Colorというページで、画像で一番使われている色について調べられます。もう一つはAny
-                    Colorというページで、こちらでは、画像上のどこでもクリックした場所の色について調べることができます。Main Color, Any Colorへは画面上のタブから進めます。
+                    Colorというページで、こちらでは、画像上のどこでもクリックした場所の色について調べることができます。Main
+                    Color, Any Colorへは画面上のタブから進めます。
                 </p>
                 <p>
-                どちらのページも、選んだパレットから、調べたい色か、その色がなければ、それに一番近い色が選びだされて返ってきます。（「日本の伝統色」、「English」、「Français」の各パレットにある色の数や種類が違うので、それぞれに「一番近い色」も変わります。）
+                    どちらのページも、選んだパレットから、調べたい色か、その色がなければ、それに一番近い色が選びだされて返ってきます。（「日本の伝統色」、「English」、「Français」の各パレットにある色の数や種類が違うので、それぞれに「一番近い色」も変わります。）
                 </p>
             </>
         );
@@ -134,7 +135,7 @@ const Main = () => {
 
 const Wrapper = styled.div`
     position: relative;
-    width: clamp(500px, 68vw, 1030px);    
+    width: clamp(500px, 68vw, 1030px);
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
@@ -143,7 +144,7 @@ const Wrapper = styled.div`
 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+
     gap: 16px;
 `;
 
@@ -154,6 +155,10 @@ const Title = styled.div`
 
 const Intro = styled.div`
     padding-left: 5px;
+    --webkit-column-width: 300px;
+    --webkit-column-gap: 48px;
+    --moz-column-width: 300px;
+    --moz-column-gap: 48px;
     column-width: 300px;
     column-gap: 48px;
     color: white;
