@@ -4,7 +4,7 @@ import { RefreshCw } from 'react-feather';
 
 //Function to get rgb and name of color based on original rgb
 const getName = async (rgbValue, lang) => {
-    let res = await fetch(`http://localhost:5000/color/${lang}/${rgbValue}`);
+    let res = await fetch(`/color/${lang}/${rgbValue}`);
     const color = await res.json();
     return color;
 };

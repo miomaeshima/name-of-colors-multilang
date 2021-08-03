@@ -5,9 +5,13 @@ const cors = require('cors');
 const japaneseColorNames = require('./colors/colors_japanese');
 const englishColorNames = require('./colors/colors_english');
 const frenchColorNames = require('./colors/colors_french');
+const path = require('path');
 
 app.use(cors());
 app.use(express.json());
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'client/build')));
+}
 
 //turn an array of objects {name, r, g, b} into an array of objects {name, distance}
 
@@ -35,7 +39,7 @@ app.get('/color/:lang/:rgb', (req, res) => {
     let value = req.params.rgb;
     value = JSON.parse(value);
 
-    let colorArray= japaneseColorNames;
+    let colorArray = japaneseColorNames;
 
     if (lang === 'ja') {
         colorArray = japaneseColorNames;
@@ -54,8 +58,9 @@ app.get('/color/:lang/:rgb', (req, res) => {
     res.send(JSON.stringify(chosenColor));
 });
 
-app.get('/', (req, res) => {
-    res.send('hello world!');
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
 
 app.listen(PORT, () => {
