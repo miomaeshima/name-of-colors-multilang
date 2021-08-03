@@ -1,6 +1,6 @@
 import Header from './Header';
 import Main from './Main';
-import Footer from './Footer';
+import About from './About';
 import styled from 'styled-components/macro';
 import { COLORS } from '../constants';
 
@@ -22,7 +22,7 @@ const Home = () => {
                 <Header />
                 <Main />
             </Wrapper>
-            <Footer />
+            <About />
         </>
     );
 };

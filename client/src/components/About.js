@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { COLORS } from '../constants';
 
-const Footer = () => {
+const About = () => {
     return (
         <Wrapper>
             <Box>
@@ -93,10 +93,10 @@ const Footer = () => {
                         <span>
                             contact |{' '}
                             <a
-                                href="https://twitter.com/miocoffeecoffee"
-                                alt="Twitter"
+                                href="https://www.linkedin.com/in/miomaeshima/"
+                                alt="Linkedin account"
                             >
-                                misho/miomaeshima@miocoffeecoffee
+                                https://www.linkedin.com/in/miomaeshima/
                             </a>
                         </span>
                     </Contact>
@@ -151,4 +151,4 @@ const Contact = styled.div`
     flex-wrap: wrap;
     gap: 16px;
 `;
-export default Footer;
+export default About;
