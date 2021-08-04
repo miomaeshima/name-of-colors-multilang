@@ -70,7 +70,7 @@ const CheckAnyColor = () => {
                 } else {
                     let picWidth = img.width * (canvas.height / img.height);
                     context.drawImage(img, 0, 0, picWidth, canvas.height);
-                    setAdjustment(canvas.width - picWidth);
+                    setAdjustment(picWidth-canvas.width);
                 }
             };
 
@@ -119,7 +119,7 @@ const CheckAnyColor = () => {
     }
 
     let fontColor = findFontColor(colorData);
-    let stylesNameBox = { marginLeft: `${-1 * adjustment}px` };
+    let stylesNameBox = { marginLeft: `${adjustment}px` };
 
     let text, buttonText, textToClick, tooltipText, styles;
 
@@ -146,6 +146,7 @@ const CheckAnyColor = () => {
         textToClick =
             '上のメニューを変えると英語、フランス語でも名前が調べられます。画像の好きなところを何ヶ所でもクリックして、色の名前を調べられます。';
         tooltipText = '画像をリフレッシュ';
+        
         styles = { ...nameStyles, ...{ writingMode: 'vertical-rl' } };
     }
 
@@ -243,8 +244,8 @@ const PreviewWrapper = styled.div`
 
 const Box = styled.div`
     &.nameBox {
-        flex: auto;
         display: flex;
+        flex: auto;      
         justify-content: center;
         p {
             padding-top: 96px;
@@ -265,6 +266,7 @@ const SelectNameBox = styled.div`
     justify-content: center;
     font-size: 36px;
     padding: 48px;
+    
 `;
 
 const BottomWrapper = styled.div`

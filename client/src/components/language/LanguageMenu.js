@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Listbox, ListboxOption } from '@reach/listbox';
 import '@reach/listbox/styles.css';
 import { getColor } from '../../utility';
+import styled from 'styled-components/macro';
 
 const LanguageMenu = (props) => {
     const dispatch = useDispatch();
@@ -29,11 +30,19 @@ const LanguageMenu = (props) => {
             // onChange={(value) => dispatch(languageChanged(value))}
             onChange={(value) => changeLang(value)}
         >
-            <ListboxOption value="ja">日本の伝統色</ListboxOption>
-            <ListboxOption value="en">English</ListboxOption>
-            <ListboxOption value="fr">Fran&ccedil;ais</ListboxOption>
+            <StyledListboxOption value="ja">日本の伝統色</StyledListboxOption>
+            <StyledListboxOption value="en">English</StyledListboxOption>
+            <StyledListboxOption value="fr">
+                Fran&ccedil;ais
+            </StyledListboxOption>
         </Listbox>
     );
 };
+
+const StyledListboxOption = styled(ListboxOption)`
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+        segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial,
+        sans-serif;
+`;
 
 export default LanguageMenu;
