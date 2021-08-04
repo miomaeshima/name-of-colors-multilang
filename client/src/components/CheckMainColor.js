@@ -65,6 +65,8 @@ const CheckMainColor = () => {
         dimension = { width: '60vw', height: 'auto' };
     }
 
+
+
     let imgStyles = { ...clickableCursor, ...dimension };
 
     const lang = useSelector((state) => state.language[0]);
@@ -114,7 +116,7 @@ const CheckMainColor = () => {
                 />
             ) : (
                 <PreviewWrapper style={{ background: backgroundColor }}>
-                    <Box>
+                    <Box className="imageBox" style={dimension}>
                         <img
                             id="chosenPic"
                             style={imgStyles}
@@ -124,6 +126,7 @@ const CheckMainColor = () => {
                             tabIndex="0"
                         />
                     </Box>
+
                     <Box className="nameBox">
                         {clickable ? (
                             <p>{textToClick}</p>
@@ -166,10 +169,19 @@ const PreviewWrapper = styled.div`
 `;
 
 const Box = styled.div`
+    &.imageBox {
+
+        /* width: 60vw; */
+        
+        
+
+    }
     &.nameBox {
-        flex: auto;
+        /* background: pink; */
+        flex: 1 0;
         display: flex;
         justify-content: center;
+        /* width: 100%; */
         p {
             margin-top: 96px;
             max-width: 50ch;
