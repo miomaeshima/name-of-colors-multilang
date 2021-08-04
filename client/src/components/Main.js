@@ -162,6 +162,7 @@ const Intro = styled.div`
     column-width: 300px;
     column-gap: 48px;    
     color: white;
+    
     p {
         margin-bottom: 16px;
     }
