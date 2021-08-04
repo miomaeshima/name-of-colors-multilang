@@ -134,6 +134,7 @@ const Intro = () => {
                         </StyledNavLink>
                     </li>
                 </ol>
+                <br/>
 
                 <p>
                     選んだパレットから、調べたい色、ないしは、一番近い色が選びだされます。各パレットにある色の数や種類が違うので、それぞれに「一番近い色」も変わります。
@@ -152,22 +153,20 @@ const Intro = () => {
 
 const Wrapper = styled.div`
     position: relative;
-    width: clamp(500px, 68vw, 1030px);
-    margin-top: 100px;
-    margin-left: auto;
+    /* width: clamp(500px, 68vw, 1030px); */
+    max-width: 600px;
+    min-width: 300px;
+    margin-top: 80px;
+    margin-left: 250px;
     margin-right: auto;
-    padding: 30px 64px 32px 64px;
+    padding: 48px 64px 32px 64px;
     background: rgba(0, 0, 150, 0.2);
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 16px;
 `;
 
 const Title = styled.div`
     font-family: '游明朝', 'Yu Mincho', YuMincho, 'Hiragino Mincho Pro', serif;
     font-size: 56px;
+    margin-bottom: 32px;
 `;
 
 const Introduction = styled.div`
