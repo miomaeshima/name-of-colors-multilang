@@ -161,6 +161,7 @@ const Intro = styled.div`
     --moz-column-gap: 48px;
     column-width: 300px;
     column-gap: 48px;
+    
     color: white;
     p {
         margin-bottom: 16px;
