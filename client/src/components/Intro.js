@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 const titleJa = '色の名前';
 const titleEn = 'Names of Colors';
 const titleFr = 'Noms de Couleurs';
 
-const Main = () => {
+const Intro = () => {
     const lang = useSelector((state) => state.language[0]);
 
     let title;
@@ -107,19 +108,35 @@ const Main = () => {
         text = (
             <>
                 <p>
-                    日本の伝統色には味わい深い名前がいっぱい。こちらのサイトでは、お手持ちの画像の中にどんな伝統色があるのか、画像を選び、クリックするだけで調べられます。
+                    このサイトではお手持ちの画像中の色について、日本の伝統色としての名前、英語名、フランス語名を調べられます。
                 </p>
+
+                <ol>
+                    <li>
+                        画面右上のセレクトメニューで「日本の伝統色」「English」「Français」の３パレットから一つを選ぶ。
+                    </li>
+                    <li>
+                        画像中、もっとも使われている色を調べる。<br/>
+                        → <StyledNavLink
+                            activeStyle={{ borderBottom: '1px solid' }}
+                            to="/main_color"
+                        >
+                            Main Colorのページへ
+                        </StyledNavLink>
+                    </li>
+                    <li>
+                        画像中、どこでもクリックした箇所の色を調べる。<br/>
+                       → <StyledNavLink
+                            activeStyle={{ borderBottom: '1px solid' }}
+                            to="/any_color"
+                        >
+                            Any Colorのページへ
+                        </StyledNavLink>
+                    </li>
+                </ol>
+
                 <p>
-                    趣のある色の名前を持つのは日本語だけではありません。画面右上の「日本の伝統色」と出ているプルダウンメニューから、英語、フランス語のパレットにも切り替えられます。
-                </p>
-                <p>
-                    このサイトでは、色について二つの選び方を用意しています。一つはMain
-                    Colorというページで、画像で一番使われている色について調べられます。もう一つはAny
-                    Colorというページで、こちらでは、画像上のどこでもクリックした場所の色について調べることができます。Main
-                    Color, Any Colorへは画面上のタブから進めます。
-                </p>
-                <p>
-                    どちらのページも、選んだパレットから、調べたい色か、その色がなければ、それに一番近い色が選びだされて返ってきます。（「日本の伝統色」、「English」、「Français」の各パレットにある色の数や種類が違うので、それぞれに「一番近い色」も変わります。）
+                    選んだパレットから、調べたい色、ないしは、一番近い色が選びだされます。各パレットにある色の数や種類が違うので、それぞれに「一番近い色」も変わります。
                 </p>
             </>
         );
@@ -128,7 +145,7 @@ const Main = () => {
     return (
         <Wrapper>
             <Title>{title}</Title>
-            <Intro>{text}</Intro>
+            <Introduction>{text}</Introduction>
         </Wrapper>
     );
 };
@@ -140,7 +157,7 @@ const Wrapper = styled.div`
     margin-left: auto;
     margin-right: auto;
     padding: 30px 64px 32px 64px;
-    background: rgba(0, 0, 150, 0.125);
+    background: rgba(0, 0, 150, 0.2);
 
     display: flex;
     flex-direction: column;
@@ -153,19 +170,28 @@ const Title = styled.div`
     font-size: 56px;
 `;
 
-const Intro = styled.div`
+const Introduction = styled.div`
     padding-left: 5px;
     --webkit-column-width: 300px;
     --webkit-column-gap: 48px;
     --moz-column-width: 300px;
     --moz-column-gap: 48px;
     column-width: 300px;
-    column-gap: 48px;    
+    column-gap: 48px;
     color: white;
-    
+
     p {
         margin-bottom: 16px;
     }
+
+    ol {
+        list-style-type: square;
+        margin-bottom: 16px;
+        break-inside: avoid;
+    }
 `;
 
-export default Main;
+const StyledNavLink = styled(NavLink)`
+    color: white;
+`;
+export default Intro;

@@ -1,5 +1,5 @@
 import Header from './Header';
-import Main from './Main';
+import Intro from './Intro';
 import About from './About';
 import styled from 'styled-components/macro';
 import { COLORS } from '../constants';
@@ -20,7 +20,7 @@ const Home = () => {
                     <img src="background-img.jpg" alt="" />
                 </Picture>
                 <Header />
-                <Main />
+                <Intro />
             </Wrapper>
             <About />
         </>
