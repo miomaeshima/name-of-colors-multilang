@@ -83,7 +83,7 @@ const About = () => {
                             width="18px"
                             alt="logo"
                         ></img>{' '}
-                        made by
+                        made by{' '}
                         <a href="https://www.freepik.com" title="Freepik">
                             Freepik
                         </a>{' '}

@@ -1,47 +1,149 @@
-# Name of Colors 色の名前
-## - multilang -　多言語対応
+# Name-of-Color 色の名前
 
-(English Below ↓)
+【English below】
+<p align="center"><img src="client/public/logo.svg" width=200px></p>
 
-画像中の色の名前を調べられます。
+<h2 align="center">色の名前</h2>
+<h3 align="center">白磁、夜の青、ほろ苦い煌めき... <br/>実はどれも色の名前。 <br/>
+画像の中にかくれた色の名前が見つけられます。</h3>
 
-1. ご自身のデバイスから画像を選んでください。
-2. このアプリは二つの使いかたがあります。
-3. ひとつは画像のメインカラーを調べる方法。画像をクリックすると、メインカラーと名前が分かります。
-4. もうひとつは、画像中の好きな色を調べる方法。
-   画像を選び、カーソルを動かすと、カーソルがあるところの色が表示されます。 
-   さらに、クリックすると、そのクリックした場所の色の名前が表示されます。
-5. 好きな言語で名前を調べられます。
-   使っている色名リストは以下の通りです。  現時点であるのは、日本語（伝統色）、英語、フランス語です。
-  
-日本の伝統色
-https://irononamae.web.fc2.com/wa/
+---
 
-英語 
-https://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F
+## 機能
 
-フランス語
-https://fr.wikipedia.org/wiki/Liste_de_noms_de_couleur  
+-   画像中、最も使われている色の名前を調べられます。
+-   画像中、好きな箇所の色の名前を調べられます。
+-   日本の伝統色としての名前、英語名、フランス語名が分かります。
+
+<br/>
+
+## サイト
+
+https://name-of-color-2021aug.herokuapp.com/
+
+<br/>
+
+## 使いかた
+
+0. アプリを使用中いつでも「日本の伝統色」「English」「French」の間で、言語／パレットを切り替えることができます。
+1. "Main Color"ページに行く。 
+2. デバイス中の画像を選ぶ。
+3. 表示された画像をクリックして一番使われている色について調べる。
+4. "Any Color"ぺージに行く。
+5. デバイス中の画像を選ぶ。
+6. 画像中の好きな箇所をクリックして、その色について調べる。
+7. 何箇所でもクリックでき、最後にクリックした５色は画面下部に色見本が表示される。マウスオーバーすると名前が表示される。
+
+<br/>
+
+## 仕組み
+
+"Main Color"ページではcolor-thiefというJavaScriptライブラリを使い、一番使われている色のRGB値が、また、"Any Color"ページではHTMLのcanvas要素を使い、クリックした箇所の色のRGB値が補足され、サーバー側に送られる。（画像は送られません。）サーバー側で、パレット（色とRGB値のリスト）の中で、送られてきたRGB値に一番近い色が求められ、フロントエンドに戻される。
+
+各パレットは色数、色の種類が異なるため、それぞれに「一番近い色」も同じではありません。
+
+<br/>
+
+## 使用した技術
+
+JavaScript, React, Redux, HTML5, CSS3, styled-components, Node.js, Express
+
+<br/>
+
+## 今後の機能拡張
+
+モバイルでも使えるようレスポンシブ対応。
+
+<br/>
+
+## 開発の背景
+
+もともとは日本の伝統色の持つ、美しい名前に魅せられて作成され、その後、英語、フランス語の色名も追加。
+
+<br/>
+
+## 謝辞
+このアプリは以下の素材、データを使って作成されました。この場を借りてお礼を申し上げます。
+
+-   背景写真 | by Lee Jeffs on Unsplash<br/>
+-   ロゴ | by Freepik from www.flaticon.com<br/>
+-   日本の伝統色 | http://minagi.p-kit.com/page74767.html<br/>
+-   英語の色名 | https://en.wikipedia.org/wiki/* List_of_colors<br/>
+-   フランス語の色名 | https://fr.wikipedia.org/wiki/Liste_de_noms_de_couleur
+
+<br/>
+
+___
 
 
-http://www.ludowalsh.com/HTM/Liste_de_couleurs.htm
+<p align="center"><img src="client/public/logo.svg" width=200px></p>
 
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+<h2 align="center">Name-of-Color</h2><br/>
+<h3 align="center">White porcelain, Blue nuit, Bittersweet shimmer... <br/>These are all names of colors. <br/>
+Find out enchanting terms of colors in your images with Name-of-Color !</h3>
 
-You can find out the name of any color in any image you pick in your device. 
+---
 
-1．There are two ways to use this app.
-2．One is to find the main color in your image. Just click on the image and you get the name of the main color.
-3．The other is to find the name of any color in your image. Mouse over the image, and you see the color.
-4．If you click on any part of the image, you get the name of that color.
+## Features
 
-You can toggle between different languages.
-Currently, Japanese, English and French are available. 
+-   Looks up the name of the most used color in an image
+-   Looks up the name of any color the user selects in an image
+-   Returns names of colors in English, French, or as traditional Japanese colors -- colors used in Japanese traditional arts and crafts.
 
-The source of color lists used are :
+<br/>
 
-For English 
-https://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F
+## Site
 
-For French
-https://fr.wikipedia.org/wiki/Liste_de_noms_de_couleur
+https://name-of-color-2021aug.herokuapp.com/
+
+<br/>
+
+## Usage
+
+0. You can switch between languages/palettes among "traditional Japanese colors," "English," or "French" on the select menu at any time during the use of the app.
+1. Go to the "Main Color" page 
+2. Select an image from your device
+3. Click on the image to get the name of the most used color in the image.
+4. Go to the "Any Color" page
+5. Select an image from your device
+6. Click on any part of the image to get the name of the color of the location you clicked.
+7. You can continue to click on other parts of the image to get more names.
+8. The app displays the last five clicked colors at the bottom of the screen. You can see the names of the colors by hovering the mouse over them.
+
+<br/>
+
+## How it works
+
+On the Main Color page, the app uses a JavaScript library, color-thief, to get the RGB value of the most used color in an image. On the Any Color page, the app uses the HTML canvas element to capture the RGB value of the pixel the mouse clicked on.
+
+In both cases, the app sends the captured RGB value to the backend, where the app determines the closest color in the selected palette (i.e., a list of color names with RGB values) and returns it to the front end with its name and RGB value. The app does not send any image to the server-side.
+
+The "closest color" is different depending on the palette, as the colors included in the palettes are not identical.
+
+<br/>
+
+## Technologies used
+
+JavaScript, React, Redux, HTML5, CSS3, styled-components, Node.js, Express
+
+<br/>
+
+## Future features
+
+Adopt a responsive design for mobile devices
+
+<br/>
+
+## Background of development
+
+This app was created out of admiration for the beautiful names of colors in different languages.
+
+<br/>
+
+## Credits
+
+-   Landing page background photograph by Lee Jeffs on Unsplash<br/>
+-   Logo made by Freepik from www.flaticon.com<br/>
+-   Japanese traditional colors | http://minagi.p-kit.com/page74767.html<br/>
+-   English color names | https://en.wikipedia.org/wiki/* List_of_colors<br/>
+-   French color names | https://fr.wikipedia.org/wiki/Liste_de_noms_de_couleur
