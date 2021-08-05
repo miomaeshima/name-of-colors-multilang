@@ -4,107 +4,21 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 const titleJa = '色の名前';
-const titleEn = 'Names of Colors';
-const titleFr = 'Noms de Couleurs';
+const titleEn = 'Name of Color';
 
 const Intro = () => {
     const lang = useSelector((state) => state.language[0]);
 
     let title;
-    if (lang === 'en') {
-        title = titleEn;
-    } else if (lang === 'fr') {
-        title = titleFr;
-    } else {
+    if (lang === 'ja') {
         title = titleJa;
+    } else {
+        title = titleEn;
     }
 
     let text;
-    if (lang === 'en') {
-        text = (
-            <>
-                <p>
-                    Names of colors are fascinating. Words like cerulean,
-                    bittersweet shimmer, and lavender blush can evoke moods and
-                    emotions. On this website, you can look up the names of the
-                    colors in any image on your device by simply selecting it
-                    and clicking on it.
-                </p>
 
-                <p>
-                    Interesting names exist in different languages. Here you can
-                    look up names in English, French, or Japanese* by switching
-                    between different languages/palettes on the select menu in
-                    the right top corner of the screen.
-                </p>
-
-                <p>
-                    You can search color names in two different ways. On the
-                    "Main Color" page, you can look up the name of the most used
-                    color in an image. The other way is to click on any part
-                    (i.e., pixel) within a picture to get the color name. You do
-                    that on the "Any Color" page.
-                </p>
-                <p>
-                    The way it works is that the app finds the exact match to
-                    the color you want to know the name of, or if the exact
-                    match doesn't exist in the palette, the closest color and
-                    returns its name.* As the number and the types of colors are
-                    not the same among the palettes, you can get a different
-                    result depending on the palette.
-                </p>
-                <p>
-                    * Regarding Japanese, you get names of traditional Japanese
-                    colors used in the country's classical arts. <br /> * The
-                    app sends only the RGB value of a particular color and not
-                    your image over the Internet.
-                </p>
-            </>
-        );
-    } else if (lang === 'fr') {
-        text = (
-            <>
-                <p>
-                    Les noms des couleurs sont fascinants. Des mots comme bleu
-                    de minuit, framboise ou queue-de-renard peuvent évoquer des
-                    images. Sur ce site, vous pouvez rechercher les noms des
-                    couleurs dans n'importe quelle image sur votre appareil en
-                    la sélectionnant et en cliquant dessus.
-                </p>
-                <p>
-                    Des noms intéressants existent dans différentes langues.
-                    Ici, vous pouvez rechercher des noms en anglais, en français
-                    ou en japonais* en passant d'une palette à l'autre dans le
-                    menu de sélection situé dans le coin supérieur droit de
-                    l'écran.
-                </p>
-                <p>
-                    Vous pouvez rechercher des noms de couleurs de deux manières
-                    différentes. Sur la page "Main Color", vous pouvez
-                    rechercher le nom de la couleur la plus utilisée dans une
-                    image. L'autre méthode consiste à cliquer sur n'importe
-                    quelle partie (c'est-à-dire un pixel) d'une image pour
-                    obtenir le nom de la couleur. Vous pouvez le faire sur la
-                    page "Any Color".
-                </p>
-                <p>
-                    L'application trouve la correspondance exacte de la couleur
-                    dont vous voulez connaître le nom ou, si ça exacte n'existe
-                    pas dans la palette, la couleur la plus proche et renvoie
-                    son nom. Comme le nombre et les types de couleurs ne sont
-                    pas les mêmes d'une palette à l'autre, vous pouvez obtenir
-                    un résultat différent selon la palette.
-                </p>
-                <p>
-                    * En ce qui concerne le japonais, vous obtenez les noms des
-                    couleurs traditionnelles japonaises utilisées dans l’art et
-                    l’artisanat japonais.
-                    <br />* L'application envoie uniquement la valeur RVB d'une
-                    couleur particulière et pas votre image sur internet.
-                </p>
-            </>
-        );
-    } else {
+    if (lang === 'ja') {
         text = (
             <>
                 <p>
@@ -116,8 +30,9 @@ const Intro = () => {
                         画面右上のセレクトメニューで「日本の伝統色」「English」「Français」の３パレットから一つを選ぶ。
                     </li>
                     <li>
-                        画像中、もっとも使われている色を調べる。<br/>
-                        → <StyledNavLink
+                        画像中、もっとも使われている色を調べる。
+                        <br />→{' '}
+                        <StyledNavLink
                             activeStyle={{ borderBottom: '1px solid' }}
                             to="/main_color"
                         >
@@ -125,8 +40,9 @@ const Intro = () => {
                         </StyledNavLink>
                     </li>
                     <li>
-                        画像中、どこでもクリックした箇所の色を調べる。<br/>
-                       → <StyledNavLink
+                        画像中、どこでもクリックした箇所の色を調べる。
+                        <br />→{' '}
+                        <StyledNavLink
                             activeStyle={{ borderBottom: '1px solid' }}
                             to="/any_color"
                         >
@@ -134,10 +50,55 @@ const Intro = () => {
                         </StyledNavLink>
                     </li>
                 </ol>
-                <br/>
+                <br />
 
                 <p>
                     選んだパレットから、調べたい色、ないしは、一番近い色が選びだされます。各パレットにある色の数や種類が違うので、それぞれに「一番近い色」も変わります。
+                </p>
+            </>
+        );
+    } else {
+        text = (
+            <>
+                <p>
+                    You can look up <strong>the name of colors</strong> in any image you have in
+                    English, French, or as colors used in traditional Japanese
+                    arts and crafts.
+                </p>
+
+                <ol>
+                    <li>
+                        Choose “Japanese traditional colors（日本の伝統色）,”
+                        “English,” or “Français” language/palette on the select menu at
+                        the right top corner of the screen.
+                    </li>
+                    <li>
+                        To find the name of the most used color in your image
+                        <br />→ Go to{' '}
+                        <StyledNavLink
+                            activeStyle={{ borderBottom: '1px solid' }}
+                            to="/main_color"
+                        >
+                            Main Color
+                        </StyledNavLink>
+                    </li>
+                    <li>
+                        To find the name of any color used in an image
+                        <br />→ Go to{' '}
+                        <StyledNavLink
+                            activeStyle={{ borderBottom: '1px solid' }}
+                            to="/any_color"
+                        >
+                            Any Color
+                        </StyledNavLink>
+                    </li>
+                </ol>
+
+                <p>
+                    The app finds the exact or the colosest match to the color
+                    you chose. As the colors in the palettes are not exactly the
+                    same, you can get a different result depending on the
+                    palette.
                 </p>
             </>
         );
@@ -153,14 +114,13 @@ const Intro = () => {
 
 const Wrapper = styled.div`
     position: relative;
-    /* width: clamp(500px, 68vw, 1030px); */
     max-width: 600px;
     min-width: 300px;
-    margin-top: 80px;
+    margin-top: 70px;
     margin-left: 250px;
     margin-right: auto;
     padding: 48px 64px 32px 64px;
-    background: rgba(0, 0, 150, 0.2);
+    background: rgba(0, 0, 150, 0.3);
 `;
 
 const Title = styled.div`
@@ -171,12 +131,6 @@ const Title = styled.div`
 
 const Introduction = styled.div`
     padding-left: 5px;
-    --webkit-column-width: 300px;
-    --webkit-column-gap: 48px;
-    --moz-column-width: 300px;
-    --moz-column-gap: 48px;
-    column-width: 300px;
-    column-gap: 48px;
     color: white;
 
     p {
@@ -184,9 +138,12 @@ const Introduction = styled.div`
     }
 
     ol {
+        margin-left: 9px;
+    }
+    li {
         list-style-type: square;
-        margin-bottom: 16px;
-        break-inside: avoid;
+        margin-left: 9px;
+        margin-bottom: 12px;
     }
 `;
 

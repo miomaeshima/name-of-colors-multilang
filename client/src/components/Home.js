@@ -30,7 +30,6 @@ const Home = () => {
 const Wrapper = styled.div`
     background: ${COLORS.HomeWrapper};
     color: white;
-    padding-bottom: 100px;
     min-height: 100vh;
 `;
 
