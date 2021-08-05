@@ -1,6 +1,7 @@
 # Name-of-Color 色の名前
 
 【English below】
+
 <p align="center"><img src="client/public/logo.svg" width=200px></p>
 
 <h2 align="center">色の名前</h2>
@@ -26,7 +27,7 @@ https://name-of-color-2021aug.herokuapp.com/
 ## 使いかた
 
 0. アプリを使用中いつでも「日本の伝統色」「English」「French」の間で、言語／パレットを切り替えることができます。
-1. "Main Color"ページに行く。 
+1. "Main Color"ページに行く。
 2. デバイス中の画像を選ぶ。
 3. 表示された画像をクリックして一番使われている色について調べる。
 4. "Any Color"ぺージに行く。
@@ -38,7 +39,7 @@ https://name-of-color-2021aug.herokuapp.com/
 
 ## 仕組み
 
-"Main Color"ページではcolor-thiefというJavaScriptライブラリを使い、一番使われている色のRGB値が、また、"Any Color"ページではHTMLのcanvas要素を使い、クリックした箇所の色のRGB値が補足され、サーバー側に送られる。（画像は送られません。）サーバー側で、パレット（色とRGB値のリスト）の中で、送られてきたRGB値に一番近い色が求められ、フロントエンドに戻される。
+"Main Color"ページでは color-thief という JavaScript ライブラリを使い、一番使われている色の RGB 値が、また、"Any Color"ページでは HTML の canvas 要素を使い、クリックした箇所の色の RGB 値が補足され、サーバー側に送られる。（画像は送られません。）サーバー側で、パレット（色と RGB 値のリスト）の中で、送られてきた RGB 値に一番近い色が求められ、フロントエンドに戻される。
 
 各パレットは色数、色の種類が異なるため、それぞれに「一番近い色」も同じではありません。
 
@@ -63,6 +64,7 @@ JavaScript, React, Redux, HTML5, CSS3, styled-components, Node.js, Express
 <br/>
 
 ## 謝辞
+
 このアプリは以下の素材、データを使って作成されました。この場を借りてお礼を申し上げます。
 
 -   背景写真 | by Lee Jeffs on Unsplash<br/>
@@ -73,8 +75,7 @@ JavaScript, React, Redux, HTML5, CSS3, styled-components, Node.js, Express
 
 <br/>
 
-___
-
+---
 
 <p align="center"><img src="client/public/logo.svg" width=200px></p>
 
@@ -101,7 +102,7 @@ https://name-of-color-2021aug.herokuapp.com/
 ## Usage
 
 0. You can switch between languages/palettes among "traditional Japanese colors," "English," or "French" on the select menu at any time during the use of the app.
-1. Go to the "Main Color" page 
+1. Go to the "Main Color" page
 2. Select an image from your device
 3. Click on the image to get the name of the most used color in the image.
 4. Go to the "Any Color" page
