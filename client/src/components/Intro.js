@@ -116,7 +116,7 @@ const Wrapper = styled.div`
     position: relative;
     max-width: 600px;
     min-width: 300px;
-    margin-top: 70px;
+    margin-top: 65px;
     margin-left: 250px;
     margin-right: auto;
     padding: 48px 64px 32px 64px;
