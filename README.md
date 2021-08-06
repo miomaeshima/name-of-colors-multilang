@@ -94,7 +94,7 @@ Find out enchanting terms of colors in your images with Name-of-Color !</h3>
 
 ## Site
 
-https://name-of-color-2021aug.herokuapp.com/
+https://nameofcolor.herokuapp.com/
 
 <br/>
 
