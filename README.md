@@ -12,9 +12,7 @@
 
 ## 機能
 
--   画像中、最も使われている色の名前を調べられます。
--   画像中、好きな箇所の色の名前を調べられます。
--   日本の伝統色としての名前、英語名、フランス語名が分かります。
+-   画像中の色について、日本の伝統色としての名前、英語名、フランス語名が分かります。
 
 <br/>
 
@@ -27,20 +25,20 @@ https://name-of-color-2021aug.herokuapp.com/
 
 ## 使いかた
 
-0. アプリを使用中いつでも「日本の伝統色」「English」「French」の間で、言語／パレットを切り替えることができます。
-1. "Main Color"ページに行く。
-2. デバイス中の画像を選ぶ。
-3. 表示された画像をクリックして一番使われている色について調べる。
-4. "Any Color"ぺージに行く。
-5. デバイス中の画像を選ぶ。
-6. 画像中の好きな箇所をクリックして、その色について調べる。
-7. 何箇所でもクリックでき、最後にクリックした５色は画面下部に色見本が表示される。マウスオーバーすると名前が表示される。
+アプリを使用中いつでも「日本の伝統色」「English」「French」の間で、言語／パレットを切り替えることができます。
 
+
+- 使い方　その1　<br/>
+ "Main Color"ページに行く。→ デバイス中の画像を選ぶ。→ 表示された画像をクリックすると一番使われている色の名前が分かる。
+<img src="client/public/maincolordemo.gif">
+
+- 使い方　その2. <br/>"Any Color"ぺージに行く。→ デバイス中の画像を選ぶ。→ 画像中の好きな箇所をクリックするとその色の名前が分かる。→ 何箇所でもクリックでき、最後にクリックした５色は画面下部に色見本が表示されて、マウスオーバーすると名前が表示される。
+<img src="client/public/anycolordemo.gif">
 <br/>
 
 ## 仕組み
 
-"Main Color"ページでは color-thief という JavaScript ライブラリを使い、一番使われている色の RGB 値が、また、"Any Color"ページでは HTML の canvas 要素を使い、クリックした箇所の色の RGB 値が補足され、サーバー側に送られる。（画像は送られません。）サーバー側で、パレット（色と RGB 値のリスト）の中で、送られてきた RGB 値に一番近い色が求められ、フロントエンドに戻される。
+"Main Color"ページでは color-thief という JavaScript ライブラリによって一番使われている色の RGB 値が、また、"Any Color"ページでは HTML の canvas 要素によってクリックした箇所の色の RGB 値が補足され、サーバー側に送られる。サーバー側で、パレット（色と RGB 値のリスト）中、送られてきた RGB 値に一番近い色が求められ、フロントエンドに戻される。
 
 各パレットは色数、色の種類が異なるため、それぞれに「一番近い色」も同じではありません。
 
@@ -102,15 +100,21 @@ https://name-of-color-2021aug.herokuapp.com/
 
 ## Usage
 
-0. You can switch between languages/palettes among "traditional Japanese colors," "English," or "French" on the select menu at any time during the use of the app.
+You can switch between languages/palettes among "traditional Japanese colors," "English," or "French" on the select menu at any time during the use of the app.
+
+Usage No. 1<br/>
 1. Go to the "Main Color" page
 2. Select an image from your device
 3. Click on the image to get the name of the most used color in the image.
-4. Go to the "Any Color" page
-5. Select an image from your device
-6. Click on any part of the image to get the name of the color of the location you clicked.
-7. You can continue to click on other parts of the image to get more names.
-8. The app displays the last five clicked colors at the bottom of the screen. You can see the names of the colors by hovering the mouse over them.
+<img src="client/public/maincolordemo.gif">
+
+Usage No.2<br/>
+1. Go to the "Any Color" page
+2. Select an image from your device
+3. Click on any part of the image to get the name of the color of the location you clicked.
+4. You can continue to click on other parts of the image to get more names.
+5. The app displays up to five last clicked colors at the bottom of the screen. You can see the names of the colors by hovering the mouse over them.
+<img src="client/public/anycolordemo.gif">
 
 <br/>
 
