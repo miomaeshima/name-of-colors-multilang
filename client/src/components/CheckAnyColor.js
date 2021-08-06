@@ -70,7 +70,7 @@ const CheckAnyColor = () => {
                 } else {
                     let picWidth = img.width * (canvas.height / img.height);
                     context.drawImage(img, 0, 0, picWidth, canvas.height);
-                    setAdjustment(picWidth-canvas.width);
+                    setAdjustment(canvas.width-picWidth);
                 }
             };
 
@@ -119,7 +119,7 @@ const CheckAnyColor = () => {
     }
 
     let fontColor = findFontColor(colorData);
-    let stylesNameBox = { marginLeft: `${adjustment}px` };
+    let stylesNameBox = { marginLeft: `${-1*adjustment}px` };
 
     let text, buttonText, textToClick, tooltipText, styles;
 
