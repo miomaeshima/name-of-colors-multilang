@@ -19,7 +19,7 @@
 ## サイト
 
 
-https://name-of-color-2021aug.herokuapp.com/
+https://nameofcolor.herokuapp.com/
 
 <br/>
 
@@ -30,7 +30,7 @@ https://name-of-color-2021aug.herokuapp.com/
 
 - 使い方　その1　<br/>
  "Main Color"ページに行く。→ デバイス中の画像を選ぶ。→ 表示された画像をクリックすると一番使われている色の名前が分かる。
-<img src="client/public/maincolordemo.gif">
+ <img src="client/public/maincolordemo.gif">
 
 - 使い方　その2. <br/>"Any Color"ぺージに行く。→ デバイス中の画像を選ぶ。→ 画像中の好きな箇所をクリックするとその色の名前が分かる。→ 何箇所でもクリックでき、最後にクリックした５色は画面下部に色見本が表示されて、マウスオーバーすると名前が表示される。
 <img src="client/public/anycolordemo.gif">
