@@ -61,16 +61,16 @@ const Intro = () => {
         text = (
             <>
                 <p>
-                    You can look up <strong>the name of colors</strong> in any image you have in
-                    English, French, or as colors used in traditional Japanese
-                    arts and crafts.
+                    You can look up <strong>the name of colors</strong> in any
+                    image you have in English, French, or as colors used in
+                    traditional Japanese arts and crafts.
                 </p>
 
                 <ol>
                     <li>
                         Choose “Japanese traditional colors（日本の伝統色）,”
-                        “English,” or “Français” language/palette on the select menu at
-                        the right top corner of the screen.
+                        “English,” or “Français” language/palette on the select
+                        menu at the right top corner of the screen.
                     </li>
                     <li>
                         To find the name of the most used color in your image
@@ -106,19 +106,27 @@ const Intro = () => {
 
     return (
         <Wrapper>
-            <Title>{title}</Title>
-            <Introduction>{text}</Introduction>
+            <InnerWrapper>
+                <Title>{title}</Title>
+                <Introduction>{text}</Introduction>
+            </InnerWrapper>
         </Wrapper>
     );
 };
 
 const Wrapper = styled.div`
     position: relative;
+    width:66%; 
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: flex-start;
+`;
+
+const InnerWrapper = styled.div`
     max-width: 600px;
     min-width: 300px;
     margin-top: 65px;
-    margin-left: 250px;
-    margin-right: auto;
     padding: 48px 64px 32px 64px;
     background: rgba(0, 0, 150, 0.3);
 `;

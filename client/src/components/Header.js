@@ -116,7 +116,7 @@ const Logo = styled(HashLink)`
     height: 48px;
     gap: 16px;
     color: inherit;
-`;
+ `;
 
 const Wrapper = styled.div`
     position: relative;
@@ -129,10 +129,10 @@ const NavLinkWrapper = styled(Wrapper)`
     display: flex;
     gap: 30px;
     min-width: 500px;
-    width: 62%;
+    width: 66%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 32px;
+    padding-left: 64px;
 `;
 
 const StyledNavLink = styled(NavLink)`

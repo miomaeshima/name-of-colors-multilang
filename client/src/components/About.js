@@ -123,7 +123,7 @@ const About = () => {
                         </li>
                     </ul>
                     <Contact>
-                        <span>
+                        <p>
                             Repository |{' '}
                             <a
                                 href="https://github.com/miomaeshima/name-of-colors-multilang"
@@ -131,8 +131,8 @@ const About = () => {
                             >
                                 Github
                             </a>
-                        </span>
-                        <span>
+                        </p>
+                        <p>
                             Contact |{' '}
                             <a
                                 href="https://www.linkedin.com/in/miomaeshima/"
@@ -140,7 +140,7 @@ const About = () => {
                             >
                                 https://www.linkedin.com/in/miomaeshima/
                             </a>
-                        </span>
+                        </p>
                     </Contact>
                 </Credits>
                 <div id="about"></div>
@@ -192,9 +192,10 @@ const Credits = styled.div`
     }
 `;
 const Contact = styled.div`
-    margin-top: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
+    p{
+        margin-top: 16px;
+        overflow-wrap : break-word;
+        word-wrap: break-word;
+    }
 `;
 export default About;
