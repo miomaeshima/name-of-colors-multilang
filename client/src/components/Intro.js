@@ -121,6 +121,11 @@ const Wrapper = styled.div`
     margin-right: auto;
     display: flex;
     align-items: flex-start;
+    @media(max-width: 550px){
+     width: 100%;
+     justify-content: center;
+     padding: 32px;
+    }
 `;
 
 const InnerWrapper = styled.div`
@@ -129,6 +134,10 @@ const InnerWrapper = styled.div`
     margin-top: 65px;
     padding: 48px 64px 32px 64px;
     background: rgba(0, 0, 150, 0.3);
+    @media(max-width: 550px){
+        padding: 48px 32px 32px 32px;
+
+    }
 `;
 
 const Title = styled.div`
