@@ -54,7 +54,7 @@ const EnglishColorNames = [
     { name: 'Beaver', r: 159, g: 129, b: 112 },
     { name: 'Beige', r: 245, g: 245, b: 220 },
     { name: "B'dazzled blue", r: 46, g: 88, b: 148 },
-    { name: 'Big dip o�fruby', r: 156, g: 37, b: 66 },
+    { name: "Big dip o'ruby", r: 156, g: 37, b: 66 },
     { name: 'Bisque', r: 255, g: 228, b: 196 },
     { name: 'Bistre', r: 61, g: 43, b: 31 },
     { name: 'Bistre brown', r: 150, g: 113, b: 23 },
