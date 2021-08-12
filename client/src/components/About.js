@@ -5,8 +5,7 @@ import { useSelector } from 'react-redux';
 
 const About = () => {
     const lang = useSelector((state) => state.language[0]);
-    console.log(lang);
-
+    
     let announcement, japaneseTraditionalColors, minagi, english, french;
 
     if (lang === 'ja') {

@@ -7,6 +7,7 @@ import { refreshPage } from '../utility';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
 import { useSelector } from 'react-redux';
+import { Globe } from 'react-feather';
 
 const Header = (props) => {
     const lang = useSelector((state) => state.language[0]);
@@ -94,6 +95,7 @@ const Header = (props) => {
                 )}
             </NavLinkWrapper>
             <ListWrapper>
+                <Globe size={'1.1rem'} strokeWidth={1.25} />
                 <LanguageMenu
                     setColorArray={props.setColorArray}
                     colorArray={props.colorArray}
@@ -116,7 +118,7 @@ const Logo = styled(HashLink)`
     height: 48px;
     gap: 16px;
     color: inherit;
- `;
+`;
 
 const Wrapper = styled.div`
     position: relative;
@@ -155,6 +157,8 @@ const ListWrapper = styled(Wrapper)`
     position: fixed;
     top: 0;
     right: 32px;
+    display: flex;
+    gap: 16px;
 `;
 
 export default Header;
