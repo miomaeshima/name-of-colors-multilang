@@ -135,6 +135,10 @@ const NavLinkWrapper = styled(Wrapper)`
     margin-left: auto;
     margin-right: auto;
     padding-left: 64px;
+    @media(max-width: 1100px){
+        display: none;
+    }
+    
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -159,6 +163,9 @@ const ListWrapper = styled(Wrapper)`
     right: 32px;
     display: flex;
     gap: 16px;
+    @media(max-width: 1100px){
+        display: none;
+    }
 `;
 
 export default Header;
