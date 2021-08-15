@@ -7,10 +7,14 @@ import { refreshPage } from '../utility';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
 import { useSelector } from 'react-redux';
-import { Globe } from 'react-feather';
+import { Globe, Menu } from 'react-feather';
+import MobileMenu from './MobileMenu';
+import { useState } from 'react';
+import { DialogOverlay, DialogContent } from '@reach/dialog';
 
 const Header = (props) => {
     const lang = useSelector((state) => state.language[0]);
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
 
     let returnToHome;
     if (lang === 'en') {
@@ -104,6 +108,13 @@ const Header = (props) => {
                     setBackgroundColor={props.setBackgroundColor}
                 />
             </ListWrapper>
+            <MobileMenuButton onClick={() => setShowMobileMenu(true)}>
+                <Menu size={'1.4rem'} strokeWidth={2} />
+            </MobileMenuButton>
+            <MobileMenu
+                isOpen={showMobileMenu}
+                onDismiss={() => setShowMobileMenu(false)}
+            />
         </>
     );
 };
@@ -130,15 +141,11 @@ const Wrapper = styled.div`
 const NavLinkWrapper = styled(Wrapper)`
     display: flex;
     gap: 30px;
-    min-width: 500px;
+    min-width: 400px;
     width: 66%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 64px;
-    @media(max-width: 1100px){
-        display: none;
-    }
-    
+    padding-left: 64px;  
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -163,8 +170,21 @@ const ListWrapper = styled(Wrapper)`
     right: 32px;
     display: flex;
     gap: 16px;
-    @media(max-width: 1100px){
+    @media (max-width: 1100px) {
         display: none;
+    }
+`;
+const MobileMenuButton = styled.button`
+    display: none;
+    @media (max-width: 550px) {
+        display: revert;
+        position: fixed;
+        top: 8px;
+        right: 8px;
+        background: transparent;
+        color: inherit;
+        border: none;
+        cursor: pointer;
     }
 `;
 
