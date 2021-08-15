@@ -99,7 +99,9 @@ const Header = (props) => {
                 )}
             </NavLinkWrapper>
             <ListWrapper>
-                <Globe size={'1.1rem'} strokeWidth={1.25} />
+                <GlobeWrapper>
+                    <Globe size={'1.2rem'} strokeWidth={1.25} />
+                </GlobeWrapper>
                 <LanguageMenu
                     setColorArray={props.setColorArray}
                     colorArray={props.colorArray}
@@ -145,7 +147,7 @@ const NavLinkWrapper = styled(Wrapper)`
     width: 66%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 64px;  
+    padding-left: 64px;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -170,10 +172,20 @@ const ListWrapper = styled(Wrapper)`
     right: 32px;
     display: flex;
     gap: 16px;
+    
+    @media(max-width: 550px){
+        display: none;
+    }
+ `;
+
+const GlobeWrapper = styled.div`
+    display: flex;
+    align-items: center;
     @media (max-width: 1100px) {
         display: none;
     }
 `;
+
 const MobileMenuButton = styled.button`
     display: none;
     @media (max-width: 550px) {

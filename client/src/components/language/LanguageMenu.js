@@ -5,6 +5,7 @@ import { Listbox, ListboxOption } from '@reach/listbox';
 import '@reach/listbox/styles.css';
 import { getColor } from '../../utility';
 import styled from 'styled-components/macro';
+import { Globe } from 'react-feather';
 
 const LanguageMenu = (props) => {
     const dispatch = useDispatch();
@@ -25,19 +26,53 @@ const LanguageMenu = (props) => {
     };
 
     return (
-        <Listbox
-            defaultValue={lang}
-            // onChange={(value) => dispatch(languageChanged(value))}
-            onChange={(value) => changeLang(value)}
-        >
-            <StyledListboxOption value="ja">日本の伝統色</StyledListboxOption>
-            <StyledListboxOption value="en">English</StyledListboxOption>
-            <StyledListboxOption value="fr">
-                Fran&ccedil;ais
-            </StyledListboxOption>
-        </Listbox>
+        <Wrapper>
+            <StyledListbox
+                defaultValue={lang}
+                // onChange={(value) => dispatch(languageChanged(value))}
+                onChange={(value) => changeLang(value)}
+            >
+                <StyledListboxOption value="ja">
+                    日本の伝統色
+                </StyledListboxOption>
+                <StyledListboxOption value="en">English</StyledListboxOption>
+                <StyledListboxOption value="fr">
+                    Fran&ccedil;ais
+                </StyledListboxOption>
+            </StyledListbox>
+            <GlobeWrapper>
+                <Globe size={'1.2rem'} strokeWidth={1.25} />
+            </GlobeWrapper>
+        </Wrapper>
     );
 };
+
+const Wrapper = styled.div`
+    position: relative;
+`;
+
+const StyledListbox = styled(Listbox)`
+    @media (max-width: 1100px) {
+        opacity: 0;
+    }
+`;
+
+const GlobeWrapper = styled.div`
+    display: none;
+    @media (max-width: 1100px) {
+        display: revert;
+        position: absolute;
+        top: 4px;
+        right: 0;
+        /* cursor: pointer; */
+        pointer-events: none;
+        width: fit-content;
+        //cannot style focus state of @reach litbox directly, so target Wrapper instead with focus-within
+        ${Wrapper}:focus-within & {
+            outline: 1px solid;
+        }
+    }
+`;
 
 const StyledListboxOption = styled(ListboxOption)`
     font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
