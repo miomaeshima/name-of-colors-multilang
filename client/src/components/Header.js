@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { Globe, Menu } from 'react-feather';
 import MobileMenu from './MobileMenu';
 import { useState } from 'react';
-import { DialogOverlay, DialogContent } from '@reach/dialog';
+
 
 const Header = (props) => {
     const lang = useSelector((state) => state.language[0]);
@@ -172,7 +172,7 @@ const ListWrapper = styled(Wrapper)`
     right: 32px;
     display: flex;
     gap: 16px;
-    
+
     @media(max-width: 550px){
         display: none;
     }

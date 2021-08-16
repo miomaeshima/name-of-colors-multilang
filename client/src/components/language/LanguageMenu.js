@@ -64,7 +64,7 @@ const GlobeWrapper = styled.div`
         position: absolute;
         top: 4px;
         right: 0;
-        /* cursor: pointer; */
+
         pointer-events: none;
         width: fit-content;
         //cannot style focus state of @reach litbox directly, so target Wrapper instead with focus-within

@@ -27,6 +27,7 @@ const FormWrapper = styled.div`
     gap: 32px;
     align-items: center;
     justify-content: center;
+    padding: 16px;
 `;
 
 const P = styled.p`
@@ -38,7 +39,7 @@ const Form = styled.form`
     height: 100px;
     label {
         padding: 8px;
-        width: 500px;
+        width: clamp(300px, 70vw, 500px);
         border-radius: 4px;
         border-bottom: solid 4px ${COLORS.ButtonDarkBlue};
         background: ${COLORS.ButtonLightBlue};
