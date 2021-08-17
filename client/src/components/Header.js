@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { Globe, Menu } from 'react-feather';
 import MobileMenu from './MobileMenu';
 import { useState } from 'react';
-
+import { COLORS } from '../constants';
 
 const Header = (props) => {
     const lang = useSelector((state) => state.language[0]);
@@ -27,76 +27,100 @@ const Header = (props) => {
 
     return (
         <>
+            <MobileTop>
+                <Tooltip label={returnToHome}>
+                    <MobileLogo smooth to="/#">
+                        <img
+                            alt="go back to home"
+                            width="24px"
+                            src="logo.svg"
+                        ></img>
+                    </MobileLogo>
+                </Tooltip>
+                <MobileMenuButton onClick={() => setShowMobileMenu(true)}>
+                    <Menu size={'1.4rem'} strokeWidth={2} />
+                </MobileMenuButton>
+                <MobileMenu
+                    isOpen={showMobileMenu}
+                    onDismiss={() => setShowMobileMenu(false)}
+                />
+            </MobileTop>
+
             <Tooltip label={returnToHome}>
-                <Logo smooth to="/#">
+                <StandardLogo smooth to="/#">
                     <img
                         alt="go back to home"
                         width="24px"
                         src="logo.svg"
                     ></img>
-                </Logo>
+                </StandardLogo>
             </Tooltip>
             <NavLinkWrapper>
-                <StyledNavLink
-                    activeStyle={{ borderBottom: '1px solid' }}
-                    exact
-                    to="/"
-                >
-                    Home
-                </StyledNavLink>
-                <StyledNavHashLink
-                    smooth
-                    activeStyle={{ borderBottom: '1px solid' }}
-                    to="/#about"
-                >
-                    About
-                </StyledNavHashLink>
-                {!props.mainActivated ? (
+                <InnerNavLinkWrapper>
                     <StyledNavLink
                         activeStyle={{ borderBottom: '1px solid' }}
-                        to="/main_color"
+                        exact
+                        to="/"
                     >
-                        Main Color
+                        Home
                     </StyledNavLink>
-                ) : (
-                    <FakeStyledNavLink
-                        onClick={() =>
-                            refreshPage(
-                                props.setPreviewPic,
-                                props.setBackgroundColor,
-                                props.setPicSrc,
-                                props.setColorData
-                            )
-                        }
+                    <div>|</div>
+                    <StyledNavHashLink
+                        smooth
+                        activeStyle={{ borderBottom: '1px solid' }}
+                        to="/#about"
                     >
-                        Main Color
-                    </FakeStyledNavLink>
-                )}
+                        About
+                    </StyledNavHashLink>
+                    <div>|</div>
+                    {!props.mainActivated ? (
+                        <StyledNavLink
+                            activeStyle={{ borderBottom: '1px solid' }}
+                            to="/main_color"
+                        >
+                            MainColor
+                        </StyledNavLink>
+                    ) : (
+                        <FakeStyledNavLink
+                            onClick={() =>
+                                refreshPage(
+                                    props.setPreviewPic,
+                                    props.setBackgroundColor,
+                                    props.setPicSrc,
+                                    props.setColorData
+                                )
+                            }
+                        >
+                            MainColor
+                        </FakeStyledNavLink>
+                    )}
+                    <div>|</div>
 
-                {!props.anyActivated ? (
-                    <StyledNavLink
-                        activeStyle={{ borderBottom: '1px solid' }}
-                        to="/any_color"
-                    >
-                        Any Color
-                    </StyledNavLink>
-                ) : (
-                    <FakeStyledNavLink
-                        onClick={() =>
-                            refreshPage(
-                                props.setPreviewPic,
-                                props.setBackgroundColor,
-                                props.setPicSrc,
-                                props.setColorData,
-                                props.setColorArray,
-                                props.setAjustment,
-                                props.setOriginalColor
-                            )
-                        }
-                    >
-                        Any Color
-                    </FakeStyledNavLink>
-                )}
+                    {!props.anyActivated ? (
+                        <StyledNavLink
+                            activeStyle={{ borderBottom: '1px solid' }}
+                            to="/any_color"
+                        >
+                            AnyColor
+                        </StyledNavLink>
+                    ) : (
+                        <FakeStyledNavLink
+                            onClick={() =>
+                                refreshPage(
+                                    props.setPreviewPic,
+                                    props.setBackgroundColor,
+                                    props.setPicSrc,
+                                    props.setColorData,
+                                    props.setColorArray,
+                                    props.setAjustment,
+                                    props.setOriginalColor
+                                )
+                            }
+                        >
+                            AnyColor
+                        </FakeStyledNavLink>
+                    )}
+                </InnerNavLinkWrapper>
             </NavLinkWrapper>
             <ListWrapper>
                 <GlobeWrapper>
@@ -110,13 +134,6 @@ const Header = (props) => {
                     setBackgroundColor={props.setBackgroundColor}
                 />
             </ListWrapper>
-            <MobileMenuButton onClick={() => setShowMobileMenu(true)}>
-                <Menu size={'1.4rem'} strokeWidth={2} />
-            </MobileMenuButton>
-            <MobileMenu
-                isOpen={showMobileMenu}
-                onDismiss={() => setShowMobileMenu(false)}
-            />
         </>
     );
 };
@@ -128,9 +145,13 @@ const Logo = styled(HashLink)`
     text-decoration: none;
     display: flex;
     align-items: center;
-    height: 48px;
-    gap: 16px;
-    color: inherit;
+    height: 32px;
+`;
+
+const StandardLogo = styled(Logo)`
+    @media (max-width: 550px) {
+        display: none;
+    }
 `;
 
 const Wrapper = styled.div`
@@ -142,12 +163,30 @@ const Wrapper = styled.div`
 
 const NavLinkWrapper = styled(Wrapper)`
     display: flex;
-    gap: 30px;
-    min-width: 400px;
-    width: 66%;
+    width: clamp(200px, 66%, 85%);
     margin-left: auto;
     margin-right: auto;
+    align-items: flex-start;
+    /* padding-left: 64px;
+    padding-right: 64px; */
+    @media (max-width: 550px) {
+        pointer-events: none;
+    }
+`;
+
+const InnerNavLinkWrapper = styled.div`
+    width: 600px;
     padding-left: 64px;
+    padding-right: 64px;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 700px) {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+    @media (max-width: 550px) {
+        display: none;
+    }
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -169,14 +208,14 @@ const StyledNavHashLink = styled(NavHashLink)`
 const ListWrapper = styled(Wrapper)`
     position: fixed;
     top: 0;
-    right: 32px;
+    right: 0;
     display: flex;
     gap: 16px;
 
-    @media(max-width: 550px){
+    @media (max-width: 550px) {
         display: none;
     }
- `;
+`;
 
 const GlobeWrapper = styled.div`
     display: flex;
@@ -186,18 +225,34 @@ const GlobeWrapper = styled.div`
     }
 `;
 
-const MobileMenuButton = styled.button`
+const MobileTop = styled.div`
     display: none;
     @media (max-width: 550px) {
-        display: revert;
         position: fixed;
-        top: 8px;
-        right: 8px;
-        background: transparent;
-        color: inherit;
-        border: none;
-        cursor: pointer;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        height: 30px;
+        background: ${COLORS.Gray};
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2px;
+        padding-left: 8px;
+        padding-right: 8px;
+        z-index: 1;
+        color: black;
     }
+`;
+const MobileLogo = styled(Logo)`
+    position: static;
+`;
+
+const MobileMenuButton = styled.button`
+    background: transparent;
+    color: inherit;
+    border: none;
+    cursor: pointer;
 `;
 
 export default Header;

@@ -22,7 +22,7 @@ const Intro = () => {
         text = (
             <>
                 <p>
-                    このサイトではお手持ちの画像中の色について、日本の伝統色としての名前、英語名、フランス語名を調べられます。
+                    このサイトでは画像中の色について、日本の伝統色としての名前、英語名、フランス語名を調べられます。
                 </p>
 
                 <ol>
@@ -36,7 +36,7 @@ const Intro = () => {
                             activeStyle={{ borderBottom: '1px solid' }}
                             to="/main_color"
                         >
-                            Main Colorのページへ
+                            MainColorのページへ
                         </StyledNavLink>
                     </li>
                     <li>
@@ -46,7 +46,7 @@ const Intro = () => {
                             activeStyle={{ borderBottom: '1px solid' }}
                             to="/any_color"
                         >
-                            Any Colorのページへ
+                            AnyColorのページへ
                         </StyledNavLink>
                     </li>
                 </ol>
@@ -73,7 +73,7 @@ const Intro = () => {
                         menu at the right top corner of the screen.
                     </li>
                     <li>
-                        To find the name of the most used color in your image
+                        To find the name of the most used color in an image
                         <br />→ Go to{' '}
                         <StyledNavLink
                             activeStyle={{ borderBottom: '1px solid' }}
@@ -83,7 +83,7 @@ const Intro = () => {
                         </StyledNavLink>
                     </li>
                     <li>
-                        To find the name of any color used in an image
+                        To find the name of any color in an image
                         <br />→ Go to{' '}
                         <StyledNavLink
                             activeStyle={{ borderBottom: '1px solid' }}
@@ -116,27 +116,27 @@ const Intro = () => {
 
 const Wrapper = styled.div`
     position: relative;
-    width:66%; 
+    width: 66%;
     margin-left: auto;
     margin-right: auto;
     display: flex;
     align-items: flex-start;
-    @media(max-width: 550px){
-     width: 100%;
-     justify-content: center;
-     padding: 32px;
+    @media (max-width: 550px) {
+        width: 100%;
+        justify-content: center;
+        padding: 32px;
     }
 `;
 
 const InnerWrapper = styled.div`
     max-width: 600px;
-    min-width: 300px;
+    min-width: 270px;
     margin-top: 65px;
     padding: 48px 64px 32px 64px;
     background: rgba(0, 0, 150, 0.3);
-    @media(max-width: 550px){
-        padding: 48px 32px 32px 32px;
-
+    @media (max-width: 550px) {
+        padding: 32px 24px 32px 24px;
+        margin-top: 0px;
     }
 `;
 

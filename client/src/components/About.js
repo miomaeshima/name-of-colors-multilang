@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const About = () => {
     const lang = useSelector((state) => state.language[0]);
-    
+
     let announcement, japaneseTraditionalColors, minagi, english, french;
 
     if (lang === 'ja') {
@@ -158,7 +158,7 @@ const Wrapper = styled.div`
 
 const Box = styled.div`
     max-width: 600px;
-    min-width: 300px;
+    min-width: 270px;
     background: ${COLORS.AboutWrapper};
     padding: 32px;
 `;
@@ -191,9 +191,9 @@ const Credits = styled.div`
     }
 `;
 const Contact = styled.div`
-    p{
+    p {
         margin-top: 16px;
-        overflow-wrap : break-word;
+        overflow-wrap: break-word;
         word-wrap: break-word;
     }
 `;

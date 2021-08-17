@@ -54,6 +54,8 @@ const Wrapper = styled.div`
 const StyledListbox = styled(Listbox)`
     @media (max-width: 1100px) {
         opacity: 0;
+        padding: 0px;
+       
     }
 `;
 
@@ -63,7 +65,7 @@ const GlobeWrapper = styled.div`
         display: revert;
         position: absolute;
         top: 4px;
-        right: 0;
+        right: 32px;
 
         pointer-events: none;
         width: fit-content;
