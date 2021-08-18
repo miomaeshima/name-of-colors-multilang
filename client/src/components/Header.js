@@ -37,6 +37,18 @@ const Header = (props) => {
                         ></img>
                     </MobileLogo>
                 </Tooltip>
+                <MobileListWrapper>
+                    <GlobeWrapper>
+                        <Globe size={'1.2rem'} strokeWidth={1.25} />
+                    </GlobeWrapper>
+                    <LanguageMenu
+                        setColorArray={props.setColorArray}
+                        colorArray={props.colorArray}
+                        originalColor={props.originalColor}
+                        setColorData={props.setColorData}
+                        setBackgroundColor={props.setBackgroundColor}
+                    />
+                </MobileListWrapper>
                 <MobileMenuButton onClick={() => setShowMobileMenu(true)}>
                     <Menu size={'1.4rem'} strokeWidth={2} />
                 </MobileMenuButton>
@@ -217,6 +229,14 @@ const ListWrapper = styled(Wrapper)`
     }
 `;
 
+const MobileListWrapper = styled(ListWrapper)`
+    @media (max-width: 550px) {
+        display: revert;
+        position: static;
+        margin-top: 3px;
+    }
+`;
+
 const GlobeWrapper = styled.div`
     display: flex;
     align-items: center;
@@ -235,7 +255,6 @@ const MobileTop = styled.div`
         display: flex;
         height: 30px;
         background: ${COLORS.Gray};
-        justify-content: space-between;
         align-items: center;
         padding-top: 2px;
         padding-left: 8px;
@@ -244,8 +263,10 @@ const MobileTop = styled.div`
         color: black;
     }
 `;
+
 const MobileLogo = styled(Logo)`
     position: static;
+    flex: 1;
 `;
 
 const MobileMenuButton = styled.button`
