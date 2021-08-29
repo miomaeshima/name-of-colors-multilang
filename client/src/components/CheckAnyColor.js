@@ -174,6 +174,7 @@ const CheckAnyColor = () => {
                         <Box>
                             <CanvasContainer id="canvasContainer">
                                 <canvas id="canvas" tabIndex="0"></canvas>
+                                {/* <StyledCanvas id="canvas" tabIndex="0"></StyledCanvas> */}
                             </CanvasContainer>
                         </Box>
                         <Box className="nameBox" style={stylesNameBox}>
@@ -240,7 +241,12 @@ const Container = styled.div`
 const PreviewWrapper = styled.div`
     height: 100%;
     display: flex;
+    @media(max-width:550px){
+        display: flex;
+        flex-direction: column;
+    }
 `;
+
 
 const Box = styled.div`
     &.nameBox {
@@ -250,6 +256,9 @@ const Box = styled.div`
         p {
             padding-top: 96px;
             max-width: 50ch;
+            @media (max-width: 550px){
+                padding: 32px;
+            }
         }
     }
 `;
@@ -257,6 +266,9 @@ const Box = styled.div`
 const CanvasContainer = styled.div`
     width: 60vw;
     height: 100%;
+    @media (max-width: 550px){
+        width: 100vw;
+    }
 `;
 
 const SelectNameBox = styled.div`
