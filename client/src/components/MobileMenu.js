@@ -4,11 +4,11 @@ import '@reach/dialog/styles.css';
 import { NavLink } from 'react-router-dom';
 import { NavHashLink } from 'react-router-hash-link';
 import { X } from 'react-feather';
-import { COLORS } from '../constants';
+
 
 const MobileMenu = ({ isOpen, onDismiss }) => {
     return (
-        <DialogOverlay isOpen={isOpen} onDismiss={onDismiss}>
+        <DialogOverlay isOpen={isOpen} onDismiss={onDismiss}  style={{ background: "rgba(255, 255, 255, 0.8)" }}>
             <StyledDialogContent aria-label="Modal">
                 <StyledX
                     size={'1.5rem'}
@@ -50,7 +50,7 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
 };
 
 const StyledDialogContent = styled(DialogContent)`
-    width: 60%;
+    width: 70%;
     height: 100%;
     position: fixed;
     top: 0;
@@ -61,7 +61,9 @@ const StyledDialogContent = styled(DialogContent)`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background: ${COLORS.Gray};
+    background: white;
+    
+    
 `;
 
 const StyledNavLink = styled(NavLink)`
