@@ -6,6 +6,7 @@ import { NavHashLink } from 'react-router-hash-link';
 import { X } from 'react-feather';
 import { refreshPage } from '../utility';
 import { COLORS } from '../constants';
+// import { ParserOptions } from '@fast-csv/parse';
 
 const MobileMenu = (props) => {
     return (
@@ -22,17 +23,19 @@ const MobileMenu = (props) => {
                     tabIndex={0}
                 />
                 <NavLinkWrapper>
-                    <StyledNavLink
+                    <StyledNavHashLink
                         activeStyle={{ borderBottom: '1px solid' }}
-                        exact
-                        to="/"
+                        smooth
+                        to="/#"
+                        onClick={props.onDismiss}
                     >
                         Home
-                    </StyledNavLink>
+                    </StyledNavHashLink>
                     <StyledNavHashLink
-                        smooth
                         activeStyle={{ borderBottom: '1px solid' }}
+                        smooth
                         to="/#about"
+                        onClick={props.onDismiss}
                     >
                         About
                     </StyledNavHashLink>
@@ -40,6 +43,7 @@ const MobileMenu = (props) => {
                         <StyledNavLink
                             activeStyle={{ borderBottom: '1px solid' }}
                             to="/main_color"
+                            onClick={props.onDismiss}
                         >
                             MainColor
                         </StyledNavLink>
@@ -63,6 +67,7 @@ const MobileMenu = (props) => {
                         <StyledNavLink
                             activeStyle={{ borderBottom: '1px solid' }}
                             to="/any_color"
+                            onClick={props.onDismiss}
                         >
                             AnyColor
                         </StyledNavLink>
