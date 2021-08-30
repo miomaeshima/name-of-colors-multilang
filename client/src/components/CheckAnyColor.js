@@ -70,7 +70,7 @@ const CheckAnyColor = () => {
                 } else {
                     let picWidth = img.width * (canvas.height / img.height);
                     context.drawImage(img, 0, 0, picWidth, canvas.height);
-                    setAdjustment(canvas.width-picWidth);
+                    setAdjustment(canvas.width - picWidth);
                 }
             };
 
@@ -119,7 +119,7 @@ const CheckAnyColor = () => {
     }
 
     let fontColor = findFontColor(colorData);
-    let stylesNameBox = { marginLeft: `${-1*adjustment}px` };
+    let stylesNameBox = { marginLeft: `${-1 * adjustment}px` };
 
     let text, buttonText, textToClick, tooltipText, styles;
 
@@ -146,7 +146,7 @@ const CheckAnyColor = () => {
         textToClick =
             '上のメニューを変えると英語、フランス語でも名前が調べられます。画像の好きなところを何ヶ所でもクリックして、色の名前を調べられます。';
         tooltipText = '画像をリフレッシュ';
-        
+
         styles = { ...nameStyles, ...{ writingMode: 'vertical-rl' } };
     }
 
@@ -174,7 +174,6 @@ const CheckAnyColor = () => {
                         <Box>
                             <CanvasContainer id="canvasContainer">
                                 <canvas id="canvas" tabIndex="0"></canvas>
-                                {/* <StyledCanvas id="canvas" tabIndex="0"></StyledCanvas> */}
                             </CanvasContainer>
                         </Box>
                         <Box className="nameBox" style={stylesNameBox}>
@@ -241,22 +240,23 @@ const Container = styled.div`
 const PreviewWrapper = styled.div`
     height: 100%;
     display: flex;
-    @media(max-width:550px){
+    @media (max-width: 550px) {
         display: flex;
         flex-direction: column;
     }
 `;
 
-
 const Box = styled.div`
     &.nameBox {
         display: flex;
-        flex: auto;      
+        flex: auto;
         justify-content: center;
         p {
-            padding-top: 96px;
+            padding: 32px;
+            padding-top:96px;            
             max-width: 50ch;
-            @media (max-width: 550px){
+
+            @media (max-width: 550px) {
                 padding: 32px;
             }
         }
@@ -266,7 +266,7 @@ const Box = styled.div`
 const CanvasContainer = styled.div`
     width: 60vw;
     height: 100%;
-    @media (max-width: 550px){
+    @media (max-width: 550px) {
         width: 100vw;
     }
 `;
@@ -278,7 +278,6 @@ const SelectNameBox = styled.div`
     justify-content: center;
     font-size: 36px;
     padding: 48px;
-    
 `;
 
 const BottomWrapper = styled.div`
