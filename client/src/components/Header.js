@@ -57,6 +57,13 @@ const Header = (props) => {
                     onDismiss={() => setShowMobileMenu(false)}
                     mainActivated={props.mainActivated}
                     anyActivated={props.anyActivated}
+                    setPreviewPic={props.setPreviewPic}
+                    setBackgroundColor={props.setBackgroundColor}
+                    setPicSrc={props.setPicSrc}
+                    setColorData={props.setColorData}
+                    setColorArray={props.setColorArray}
+                    setAdjustment={props.setAjustment}
+                    setOriginalColor={props.setOriginalColor}
                 />
             </MobileTop>
 

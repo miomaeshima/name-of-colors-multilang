@@ -4,8 +4,9 @@ import '@reach/dialog/styles.css';
 import { NavLink } from 'react-router-dom';
 import { NavHashLink } from 'react-router-hash-link';
 import { X } from 'react-feather';
+import { refreshPage } from '../utility';
+import { COLORS } from '../constants';
 
-// const MobileMenu = ({ isOpen, onDismiss, mainActivated, anyActivated }) => {
 const MobileMenu = (props) => {
     return (
         <DialogOverlay
@@ -35,18 +36,54 @@ const MobileMenu = (props) => {
                     >
                         About
                     </StyledNavHashLink>
-                    <StyledNavLink
-                        activeStyle={{ borderBottom: '1px solid' }}
-                        to="/main_color"
-                    >
-                        MainColor
-                    </StyledNavLink>
-                    <StyledNavLink
-                        activeStyle={{ borderBottom: '1px solid' }}
-                        to="/any_color"
-                    >
-                        AnyColor
-                    </StyledNavLink>
+                    {!props.mainActivated ? (
+                        <StyledNavLink
+                            activeStyle={{ borderBottom: '1px solid' }}
+                            to="/main_color"
+                        >
+                            MainColor
+                        </StyledNavLink>
+                    ) : (
+                        <FakeStyledNavLink
+                            onClick={() => {
+                                props.onDismiss();
+                                refreshPage(
+                                    props.setPreviewPic,
+                                    props.setBackgroundColor,
+                                    props.setPicSrc,
+                                    props.setColorData
+                                );
+                            }}
+                        >
+                            MainColor
+                        </FakeStyledNavLink>
+                    )}
+
+                    {!props.anyActivated ? (
+                        <StyledNavLink
+                            activeStyle={{ borderBottom: '1px solid' }}
+                            to="/any_color"
+                        >
+                            AnyColor
+                        </StyledNavLink>
+                    ) : (
+                        <FakeStyledNavLink
+                            onClick={() => {
+                                props.onDismiss();
+                                refreshPage(
+                                    props.setPreviewPic,
+                                    props.setBackgroundColor,
+                                    props.setPicSrc,
+                                    props.setColorData,
+                                    props.setColorArray,
+                                    props.setAjustment,
+                                    props.setOriginalColor
+                                );
+                            }}
+                        >
+                            AnyColor
+                        </FakeStyledNavLink>
+                    )}
                 </NavLinkWrapper>{' '}
             </StyledDialogContent>
         </DialogOverlay>
@@ -66,6 +103,7 @@ const StyledDialogContent = styled(DialogContent)`
     flex-direction: column;
     justify-content: flex-end;
     background: white;
+    color: ${COLORS.Blue};
     font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
         segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial,
         sans-serif;
@@ -74,10 +112,19 @@ const StyledDialogContent = styled(DialogContent)`
 const StyledNavLink = styled(NavLink)`
     width: fit-content;
     text-decoration: none;
+    color: inherit;
 `;
+
+const FakeStyledNavLink = styled.div`
+    width: fit-content;
+    border-bottom: 1px solid;
+    cursor: PointerEvent;
+`;
+
 const StyledNavHashLink = styled(NavHashLink)`
     width: fit-content;
     text-decoration: none;
+    color: inherit;
 `;
 
 const StyledX = styled(X)`

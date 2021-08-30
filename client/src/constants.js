@@ -8,6 +8,7 @@ export const COLORS = {
     AboutWrapper: 'rgb(183, 204, 213)',
     ButtonLightBlue: 'rgb(2, 196, 240)',
     ButtonDarkBlue: 'rgb(0, 181, 222)',
+    Blue: 'rgb(65, 105, 225)',
 };
 
 export const nameStyles = {
