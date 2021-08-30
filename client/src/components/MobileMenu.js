@@ -6,9 +6,19 @@ import { NavHashLink } from 'react-router-hash-link';
 import { X } from 'react-feather';
 import { refreshPage } from '../utility';
 import { COLORS } from '../constants';
-// import { ParserOptions } from '@fast-csv/parse';
 
 const MobileMenu = (props) => {
+    let url = window.location.href;
+    let isHome = !(
+        url.includes('#about') ||
+        url.includes('main_color') ||
+        url.includes('any_color')
+    );
+    let styles;
+    if (isHome) {
+        styles = { borderBottom: '1px solid' };
+    }
+
     return (
         <DialogOverlay
             isOpen={props.isOpen}
@@ -24,7 +34,7 @@ const MobileMenu = (props) => {
                 />
                 <NavLinkWrapper>
                     <StyledNavHashLink
-                        activeStyle={{ borderBottom: '1px solid' }}
+                        style={styles}
                         smooth
                         to="/#"
                         onClick={props.onDismiss}
