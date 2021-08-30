@@ -35,7 +35,7 @@ const P = styled.p`
 `;
 
 const Form = styled.form`
-    /* With a specific height to Form, translating label does not affect the P above */
+    /* By giving a specific height to Form, one can avoid translating label affecting the P above */
     height: 100px;
     label {
         padding: 8px;
