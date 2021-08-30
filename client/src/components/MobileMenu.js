@@ -5,10 +5,13 @@ import { NavLink } from 'react-router-dom';
 import { NavHashLink } from 'react-router-hash-link';
 import { X } from 'react-feather';
 
-
 const MobileMenu = ({ isOpen, onDismiss }) => {
     return (
-        <DialogOverlay isOpen={isOpen} onDismiss={onDismiss}  style={{ background: "rgba(255, 255, 255, 0.8)" }}>
+        <DialogOverlay
+            isOpen={isOpen}
+            onDismiss={onDismiss}
+            style={{ background: 'rgba(255, 255, 255, 0.8)' }}
+        >
             <StyledDialogContent aria-label="Modal">
                 <StyledX
                     size={'1.5rem'}
@@ -62,8 +65,9 @@ const StyledDialogContent = styled(DialogContent)`
     flex-direction: column;
     justify-content: flex-end;
     background: white;
-    
-    
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+        segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial,
+        sans-serif;
 `;
 
 const StyledNavLink = styled(NavLink)`
