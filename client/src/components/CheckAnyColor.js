@@ -192,15 +192,17 @@ const CheckAnyColor = () => {
                     </PreviewWrapper>
                     <BottomWrapper>
                         <ColorSample id="colorSample" />
-                        {colorArray.map((color, index) => (
-                            <Tooltip label={color.name} key={index}>
-                                <ClickedColor
-                                    style={{
-                                        background: `rgb(${color.r}, ${color.g}, ${color.b})`,
-                                    }}
-                                />
-                            </Tooltip>
-                        ))}
+                        {colorArray
+                            .map((color, index) => (
+                                <Tooltip label={color.name} key={index}>
+                                    <ClickedColor
+                                        style={{
+                                            background: `rgb(${color.r}, ${color.g}, ${color.b})`,
+                                        }}
+                                    />
+                                </Tooltip>
+                            ))
+                            .reverse()}
                         <Tooltip label={tooltipText}>
                             <IconWrapper>
                                 <Refresh
@@ -253,7 +255,7 @@ const Box = styled.div`
         justify-content: center;
         p {
             padding: 32px;
-            padding-top:96px;            
+            padding-top: 96px;
             max-width: 50ch;
 
             @media (max-width: 550px) {
