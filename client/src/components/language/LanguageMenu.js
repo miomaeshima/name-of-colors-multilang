@@ -77,6 +77,7 @@ const GlobeWrapper = styled.div`
 `;
 
 const StyledListboxOption = styled(ListboxOption)`
+    //Adding this font-family ensures expected sans-serif type font on firefox
     font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
         segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial,
         sans-serif;
