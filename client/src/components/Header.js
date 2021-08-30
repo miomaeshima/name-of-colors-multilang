@@ -55,6 +55,8 @@ const Header = (props) => {
                 <MobileMenu
                     isOpen={showMobileMenu}
                     onDismiss={() => setShowMobileMenu(false)}
+                    mainActivated={props.mainActivated}
+                    anyActivated={props.anyActivated}
                 />
             </MobileTop>
 

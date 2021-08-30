@@ -5,18 +5,19 @@ import { NavLink } from 'react-router-dom';
 import { NavHashLink } from 'react-router-hash-link';
 import { X } from 'react-feather';
 
-const MobileMenu = ({ isOpen, onDismiss }) => {
+// const MobileMenu = ({ isOpen, onDismiss, mainActivated, anyActivated }) => {
+const MobileMenu = (props) => {
     return (
         <DialogOverlay
-            isOpen={isOpen}
-            onDismiss={onDismiss}
+            isOpen={props.isOpen}
+            onDismiss={props.onDismiss}
             style={{ background: 'rgba(255, 255, 255, 0.8)' }}
         >
             <StyledDialogContent aria-label="Modal">
                 <StyledX
                     size={'1.5rem'}
                     strokeWidth={2}
-                    onClick={onDismiss}
+                    onClick={props.onDismiss}
                     tabIndex={0}
                 />
                 <NavLinkWrapper>
