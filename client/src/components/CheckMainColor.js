@@ -15,7 +15,7 @@ const CheckMainColor = () => {
     const [colorData, setColorData] = useState({});
     const [backgroundColor, setBackgroundColor] = useState('transparent');
     //State "wide" means pic's width > height
-    const [wide, setWide] = useState(true);
+    // const [wide, setWide] = useState(true);
     const [originalColor, setOriginalColor] = useState(null);
 
     //Put data of selected image to PreviewPic
@@ -33,11 +33,11 @@ const CheckMainColor = () => {
             setPicSrc(reader.result);
             setPicName(previewPic.name);
             image.src = reader.result;
-            image.onload = function () {
-                if (image.width <= image.height) {
-                    setWide(false);
-                }
-            };
+            // image.onload = function () {
+            //     if (image.width <= image.height) {
+            //         setWide(false);
+            //     }
+            // };
         };
     }
 
@@ -60,15 +60,7 @@ const CheckMainColor = () => {
         clickableCursor = { cursor: 'pointer' };
     }
 
-    let dimension = { width: 'auto', height: '100%' };
-    if (wide) {
-        dimension = { width: '60vw', height: 'auto' };
-    }
-
-
-
-    let imgStyles = { ...clickableCursor, ...dimension };
-
+    let imgStyles = { clickableCursor };
     const lang = useSelector((state) => state.language[0]);
 
     let text, buttonText, textToClick, tooltipText, styles;
@@ -116,7 +108,8 @@ const CheckMainColor = () => {
                 />
             ) : (
                 <PreviewWrapper style={{ background: backgroundColor }}>
-                    <Box className="imageBox" style={dimension}>
+                    {/* <Box className="imageBox" style={dimension}> */}
+                    <Box className="imageBox">
                         <img
                             id="chosenPic"
                             style={imgStyles}
@@ -166,25 +159,39 @@ const Wrapper = styled.div`
 const PreviewWrapper = styled.div`
     height: calc(100% - 32px);
     display: flex;
+    @media (max-width: 550px){
+            flex-direction: column;
+        }
 `;
 
 const Box = styled.div`
     &.imageBox {
-
-        /* width: 60vw; */
-        
-        
-
+        width: 60vw;
+        height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: left top;
+        }
+        @media (max-width: 550px) {
+            width: 100vw;
+            height: 100vw;
+        }
     }
     &.nameBox {
-        /* background: pink; */
+        background: pink;
         flex: 1 0;
         display: flex;
         justify-content: center;
         /* width: 100%; */
+       
         p {
             margin-top: 96px;
             max-width: 50ch;
+            @media (max-width: 550px) {
+                padding: 32px;
+            }
         }
     }
 `;
