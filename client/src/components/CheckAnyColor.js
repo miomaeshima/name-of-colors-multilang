@@ -48,6 +48,7 @@ const CheckAnyColor = () => {
         if (picSrc !== null) {
             let canvas = document.getElementById('canvas');
             let canvasContainer = document.getElementById('canvasContainer');
+
             canvas.width = canvasContainer.clientWidth;
             canvas.height = canvasContainer.clientHeight;
 
@@ -67,10 +68,13 @@ const CheckAnyColor = () => {
                         canvas.width,
                         img.height * (canvas.width / img.width)
                     );
+                    setAdjustment(0);
                 } else {
                     let picWidth = img.width * (canvas.height / img.height);
                     context.drawImage(img, 0, 0, picWidth, canvas.height);
-                    setAdjustment(canvas.width - picWidth);
+                    // adjustment expands the nameBox only when the pic is narrower than canvasContainer
+                    setAdjustment(Math.min(picWidth - canvas.width, 0));
+                    console.log(canvas.width - picWidth);
                 }
             };
 
@@ -104,7 +108,7 @@ const CheckAnyColor = () => {
             };
             canvas.addEventListener('click', sendCanvasDataToGetColor);
 
-            //Need the codes below to clean up the above eventListner to avoid that eventListner with the previous language remaining after the language is changed. Otherwise there will be plural number of eventLisnters would run.
+            //Need the codes below to clean up the above eventListner to avoid that eventListner with the previous language remaining after the language is changed. Otherwise there will be plural number of eventLisnters running.
 
             return () => {
                 canvas.removeEventListener('click', sendCanvasDataToGetColor);
@@ -119,7 +123,8 @@ const CheckAnyColor = () => {
     }
 
     let fontColor = findFontColor(colorData);
-    let stylesNameBox = { marginLeft: `${-1 * adjustment}px` };
+
+    let nameBoxMarginLeft = `${adjustment}px`;
 
     let text, buttonText, textToClick, tooltipText, styles;
 
@@ -176,7 +181,11 @@ const CheckAnyColor = () => {
                                 <canvas id="canvas" tabIndex="0"></canvas>
                             </CanvasContainer>
                         </Box>
-                        <Box className="nameBox" style={stylesNameBox}>
+                        <Box
+                            className="nameBox"
+                            // marginLeft expands nameBox when the pic is narrow
+                            style={{ '--marginLeft': nameBoxMarginLeft }}
+                        >
                             {colorArray.length === 0 ? (
                                 <div>
                                     <p>{textToClick}</p>
@@ -253,11 +262,17 @@ const Box = styled.div`
         display: flex;
         flex: auto;
         justify-content: center;
+        /* margin-left to expand the nameBox when the pic is narrow */
+        margin-left: var(--marginLeft);
+
+        @media (max-width: 550px) {
+            margin-left: 0px;
+        }
         p {
             padding: 32px;
             padding-top: 96px;
             max-width: 50ch;
-
+            
             @media (max-width: 550px) {
                 padding: 32px;
             }
@@ -270,6 +285,7 @@ const CanvasContainer = styled.div`
     height: 100%;
     @media (max-width: 550px) {
         width: 100vw;
+        height: 100vw;
     }
 `;
 
