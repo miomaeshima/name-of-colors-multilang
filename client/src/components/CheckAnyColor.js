@@ -107,7 +107,6 @@ const CheckAnyColor = () => {
                 let imageData = context.getImageData(x, y, 1, 1);
                 let data = imageData.data;
                 setOriginalColor(data);
-                console.log(data);
 
                 getColor(
                     data,

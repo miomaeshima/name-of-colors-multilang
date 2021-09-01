@@ -17,6 +17,7 @@ const CheckMainColor = () => {
     const [widthAdjustment, setWidthAdjustment] = useState(0);
     const [heightAdjustment, setHeightAdjustment] = useState(0);
     const [originalColor, setOriginalColor] = useState(null);
+    const [nameBoxHeightSmallScreen, setNameBoxHeightSmallScreen] = useState(0);
 
     //Put data of selected image to PreviewPic
     const preview = (e) => {
@@ -38,16 +39,20 @@ const CheckMainColor = () => {
                 setWidthAdjustment(
                     Math.min(
                         0,
-                        (image.width * imageBox.clientHeight) / image.height -
+                        image.width * (imageBox.clientHeight / image.height) -
                             imageBox.clientWidth
                     )
                 );
                 setHeightAdjustment(
                     Math.min(
                         0,
-                        (image.height * imageBox.clientWidth) / image.width -
+                        image.height * (imageBox.clientWidth / image.width) -
                             imageBox.clientHeight
                     )
+                );
+                setNameBoxHeightSmallScreen(
+                    document.getElementById('previewWrapper').clientHeight -
+                        document.getElementById('renderedPic').clientHeight
                 );
             };
         };
@@ -75,7 +80,7 @@ const CheckMainColor = () => {
     let imgStyles = { clickableCursor };
     const lang = useSelector((state) => state.language[0]);
 
-    let text, buttonText, textToClick, tooltipText, styles, writingMode;
+    let text, buttonText, textToClick, tooltipText, writingMode;
 
     if (lang === 'en') {
         text =
@@ -119,7 +124,10 @@ const CheckMainColor = () => {
                     preview={preview}
                 />
             ) : (
-                <PreviewWrapper style={{ background: backgroundColor }}>
+                <PreviewWrapper
+                    id="previewWrapper"
+                    style={{ background: backgroundColor }}
+                >
                     <Box className="imageBox">
                         <img
                             id="renderedPic"
@@ -136,12 +144,19 @@ const CheckMainColor = () => {
                         style={{
                             '--widthAdjustment': `${widthAdjustment}px`,
                             '--heightAdjustment': `${heightAdjustment}px`,
+                            '--nameBoxHeightSmallScreen': `${nameBoxHeightSmallScreen}px`,
                         }}
                     >
                         {clickable ? (
                             <p>{textToClick}</p>
                         ) : (
-                            <SelectNameBox style={{ ...fontColor, ...nameStyles, '--writingMode': writingMode }}>
+                            <SelectNameBox
+                                style={{
+                                    ...fontColor,
+                                    ...nameStyles,
+                                    '--writingMode': writingMode,
+                                }}
+                            >
                                 {colorData.name}
                             </SelectNameBox>
                         )}
@@ -220,8 +235,6 @@ const Box = styled.div`
                 padding: 32px;
             }
         }
-
-    
     }
 `;
 
@@ -232,10 +245,12 @@ const SelectNameBox = styled.div`
     justify-content: center;
     font-size: 36px;
     padding: 48px;
-    writing-mode: var(--writingMode);        
+    writing-mode: var(--writingMode);
 
-    @media (max-width: 550px){       
+    @media (max-width: 550px) {
+        padding: 24px;
         font-size: 24px;
+        height: var(--nameBoxHeightSmallScreen);
     }
 `;
 
