@@ -14,7 +14,7 @@ const CheckMainColor = () => {
     const [picName, setPicName] = useState('');
     const [colorData, setColorData] = useState({});
     const [backgroundColor, setBackgroundColor] = useState('transparent');
-    const [adjustment, setAdjustment] = useState(0);
+    const [widthAdjustment, setWidthAdjustment] = useState(0);
     const [heightAdjustment, setHeightAdjustment] = useState(0);
     const [originalColor, setOriginalColor] = useState(null);
 
@@ -35,7 +35,7 @@ const CheckMainColor = () => {
             image.src = reader.result;
             image.onload = function () {
                 let imageBox = document.getElementsByClassName('imageBox')[0];
-                setAdjustment(
+                setWidthAdjustment(
                     Math.min(
                         0,
                         (image.width * imageBox.clientHeight) / image.height -
@@ -134,7 +134,7 @@ const CheckMainColor = () => {
                     <Box
                         className="nameBox"
                         style={{
-                            '--adjustment': `${adjustment}px`,
+                            '--widthAdjustment': `${widthAdjustment}px`,
                             '--heightAdjustment': `${heightAdjustment}px`,
                         }}
                     >
@@ -200,10 +200,9 @@ const Box = styled.div`
         flex: auto;
         display: flex;
         justify-content: center;
-        background: pink;
 
         /*margin-left to stretch nameBox when image is narrow.*/
-        margin-left: var(--adjustment);
+        margin-left: var(--widthAdjustment);
 
         @media (max-width: 550px) {
             align-items: center;

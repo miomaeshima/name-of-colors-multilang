@@ -90,7 +90,8 @@ const refreshPage = (
     setPicSrc,
     setColorData,
     setColorArray,
-    setAdjustment,
+    setWidthAdjustment,
+    setHeightAdjustment,
     setOriginalColor
 ) => {
     setPreviewPic(null);
@@ -100,8 +101,11 @@ const refreshPage = (
     if (setColorArray) {
         setColorArray([]);
     }
-    if (setAdjustment) {
-        setAdjustment(0);
+    if (setWidthAdjustment) {
+        setWidthAdjustment(0);
+    }
+    if (setHeightAdjustment) {
+        setHeightAdjustment(0);
     }
     if (setOriginalColor) {
         setOriginalColor(null);

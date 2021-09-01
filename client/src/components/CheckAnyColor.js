@@ -25,7 +25,7 @@ const CheckAnyColor = () => {
     //original RGB in the image
     const [originalColor, setOriginalColor] = useState(null);
     //adjustment for larger screen layout (canvas width - image width)
-    const [adjustment, setAdjustment] = useState(0);
+    const [widthAdjustment, setWidthAdjustment] = useState(0);
     //adjustment for small screen layout (canvas height - image height)
     const [heightAdjustment, setHeightAdjustment] = useState(0);
 
@@ -72,12 +72,12 @@ const CheckAnyColor = () => {
                         img.height * (canvas.width / img.width)
                     );
                     setHeightAdjustment(Math.min(picHeight - canvas.height, 0));
-                    setAdjustment(0);
+                    setWidthAdjustment(0);
                 } else {
                     let picWidth = img.width * (canvas.height / img.height);
                     context.drawImage(img, 0, 0, picWidth, canvas.height);
                     // adjustment expands the nameBox only when the pic is narrower than canvasContainer
-                    setAdjustment(Math.min(picWidth - canvas.width, 0));
+                    setWidthAdjustment(Math.min(picWidth - canvas.width, 0));
                     setHeightAdjustment(0);
                 }
             };
@@ -187,7 +187,7 @@ const CheckAnyColor = () => {
                             className="nameBox"
                             // marginLeft expands nameBox when the pic is narrow
                             style={{
-                                '--adjustment': `${adjustment}px`,
+                                '--widthAdjustment': `${widthAdjustment}px`,
                                 '--heightAdjustment': `${heightAdjustment}px`,
                             }}
                         >
@@ -227,7 +227,8 @@ const CheckAnyColor = () => {
                                             setPicSrc,
                                             setColorData,
                                             setColorArray,
-                                            setAdjustment,
+                                            setWidthAdjustment,
+                                            setHeightAdjustment,
                                             setOriginalColor
                                         )
                                     }
@@ -268,7 +269,7 @@ const Box = styled.div`
         flex: auto;
         justify-content: center;
         /* margin-left to expand the nameBox when the pic is narrow */
-        margin-left: var(--adjustment);
+        margin-left: var(--widthAdjustment);
 
         @media (max-width: 550px) {
             margin-left: 0px;
