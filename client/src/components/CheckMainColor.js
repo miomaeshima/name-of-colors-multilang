@@ -75,7 +75,7 @@ const CheckMainColor = () => {
     let imgStyles = { clickableCursor };
     const lang = useSelector((state) => state.language[0]);
 
-    let text, buttonText, textToClick, tooltipText, styles;
+    let text, buttonText, textToClick, tooltipText, styles, writingMode;
 
     if (lang === 'en') {
         text =
@@ -84,7 +84,7 @@ const CheckMainColor = () => {
         textToClick =
             'Click on the image to find out the name of the most used color. You can also look up the name in Japanese or French by chaging the select menu above.';
         tooltipText = 'Refresh the image';
-        styles = nameStyles;
+        writingMode = 'revert';
     } else if (lang === 'fr') {
         text =
             "Vous pouvez rechercher le nom de la couleur la plus utilisée dans l'image que vous sélectionnez.";
@@ -92,14 +92,14 @@ const CheckMainColor = () => {
         textToClick =
             "Cliquez sur l'image pour connaître le nom de la couleur la plus utilisée. Vous pouvez également rechercher le nom en japonais ou en français en modifiant le menu de sélection ci-dessus.";
         tooltipText = "Rafraîchir l'image";
-        styles = nameStyles;
+        writingMode = 'revert';
     } else {
         text = '選んだ画像に一番使われている色の名前を調べます。';
         buttonText = '画像を選ぶ。';
         textToClick =
             '画像をクリックすると色の名前が分かります。上のメニューを変えると英語、フランス語でも名前が調べられます。';
         tooltipText = '画像をリフレッシュ';
-        styles = { ...nameStyles, ...{ writingMode: 'vertical-rl' } };
+        writingMode = 'vertical-rl';
     }
 
     return (
@@ -141,7 +141,7 @@ const CheckMainColor = () => {
                         {clickable ? (
                             <p>{textToClick}</p>
                         ) : (
-                            <SelectNameBox style={{ ...fontColor, ...styles }}>
+                            <SelectNameBox style={{ ...fontColor, ...nameStyles, '--writingMode': writingMode }}>
                                 {colorData.name}
                             </SelectNameBox>
                         )}
@@ -220,6 +220,8 @@ const Box = styled.div`
                 padding: 32px;
             }
         }
+
+    
     }
 `;
 
@@ -230,6 +232,11 @@ const SelectNameBox = styled.div`
     justify-content: center;
     font-size: 36px;
     padding: 48px;
+    writing-mode: var(--writingMode);        
+
+    @media (max-width: 550px){       
+        font-size: 24px;
+    }
 `;
 
 const IconWrapper = styled.div`

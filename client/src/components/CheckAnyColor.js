@@ -28,6 +28,8 @@ const CheckAnyColor = () => {
     const [widthAdjustment, setWidthAdjustment] = useState(0);
     //adjustment for small screen layout (canvas height - image height)
     const [heightAdjustment, setHeightAdjustment] = useState(0);
+    //height of nameBox for smaller screen
+    const [nameBoxHeightSmallScreen, setNameBoxHeightSmallScreen] = useState(0);
 
     const lang = useSelector((state) => state.language[0]);
 
@@ -62,6 +64,8 @@ const CheckAnyColor = () => {
             let img = new Image();
             img.src = picSrc;
             img.onload = function () {
+                let containerHeight =
+                    document.getElementById('container').clientHeight;
                 if (img.width > img.height) {
                     let picHeight = img.height * (canvas.width / img.width);
                     context.drawImage(
@@ -73,12 +77,16 @@ const CheckAnyColor = () => {
                     );
                     setHeightAdjustment(Math.min(picHeight - canvas.height, 0));
                     setWidthAdjustment(0);
+                    setNameBoxHeightSmallScreen(containerHeight - picHeight);
                 } else {
                     let picWidth = img.width * (canvas.height / img.height);
                     context.drawImage(img, 0, 0, picWidth, canvas.height);
                     // adjustment expands the nameBox only when the pic is narrower than canvasContainer
                     setWidthAdjustment(Math.min(picWidth - canvas.width, 0));
                     setHeightAdjustment(0);
+                    setNameBoxHeightSmallScreen(
+                        containerHeight - canvas.height
+                    );
                 }
             };
 
@@ -128,7 +136,7 @@ const CheckAnyColor = () => {
 
     let fontColor = findFontColor(colorData);
 
-    let text, buttonText, textToClick, tooltipText, styles;
+    let text, buttonText, textToClick, tooltipText, writingMode;
 
     if (lang === 'en') {
         text =
@@ -137,7 +145,7 @@ const CheckAnyColor = () => {
         textToClick =
             'You can also look up color names in Japanese or French by chaging the select menu above. Click any many parts as you like in the image to find out the names of colors.';
         tooltipText = 'Refresh the image';
-        styles = nameStyles;
+        writingMode = 'revert';
     } else if (lang === 'fr') {
         text =
             "Vous pouvez rechercher le nom de la couleur de n'importe quelle partie de l'image que vous sélectionnez.";
@@ -145,7 +153,7 @@ const CheckAnyColor = () => {
         textToClick =
             "Vous pouvez également rechercher les noms en japonais ou en français en modifiant le menu de sélection ci-dessus. Cliquez sur autant de parties que vous le souhaitez dans l'image pour découvrir les noms des couleurs.";
         tooltipText = "Rafraîchir l'image";
-        styles = nameStyles;
+        writingMode = 'revert';
     } else {
         text =
             '下のボタンから画像を選び、好きな場所をクリックして色の名前を調べられます。';
@@ -153,8 +161,7 @@ const CheckAnyColor = () => {
         textToClick =
             '上のメニューを変えると英語、フランス語でも名前が調べられます。画像の好きなところを何ヶ所でもクリックして、色の名前を調べられます。';
         tooltipText = '画像をリフレッシュ';
-
-        styles = { ...nameStyles, ...{ writingMode: 'vertical-rl' } };
+        writingMode = 'vertical-rl';
     }
 
     return (
@@ -176,7 +183,7 @@ const CheckAnyColor = () => {
                     preview={preview}
                 />
             ) : (
-                <Container>
+                <Container id="container">
                     <PreviewWrapper style={{ background: backgroundColor }}>
                         <Box>
                             <CanvasContainer id="canvasContainer">
@@ -189,6 +196,7 @@ const CheckAnyColor = () => {
                             style={{
                                 '--widthAdjustment': `${widthAdjustment}px`,
                                 '--heightAdjustment': `${heightAdjustment}px`,
+                                '--nameBoxHeightSmallScreen': `${nameBoxHeightSmallScreen}px`,
                             }}
                         >
                             {colorArray.length === 0 ? (
@@ -197,7 +205,11 @@ const CheckAnyColor = () => {
                                 </div>
                             ) : (
                                 <SelectNameBox
-                                    style={{ ...fontColor, ...styles }}
+                                    style={{
+                                        ...fontColor,
+                                        ...nameStyles,
+                                        '--writingMode': writingMode,
+                                    }}
                                 >
                                     {colorData.name}
                                 </SelectNameBox>
@@ -275,7 +287,7 @@ const Box = styled.div`
             margin-left: 0px;
             align-items: center;
             /*margin-top to stretch nameBox when image is short.*/
-            margin-top: var(--heightAdjustment)
+            margin-top: var(--heightAdjustment);
         }
         p {
             padding: 32px;
@@ -305,6 +317,13 @@ const SelectNameBox = styled.div`
     justify-content: center;
     font-size: 36px;
     padding: 48px;
+    writing-mode: var(--writingMode);
+
+    @media (max-width: 550px) {
+        padding: 24px;
+        font-size: 24px;
+        height: var(--nameBoxHeightSmallScreen);
+    }
 `;
 
 const BottomWrapper = styled.div`
@@ -330,6 +349,9 @@ const IconWrapper = styled.div`
     position: absolute;
     bottom: 7px;
     right: 10px;
+    @media (max-width: 550px) {
+        display: none;
+    }
 `;
 
 export default CheckAnyColor;
