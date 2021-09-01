@@ -124,8 +124,6 @@ const CheckAnyColor = () => {
 
     let fontColor = findFontColor(colorData);
 
-    let nameBoxMarginLeft = `${adjustment}px`;
-
     let text, buttonText, textToClick, tooltipText, styles;
 
     if (lang === 'en') {
@@ -184,7 +182,7 @@ const CheckAnyColor = () => {
                         <Box
                             className="nameBox"
                             // marginLeft expands nameBox when the pic is narrow
-                            style={{ '--marginLeft': nameBoxMarginLeft }}
+                            style={{ '--adjustment': `${adjustment}px` }}
                         >
                             {colorArray.length === 0 ? (
                                 <div>
@@ -263,7 +261,7 @@ const Box = styled.div`
         flex: auto;
         justify-content: center;
         /* margin-left to expand the nameBox when the pic is narrow */
-        margin-left: var(--marginLeft);
+        margin-left: var(--adjustment);
 
         @media (max-width: 550px) {
             margin-left: 0px;
@@ -272,7 +270,7 @@ const Box = styled.div`
             padding: 32px;
             padding-top: 96px;
             max-width: 50ch;
-            
+
             @media (max-width: 550px) {
                 padding: 32px;
             }
@@ -281,7 +279,7 @@ const Box = styled.div`
 `;
 
 const CanvasContainer = styled.div`
-    width: 60vw;
+    width: ${DIMENSIONS.imageBoxWidthForLargerScreen};
     height: 100%;
     @media (max-width: 550px) {
         width: 100vw;
