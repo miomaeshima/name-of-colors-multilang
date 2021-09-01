@@ -1,5 +1,6 @@
 export const DIMENSIONS = {
     headerHeight: '32px',
+    imageBoxWidthForLargerScreen: "60vw"
 };
 
 export const COLORS = {

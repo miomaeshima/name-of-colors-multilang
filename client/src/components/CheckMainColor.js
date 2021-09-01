@@ -4,7 +4,7 @@ import Header from './Header';
 import SelectButton from './SelectButton';
 import { getMainRgb, Refresh, findFontColor, refreshPage } from '../utility';
 import { useSelector } from 'react-redux';
-import { COLORS, nameStyles } from '../constants';
+import { COLORS, DIMENSIONS, nameStyles } from '../constants';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
 
@@ -14,8 +14,7 @@ const CheckMainColor = () => {
     const [picName, setPicName] = useState('');
     const [colorData, setColorData] = useState({});
     const [backgroundColor, setBackgroundColor] = useState('transparent');
-    //State "wide" means pic's width > height
-    // const [wide, setWide] = useState(true);
+    const [adjustment, setAdjustment] = useState(0);
     const [originalColor, setOriginalColor] = useState(null);
 
     //Put data of selected image to PreviewPic
@@ -33,11 +32,16 @@ const CheckMainColor = () => {
             setPicSrc(reader.result);
             setPicName(previewPic.name);
             image.src = reader.result;
-            // image.onload = function () {
-            //     if (image.width <= image.height) {
-            //         setWide(false);
-            //     }
-            // };
+            image.onload = function () {
+                let imageBox = document.getElementsByClassName('imageBox')[0];
+                setAdjustment(
+                    Math.min(
+                        0,
+                        (image.width * imageBox.clientHeight) / image.height -
+                            imageBox.clientWidth
+                    )
+                );
+            };
         };
     }
 
@@ -108,10 +112,9 @@ const CheckMainColor = () => {
                 />
             ) : (
                 <PreviewWrapper style={{ background: backgroundColor }}>
-                    {/* <Box className="imageBox" style={dimension}> */}
                     <Box className="imageBox">
                         <img
-                            id="chosenPic"
+                            id="renderedPic"
                             style={imgStyles}
                             alt={picName}
                             src={picSrc}
@@ -120,7 +123,10 @@ const CheckMainColor = () => {
                         />
                     </Box>
 
-                    <Box className="nameBox">
+                    <Box
+                        className="nameBox"
+                        style={{ '--adjustment': `${adjustment}px` }}
+                    >
                         {clickable ? (
                             <p>{textToClick}</p>
                         ) : (
@@ -159,14 +165,14 @@ const Wrapper = styled.div`
 const PreviewWrapper = styled.div`
     height: calc(100% - 32px);
     display: flex;
-    @media (max-width: 550px){
-            flex-direction: column;
-        }
+    @media (max-width: 550px) {
+        flex-direction: column;
+    }
 `;
 
 const Box = styled.div`
     &.imageBox {
-        width: 60vw;
+        width: ${DIMENSIONS.imageBoxWidthForLargerScreen};
         height: 100%;
         img {
             width: 100%;
@@ -180,16 +186,24 @@ const Box = styled.div`
         }
     }
     &.nameBox {
-        background: pink;
-        flex: 1 0;
+        flex: auto;
         display: flex;
         justify-content: center;
-        /* width: 100%; */
-       
+
+        /*use negative margin-left to stretch nameBox to the left side when image is narrower than imageBox.
+        */
+        margin-left: var(--adjustment);
+
+        @media (max-width: 550px) {
+            align-items: center;
+        }
         p {
-            margin-top: 96px;
+            padding: 32px;
+            padding-top: 96px;
             max-width: 50ch;
+
             @media (max-width: 550px) {
+                margin: 0px;
                 padding: 32px;
             }
         }
