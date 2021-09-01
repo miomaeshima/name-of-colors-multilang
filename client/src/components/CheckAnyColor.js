@@ -24,8 +24,10 @@ const CheckAnyColor = () => {
     const [colorArray, setColorArray] = useState([]);
     //original RGB in the image
     const [originalColor, setOriginalColor] = useState(null);
-    //adjustment for layout (canvas width - image width)
+    //adjustment for larger screen layout (canvas width - image width)
     const [adjustment, setAdjustment] = useState(0);
+    //adjustment for small screen layout (canvas height - image height)
+    const [heightAdjustment, setHeightAdjustment] = useState(0);
 
     const lang = useSelector((state) => state.language[0]);
 
@@ -61,6 +63,7 @@ const CheckAnyColor = () => {
             img.src = picSrc;
             img.onload = function () {
                 if (img.width > img.height) {
+                    let picHeight = img.height * (canvas.width / img.width);
                     context.drawImage(
                         img,
                         0,
@@ -68,13 +71,14 @@ const CheckAnyColor = () => {
                         canvas.width,
                         img.height * (canvas.width / img.width)
                     );
+                    setHeightAdjustment(Math.min(picHeight - canvas.height, 0));
                     setAdjustment(0);
                 } else {
                     let picWidth = img.width * (canvas.height / img.height);
                     context.drawImage(img, 0, 0, picWidth, canvas.height);
                     // adjustment expands the nameBox only when the pic is narrower than canvasContainer
                     setAdjustment(Math.min(picWidth - canvas.width, 0));
-                    console.log(canvas.width - picWidth);
+                    setHeightAdjustment(0);
                 }
             };
 
@@ -182,7 +186,10 @@ const CheckAnyColor = () => {
                         <Box
                             className="nameBox"
                             // marginLeft expands nameBox when the pic is narrow
-                            style={{ '--adjustment': `${adjustment}px` }}
+                            style={{
+                                '--adjustment': `${adjustment}px`,
+                                '--heightAdjustment': `${heightAdjustment}px`,
+                            }}
                         >
                             {colorArray.length === 0 ? (
                                 <div>
@@ -265,6 +272,9 @@ const Box = styled.div`
 
         @media (max-width: 550px) {
             margin-left: 0px;
+            align-items: center;
+            /*margin-top to stretch nameBox when image is short.*/
+            margin-top: var(--heightAdjustment)
         }
         p {
             padding: 32px;

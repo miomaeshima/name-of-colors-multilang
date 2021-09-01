@@ -15,6 +15,7 @@ const CheckMainColor = () => {
     const [colorData, setColorData] = useState({});
     const [backgroundColor, setBackgroundColor] = useState('transparent');
     const [adjustment, setAdjustment] = useState(0);
+    const [heightAdjustment, setHeightAdjustment] = useState(0);
     const [originalColor, setOriginalColor] = useState(null);
 
     //Put data of selected image to PreviewPic
@@ -39,6 +40,13 @@ const CheckMainColor = () => {
                         0,
                         (image.width * imageBox.clientHeight) / image.height -
                             imageBox.clientWidth
+                    )
+                );
+                setHeightAdjustment(
+                    Math.min(
+                        0,
+                        (image.height * imageBox.clientWidth) / image.width -
+                            imageBox.clientHeight
                     )
                 );
             };
@@ -125,7 +133,10 @@ const CheckMainColor = () => {
 
                     <Box
                         className="nameBox"
-                        style={{ '--adjustment': `${adjustment}px` }}
+                        style={{
+                            '--adjustment': `${adjustment}px`,
+                            '--heightAdjustment': `${heightAdjustment}px`,
+                        }}
                     >
                         {clickable ? (
                             <p>{textToClick}</p>
@@ -189,14 +200,16 @@ const Box = styled.div`
         flex: auto;
         display: flex;
         justify-content: center;
+        background: pink;
 
-        /*use negative margin-left to stretch nameBox to the left side when image is narrower than imageBox.
-        */
+        /*margin-left to stretch nameBox when image is narrow.*/
         margin-left: var(--adjustment);
 
         @media (max-width: 550px) {
             align-items: center;
             margin-left: 0px;
+            /*margin-top to stretch nameBox when image is short.*/
+            margin-top: var(--heightAdjustment);
         }
         p {
             padding: 32px;
