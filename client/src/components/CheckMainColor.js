@@ -196,6 +196,7 @@ const Box = styled.div`
 
         @media (max-width: 550px) {
             align-items: center;
+            margin-left: 0px;
         }
         p {
             padding: 32px;
