@@ -325,9 +325,10 @@ const SelectNameBox = styled.div`
     writing-mode: var(--writingMode);
 
     @media (max-width: 550px) {
-        padding: 24px;
+        padding: 32px;
         font-size: 24px;
         height: var(--nameBoxHeightSmallScreen);
+        writing-mode: revert;
     }
 `;
 
@@ -335,13 +336,18 @@ const BottomWrapper = styled.div`
     display: flex;
     gap: 16px;
     padding-left: 16px;
+    @media (max-width: 550px){
+        gap: 2px;
+        padding-left: 8px;
+    }
 `;
 
 const ColorSample = styled.div`
     width: var(--colorSampleHeight);
     height: var(--colorSampleHeight);
     border-radius: 50%;
-    margin-right: 32px;
+    margin-right: 24px;
+
 `;
 
 const ClickedColor = styled.div`

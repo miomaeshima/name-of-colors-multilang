@@ -255,6 +255,7 @@ const SelectNameBox = styled.div`
         padding: 24px;
         font-size: 24px;
         height: var(--nameBoxHeightSmallScreen);
+        writing-mode: revert;
     }
 `;
 
