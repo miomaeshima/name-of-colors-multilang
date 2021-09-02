@@ -303,6 +303,12 @@ const Box = styled.div`
 const CanvasContainer = styled.div`
     width: ${DIMENSIONS.imageBoxWidthForLargerScreen};
     height: 100%;
+    canvas {
+        &:active,
+        &:hover {
+            outline: none;
+        }
+    }
     @media (max-width: 550px) {
         width: 100vw;
         height: 100vw;

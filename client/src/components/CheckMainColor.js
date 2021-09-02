@@ -205,7 +205,8 @@ const Box = styled.div`
             height: 100%;
             object-fit: contain;
             object-position: left top;
-            &:active, &:hover {
+            &:active,
+            &:hover {
                 outline: none;
             }
         }
