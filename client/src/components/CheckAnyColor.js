@@ -150,7 +150,7 @@ const CheckAnyColor = () => {
             "Vous pouvez rechercher le nom de la couleur de n'importe quelle partie de l'image que vous sélectionnez.";
         buttonText = 'Sélectionnez une image.';
         textToClick =
-            "Cliquez sur autant de parties que vous le souhaitez. Vous pouvez également changer de langue!";
+            'Cliquez sur autant de parties que vous le souhaitez. Vous pouvez également changer de langue!';
         tooltipText = "Rafraîchir l'image";
         writingMode = 'revert';
     } else {
@@ -217,6 +217,7 @@ const CheckAnyColor = () => {
                     </PreviewWrapper>
                     <BottomWrapper>
                         <ColorSample id="colorSample" />
+
                         {colorArray
                             .map((color, index) => (
                                 <Tooltip label={color.name} key={index}>
@@ -228,6 +229,7 @@ const CheckAnyColor = () => {
                                 </Tooltip>
                             ))
                             .reverse()}
+
                         <Tooltip label={tooltipText}>
                             <IconWrapper>
                                 <Refresh
@@ -336,9 +338,10 @@ const BottomWrapper = styled.div`
     display: flex;
     gap: 16px;
     padding-left: 16px;
-    @media (max-width: 550px){
+    @media (max-width: 550px) {
         gap: 2px;
-        padding-left: 8px;
+        padding-left: 6px;
+        padding-right: 6px;
     }
 `;
 
@@ -346,8 +349,11 @@ const ColorSample = styled.div`
     width: var(--colorSampleHeight);
     height: var(--colorSampleHeight);
     border-radius: 50%;
-    margin-right: 24px;
-
+    margin-right: 32px;
+    @media (max-width:550px){        
+        margin-right: auto;
+    }
+   
 `;
 
 const ClickedColor = styled.div`
