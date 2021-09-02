@@ -142,7 +142,7 @@ const CheckAnyColor = () => {
             'You can look up the name of the color of any part of the image you select.';
         buttonText = 'Select an image.';
         textToClick =
-            'You can also look up color names in Japanese or French by chaging the select menu above. Click any many parts as you like in the image to find out the names of colors.';
+            'Click on as many parts as you like. You can change languages, too!';
         tooltipText = 'Refresh the image';
         writingMode = 'revert';
     } else if (lang === 'fr') {
@@ -150,15 +150,15 @@ const CheckAnyColor = () => {
             "Vous pouvez rechercher le nom de la couleur de n'importe quelle partie de l'image que vous sélectionnez.";
         buttonText = 'Sélectionnez une image.';
         textToClick =
-            "Vous pouvez également rechercher les noms en japonais ou en français en modifiant le menu de sélection ci-dessus. Cliquez sur autant de parties que vous le souhaitez dans l'image pour découvrir les noms des couleurs.";
+            "Cliquez sur autant de parties que vous le souhaitez. Vous pouvez également changer de langue!";
         tooltipText = "Rafraîchir l'image";
         writingMode = 'revert';
     } else {
         text =
-            '下のボタンから画像を選び、好きな場所をクリックして色の名前を調べられます。';
+            '下のボタンから画像を選び、好きな場所をいくらでもクリックして色の名前を調べられます。';
         buttonText = '画像を選ぶ。';
         textToClick =
-            '上のメニューを変えると英語、フランス語でも名前が調べられます。画像の好きなところを何ヶ所でもクリックして、色の名前を調べられます。';
+            '画像の好きなところをクリックしてください！上のメニューで英語、フランス語でも調べられます。';
         tooltipText = '画像をリフレッシュ';
         writingMode = 'vertical-rl';
     }

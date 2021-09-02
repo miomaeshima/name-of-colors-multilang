@@ -87,7 +87,7 @@ const CheckMainColor = () => {
             'You can look up the name of the most used color in the image you select.';
         buttonText = 'Select an image.';
         textToClick =
-            'Click on the image to find out the name of the most used color. You can also look up the name in Japanese or French by chaging the select menu above.';
+            'Click on the image! You can also change languages on the select menu above.';
         tooltipText = 'Refresh the image';
         writingMode = 'revert';
     } else if (lang === 'fr') {
@@ -95,14 +95,14 @@ const CheckMainColor = () => {
             "Vous pouvez rechercher le nom de la couleur la plus utilisée dans l'image que vous sélectionnez.";
         buttonText = 'Sélectionnez une image.';
         textToClick =
-            "Cliquez sur l'image pour connaître le nom de la couleur la plus utilisée. Vous pouvez également rechercher le nom en japonais ou en français en modifiant le menu de sélection ci-dessus.";
+            "Cliquez sur l'image! Vous pouvez également changer de langue sur le menu de sélection ci-dessus.";
         tooltipText = "Rafraîchir l'image";
         writingMode = 'revert';
     } else {
         text = '選んだ画像に一番使われている色の名前を調べます。';
         buttonText = '画像を選ぶ。';
         textToClick =
-            '画像をクリックすると色の名前が分かります。上のメニューを変えると英語、フランス語でも名前が調べられます。';
+            '画像をクリックしてください。上のメニューで英語、フランス語にも切り替えられます！';
         tooltipText = '画像をリフレッシュ';
         writingMode = 'vertical-rl';
     }

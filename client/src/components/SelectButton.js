@@ -27,7 +27,7 @@ const FormWrapper = styled.div`
     gap: 32px;
     align-items: center;
     justify-content: center;
-    padding: 16px;
+    padding: 32px;
 `;
 
 const P = styled.p`

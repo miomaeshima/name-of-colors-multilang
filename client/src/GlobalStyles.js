@@ -66,7 +66,7 @@ table {
 	isolation: isolate;
     font-size: 16px;
 	line-height: 1.45;
-	letter-spacing: 0.1rem;
+	letter-spacing: 0.07rem;
 	font-family:
     -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
     helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
