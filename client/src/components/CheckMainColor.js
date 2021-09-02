@@ -205,6 +205,9 @@ const Box = styled.div`
             height: 100%;
             object-fit: contain;
             object-position: left top;
+            &:active, &:hover {
+                outline: none;
+            }
         }
         @media (max-width: 550px) {
             width: 100vw;
